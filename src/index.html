@@ -25,9 +25,10 @@
       }
 
       body {
-        font-family: 'Work Sans', sans-serif;
         background: #ffffff;
         color: #000000;
+        font-family: 'Work Sans', sans-serif;
+        font-size: 16px;
       }
 
       abbr {
@@ -39,7 +40,12 @@
         max-width: 800px;
         margin: 0 auto;
         padding: 0 1.5rem;
-        font-size: 16px;
+      }
+
+      .box {
+        box-shadow: 8px 8px 8px rgba(0, 0, 0, 0.15);
+        background: #ecf0f1;
+        padding: 1.5rem;
       }
 
       .about,
@@ -58,7 +64,7 @@
       @media (min-width: 800px) {
         .profile {
           display: grid;
-          grid-template-columns: auto auto;
+          grid-auto-flow: column;
           justify-content: center;
           align-items: center;
         }
@@ -92,13 +98,10 @@
 
       .about-content {
         position: relative;
-
-        box-shadow: 8px 8px 8px rgba(0, 0, 0, 0.15);
-        background: #ecf0f1;
-        padding: 1.5rem;
+        padding-bottom: 0.5rem;
       }
 
-      @media (min-width: 800px) {
+      @media (min-width: 640px) {
         .about-content {
           display: grid;
           grid-template-columns: auto 1fr;
@@ -113,6 +116,7 @@
         transform: skew(-25deg);
         color: #95a5a6;
         font-size: 2rem;
+        font-weight: bold;
         content: '"';
       }
 
@@ -138,16 +142,18 @@
 
       .about-social-icon {
         height: 30px;
-        margin: 0 4px;
-        opacity: 0.33;
-        transition: opacity 0.4s cubic-bezier(0.25, 1, 0.25, 1);
+        padding: 0 4px;
+        opacity: 0.4;
+        transition: all 0.4s cubic-bezier(0.25, 1, 0.25, 1);
+        transition-property: opacity, transform;
       }
 
       .about-social-icon:hover {
-        opacity: 0.4;
+        opacity: 0.8;
+        transform: scale(1.25);
       }
 
-      .about-text p:first-child {
+      .about-statement p:first-child {
         margin: 0;
       }
 
@@ -201,15 +207,15 @@
   <body>
     <section id="profile" class="profile narrow">
       <img class="profile-avatar" src="avatar.svg" alt="Vladimir Sabev's Avatar" />
-      <div>
+      <div class="profile-text">
         <h1 class="profile-title">Vladimir Sabev</h1>
         <p class="profile-subtitle">&lt;Freelance Web Developer /&gt;</p>
       </div>
     </section>
 
     <section id="about" class="about narrow">
-      <div class="about-content">
-        <div>
+      <div class="about-content box">
+        <div class="about-info">
           <img class="about-picture" src="picture.jpg" alt="Vladimir Sabev" />
           <div class="about-social">
             <a target="_blank" href="https://github.com/vdsabev" title="GitHub"><img class="about-social-icon" src="github.svg" alt="GitHub" /></a>
@@ -218,11 +224,12 @@
             <a target="_blank" href="https://linkedin.com/in/vdsabev" title="LinkedIn"><img class="about-social-icon" src="linkedin.svg" alt="LinkedIn" /></a>
           </div>
         </div>
-        <div class="about-text">
+
+        <div class="about-statement">
           <p>I believe work should be exciting, fulfilling, and meaningful.</p>
           <p>By using the right tool for each job, constantly refining my approach, and keeping in mind the value to my clients' business, I strive to create the best web applications possible.</p>
           <p>
-            With more than 7 years of professional experience and exposure to a wide range of technologies, I currently specialize in
+            After more than <span id="about-statement-experience">7</span> years of professional experience and exposure to a wide range of technologies, I currently specialize in
             <abbr title="Front-end web development is the practice of producing HTML, CSS and JavaScript for a website or Web Application so that a user can see and interact with them directly">front end development</abbr>,
             <abbr title="Serverless computing is a cloud computing execution model in which the cloud provider dynamically manages the allocation of machine resources. Pricing is based on the actual amount of resources consumed by an application, rather than on pre-purchased units of capacity. It is a form of utility computing.">serverless computing</abbr>, and
             <abbr title="Progressive Web Apps, also known as Installable Web Apps or Hybrid Web Apps, are regular web pages or websites, but can appear to the user like traditional applications or native mobile applications. The application type attempts to combine features offered by most modern browsers with the benefits of mobile experience.">progressive web applications</abbr>.
@@ -249,9 +256,14 @@
 
     <footer id="footer">
       <div class="footer-content narrow">
-        <p>&copy; 2017 Vladimir Sabev</p>
+        <p>&copy; <span id="footer-copyright-date">2017</span> Vladimir Sabev</p>
         <p>Illustration by <a target="_blank" href="https://twitter.com/spovv">@spovv</a></p>
       </div>
     </footer>
+
+    <script type="text/javascript">
+      document.getElementById('about-statement-experience').innerText = new Date().getFullYear() - 2010;
+      document.getElementById('footer-copyright-date').innerText = new Date().getFullYear();
+    </script>
   </body>
 </html>

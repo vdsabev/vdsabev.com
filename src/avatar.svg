@@ -6,7 +6,7 @@
 		<filter x="-50%" y="-50%" width="200%" height="200%" filterUnits="objectBoundingBox" id="avatar-shadow">
 			<feOffset dx="0" dy="0" in="SourceAlpha" result="shadowOffset"/>
 			<feGaussianBlur stdDeviation="10" in="shadowOffset" result="shadowBlur"/>
-			<feColorMatrix values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.1 0" in="shadowBlur" result="shadowMatrix"/>
+			<feColorMatrix values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.2 0" in="shadowBlur" result="shadowMatrix"/>
 			<feMerge>
 				<feMergeNode in="shadowMatrix"/>
 				<feMergeNode in="SourceGraphic"/>

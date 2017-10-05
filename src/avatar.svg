@@ -2,7 +2,19 @@
 <!-- Generator: Adobe Illustrator 19.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
 <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
 	 viewBox="0 0 300 300" style="enable-background:new 0 0 300 300;" xml:space="preserve">
-	<g id="avatar-group">
+	<defs xmlns="http://www.w3.org/2000/svg">
+		<filter x="-50%" y="-50%" width="200%" height="200%" filterUnits="objectBoundingBox" id="avatar-shadow">
+			<feOffset dx="0" dy="0" in="SourceAlpha" result="shadowOffset"/>
+			<feGaussianBlur stdDeviation="10" in="shadowOffset" result="shadowBlur"/>
+			<feColorMatrix values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.1 0" in="shadowBlur" result="shadowMatrix"/>
+			<feMerge>
+				<feMergeNode in="shadowMatrix"/>
+				<feMergeNode in="SourceGraphic"/>
+			</feMerge>
+		</filter>
+	</defs>
+
+	<g id="avatar-group" filter="url(#avatar-shadow)">
 		<path id="avatar-beard" d="M203.3,145.1c-2.8,0-5,2.2-5,5v8.5v39.9c0,10.9-5.1,20.7-13.1,27v-15.1c0-8.8-7.2-16-16-16h-38.3
 			c-8.8,0-16,7.2-16,16v15.1c-8-6.3-13.1-16-13.1-27v-39.9v-8.5c0-2.8-2.2-5-5-5s-5,2.2-5,5v8.5v39.9v8.5c0,24.4,19.9,47.3,44.3,47.3
 			h28c24.4,0,44.3-22.9,44.3-47.3v-8.5v-39.9v-8.5C208.3,147.4,206.1,145.1,203.3,145.1z M157.7,228.1c2.9,0,5.3-2.5,5-5.5

@@ -25,6 +25,7 @@
       }
 
       body {
+        font-family: 'Work Sans', sans-serif;
         background: #ffffff;
         color: #000000;
       }
@@ -38,25 +39,37 @@
         max-width: 800px;
         margin: 0 auto;
         padding: 0 1.5rem;
-        font-family: 'Work Sans', sans-serif;
         font-size: 16px;
+      }
+
+      .about,
+      .post-list {
+        margin-bottom: 3rem;
       }
 
       /* Profile */
       .profile {
+        margin-top: 3rem;
+        margin-bottom: 3rem;
         font-family: 'Acme', sans-serif;
         text-align: center;
       }
 
+      @media (min-width: 800px) {
+        .profile {
+          display: grid;
+          grid-template-columns: auto auto;
+          justify-content: center;
+          align-items: center;
+        }
+      }
+
       .profile-avatar {
-        width: 100%;
-        max-width: 480px;
-        margin: -50px 0;
+        width: 240px;
       }
 
       .profile-title,
       .profile-subtitle {
-        margin: 0;
         -webkit-margin-before: 0;
         -webkit-margin-after: 0;
       }
@@ -64,30 +77,57 @@
       .profile-title {
         font-size: 3rem;
         font-weight: normal;
+        margin: 0;
       }
 
       .profile-subtitle {
-        margin-bottom: 1.5rem;
         font-size: 1.5rem;
       }
 
       /* About */
-      .about,
+      .about-content,
       .about-picture {
         border-radius: 0.25rem;
       }
 
-      .about {
-        display: grid;
-        grid-template-columns: auto 1fr;
-        grid-gap: 1rem;
+      .about-content {
+        position: relative;
 
-        margin-bottom: 1.5rem;
+        box-shadow: 8px 8px 8px rgba(0, 0, 0, 0.15);
         background: #ecf0f1;
         padding: 1.5rem;
       }
 
+      @media (min-width: 800px) {
+        .about-content {
+          display: grid;
+          grid-template-columns: auto 1fr;
+          grid-gap: 1rem;
+        }
+      }
+
+      .about-content::before,
+      .about-content::after {
+        position: absolute;
+        display: block;
+        transform: skew(-25deg);
+        color: #95a5a6;
+        font-size: 2rem;
+        content: '"';
+      }
+
+      .about-content::before {
+        top: 0;
+        left: 0.2rem;
+      }
+
+      .about-content::after {
+        right: 0.5rem;
+        bottom: -1rem;
+      }
+
       .about-picture {
+        margin-bottom: 1rem;
         width: 100%;
         max-width: 160px;
       }
@@ -97,9 +137,9 @@
       }
 
       /* Posts */
-      .post-list,
+      .post-list-title,
       .post-item {
-        margin-bottom: 1.5rem;
+        margin-bottom: 2rem;
       }
 
       .post-item-title {
@@ -144,28 +184,32 @@
   </head>
 
   <body>
-    <section class="profile narrow">
+    <section id="profile" class="profile narrow">
       <img class="profile-avatar" src="avatar.svg" alt="Vladimir Sabev's Avatar" />
-      <h1 class="profile-title">Vladimir Sabev</h1>
-      <p class="profile-subtitle">&lt;Freelance Web Developer /&gt;</p>
+      <div>
+        <h1 class="profile-title">Vladimir Sabev</h1>
+        <p class="profile-subtitle">&lt;Freelance Web Developer /&gt;</p>
+      </div>
     </section>
 
     <section id="about" class="about narrow">
-      <img class="about-picture" src="picture.jpg" alt="Vladimir Sabev" />
-      <div class="about-text">
-        <p>I believe work should be exciting, fulfilling, and meaningful.</p>
-        <p>By using the right tool for each job, constantly refining my approach, and keeping in mind the value to my clients' business, I strive to create the best web applications that are possible today.</p>
-        <p>
-          With more than 7 years of professional experience and exposure to a wide range of technologies, I currently specialize in
-          <abbr title="Front-end web development is the practice of producing HTML, CSS and JavaScript for a website or Web Application so that a user can see and interact with them directly">front end development</abbr>,
-          <abbr title="Serverless computing is a cloud computing execution model in which the cloud provider dynamically manages the allocation of machine resources. Pricing is based on the actual amount of resources consumed by an application, rather than on pre-purchased units of capacity. It is a form of utility computing.">serverless computing</abbr>, and
-          <abbr title="Progressive Web Apps, also known as Installable Web Apps or Hybrid Web Apps, are regular web pages or websites, but can appear to the user like traditional applications or native mobile applications. The application type attempts to combine features offered by most modern browsers with the benefits of mobile experience.">progressive web applications</abbr>.
-        </p>
+      <div class="about-content">
+        <img class="about-picture" src="picture.jpg" alt="Vladimir Sabev" />
+        <div class="about-text">
+          <p>I believe work should be exciting, fulfilling, and meaningful.</p>
+          <p>By using the right tool for each job, constantly refining my approach, and keeping in mind the value to my clients' business, I strive to create the best web applications possible.</p>
+          <p>
+            With more than 7 years of professional experience and exposure to a wide range of technologies, I currently specialize in
+            <abbr title="Front-end web development is the practice of producing HTML, CSS and JavaScript for a website or Web Application so that a user can see and interact with them directly">front end development</abbr>,
+            <abbr title="Serverless computing is a cloud computing execution model in which the cloud provider dynamically manages the allocation of machine resources. Pricing is based on the actual amount of resources consumed by an application, rather than on pre-purchased units of capacity. It is a form of utility computing.">serverless computing</abbr>, and
+            <abbr title="Progressive Web Apps, also known as Installable Web Apps or Hybrid Web Apps, are regular web pages or websites, but can appear to the user like traditional applications or native mobile applications. The application type attempts to combine features offered by most modern browsers with the benefits of mobile experience.">progressive web applications</abbr>.
+          </p>
+        </div>
       </div>
     </section>
 
     <section id="post-list" class="post-list narrow">
-      <h1>Posts</h1>
+      <h1 class="post-list-title">Posts</h1>
 
       <article class="post-item">
         <a href="https://medium.com/@vdsabev/simplify-your-layout-with-this-one-weird-trick-hint-its-css-grid-b9a2971a5649" target="_blank" class="post-item-title">Simplify Your Layout (And Your Life) With CSS Grid</a>
@@ -180,10 +224,10 @@
       </article>
     </section>
 
-    <footer>
+    <footer id="footer">
       <div class="footer-content narrow">
         <p>&copy; 2017 Vladimir Sabev</p>
-        <p>Illustration by <a href="https://twitter.com/spovv">@spovv</a></p>
+        <p>Illustration by <a href="https://twitter.com/spovv" target="_blank">@spovv</a></p>
       </div>
     </footer>
   </body>

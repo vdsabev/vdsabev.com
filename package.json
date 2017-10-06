@@ -1,7 +1,12 @@
 {
   "private": true,
   "name": "vdsabev.com",
+  "scripts": {
+    "build": "cd src && svgo avatar.svg && svg2png avatar.svg -w 100",
+    "start": "firebase serve --port 3000",
+    "deploy": "firebase deploy"
+  },
   "dependencies": {
-    "firemail": "1.3.3"
+    "firemail": "1.4.0"
   }
 }

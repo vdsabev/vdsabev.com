@@ -208,20 +208,26 @@
       }
 
       /* Footer */
-      footer {
-        background: #2c3e50;
-        padding: 1rem;
-        color: #ffffff;
+      .footer-stripe {
+        height: 5px;
+        background: #3498db;
+        background: linear-gradient(to right,#3498db, #2ecc71);
       }
 
-      footer a {
+      footer {
+        background: #34495e;
+        padding: 1rem;
         color: #ffffff;
-        border-bottom: 1px dotted #ecf0f1;
       }
 
       .footer-content {
         display: grid;
         grid-template-columns: 1fr auto;
+      }
+
+      .footer-content a {
+        color: #ffffff;
+        border-bottom: 1px dotted #ecf0f1;
       }
     </style>
 
@@ -287,6 +293,8 @@
         <time datetime="2017-08-18T08:48:05.030Z" class="post-item-date">Aug 18, 2017</time>
       </article>
     </section>
+
+    <div class="footer-stripe"></div>
 
     <footer id="footer">
       <div class="footer-content narrow">

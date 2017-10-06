@@ -42,9 +42,28 @@
         cursor: help;
       }
 
+      fieldset {
+        border: 0;
+        margin: 0;
+        padding: 0;
+        transition: all 0.4s cubic-bezier(0.25, 1, 0.25, 1);
+        transition-property: opacity, filter;
+      }
+
+      fieldset[disabled] {
+        opacity: 0.8;
+        filter: grayscale();
+      }
+
+      fieldset[disabled],
+      fieldset[disabled] textarea,
+      fieldset[disabled] input,
+      fieldset[disabled] button {
+        cursor: not-allowed;
+      }
+
       textarea,
-      input[type="email"],
-      input[type="button"],
+      input,
       button {
         margin-bottom: 1rem;
         border-radius: 0.25rem;
@@ -53,7 +72,7 @@
       }
 
       textarea,
-      input[type="email"] {
+      input {
         outline: none;
         border: 1px solid #bdc3c7;
         font-family: 'Nunito', sans-serif;
@@ -62,7 +81,7 @@
       }
 
       textarea:focus,
-      input[type="email"]:focus {
+      input:focus {
         box-shadow: 0 0 6px rgba(0, 0, 0, 0.3);
       }
 
@@ -72,7 +91,6 @@
         max-height: 600px;
       }
 
-      input[type="button"],
       button {
         cursor: pointer;
         border: 0;
@@ -236,6 +254,28 @@
         font-variant: small-caps;
       }
 
+      #contact-success,
+      #contact-error {
+        display: none;
+        opacity: 0;
+        transition: opacity 0.4s cubic-bezier(0.25, 1, 0.25, 1);
+        font-size: 1.5rem;
+      }
+
+      #contact-success {
+        color: #2ecc71;
+      }
+
+      #contact-error {
+        color: #e74c3c;
+      }
+
+      #contact-success.shown,
+      #contact-error.shown {
+        display: block;
+        opacity: 1;
+      }
+
       /* Posts */
       .post-list-title,
       .post-item {
@@ -334,37 +374,47 @@
 
     <section id="contact" class="contact narrow">
       <h1 class="contact-title">Contact</h1>
-      <!-- TODO: Make availability and date range dynamic -->
-      <p>I'm currently <b style="color: #27ae60;">available</b> for projects and consulting for <b>Q4 2017 / Q1 2018</b>.</p>
 
       <form name="form" onsubmit="return false">
-        <label>
-          So how can I help?
-          <textarea
-            id="contact-text"
-            name="text"
-            placeholder="Feel free to introduce yourself, describe your business idea, and how you think I could fit in the project"
-            required
-          ></textarea>
-        </label>
+        <fieldset id="contact-fieldset">
+          <!-- TODO: Make availability and date range dynamic -->
+          <p>I'm currently <b style="color: #27ae60;">available</b> for projects and consulting for <b>Q4 2017 / Q1 2018</b>.</p>
 
-        <br />
+          <label>
+            So, how can I help?
+            <textarea
+              id="contact-text"
+              name="text"
+              placeholder="Feel free to introduce yourself, describe your business idea, and how you think I could fit in the project"
+              required
+            ></textarea>
+          </label>
 
-        <label>
-          And how can I reach you?
-          <input
-            id="contact-email"
-            type="email"
-            name="email"
-            placeholder="Email"
-            required
-          />
-        </label>
+          <br />
 
-        <br />
+          <label>
+            And how can I reach you?
+            <input
+              id="contact-email"
+              type="email"
+              name="email"
+              placeholder="Email"
+              required
+            />
+          </label>
 
-        <button class="contact-submit" type="submit" onclick="submitContactForm()">SEND</button>
+          <br />
+
+          <button class="contact-submit" type="submit" onclick="submitContactForm()">SEND</button>
+        </fieldset>
       </form>
+
+      <div id="contact-success">Thanks for reaching out 😊 I'll get back to you soon!</div>
+      <div id="contact-error">
+        Oops! Something went wrong 😐 The error has been logged - I'll see what I can do about it.
+        <!-- TODO: Send contact-text value as mailto text: http://www.angelfire.com/dc/html-webmaster/mailto.htm -->
+        And don't worry - you can still reach me at <a target="_blank" href="mailto:vdsabev@gmail.com">vdsabev@gmail.com</a>
+      </div>
     </section>
 
     <section id="post-list" class="post-list narrow">
@@ -392,6 +442,7 @@
       </div>
     </footer>
 
+    <!-- Application -->
     <script type="text/javascript">
       (function () {
         'use strict';
@@ -399,22 +450,45 @@
         setText('about-statement-experience', new Date().getFullYear() - 2010);
         setText('footer-copyright-date', new Date().getFullYear());
 
+        var contactFormSending;
+        var contactFormSent;
         window.submitContactForm = function () {
+          if (contactFormSending || contactFormSent) return;
+
           var email = getValue('contact-email');
           var text = getValue('contact-text');
 
-          if (!(email & text)) return;
+          if (!email) return console.error('Invalid email:', JSON.stringify(email));
+          if (!text) return console.error('Invalid text:', JSON.stringify(text));
 
           var message = {
-            subject: 'New message from ' + email,
+            subject: 'VDSABEV.COM: New message from ' + email,
             text: text
           };
 
+          contactFormSending = true;
+          setClass('contact-success', 'shown', false);
+          setClass('contact-error', 'shown', false);
+          setDisabled('contact-fieldset', true);
+
           // https://stackoverflow.com/questions/14873443/sending-an-http-post-using-javascript-triggered-event
           var request = new XMLHttpRequest();
-          request.onload = function () {
-            console.log(request.status, request.responseText);
-          }
+
+          request.addEventListener('load', function () {
+            contactFormSending = false;
+            contactFormSent = true;
+            logEvent('contact.success', { message: message });
+            setClass('contact-success', 'shown', true);
+          });
+
+          request.addEventListener('error', function () {
+            contactFormSending = false;
+            console.error(request);
+            logEvent('contact.error', { message: message });
+            setClass('contact-error', 'shown', true);
+            setDisabled('contact-fieldset', false);
+          });
+
           // TODO: Move URL to configuration
           request.open('POST', 'https://us-central1-vladimir-sabev.cloudfunctions.net/sendEmail', true);
           request.setRequestHeader('Content-Type', 'application/json;charset=UTF-8');
@@ -428,7 +502,29 @@
         function getValue(elementId, text) {
           return document.getElementById(elementId).value;
         }
+
+        function setDisabled(elementId, disabled) {
+          document.getElementById(elementId).disabled = disabled;
+        }
+
+        function setClass(elementId, className, status) {
+          var classList = document.getElementById(elementId).classList;
+          status ? classList.add(className) : classList.remove(className);
+        }
+
+        function logEvent(type, data) {
+          window.ga && ga('send', 'event', type, data);
+        }
       })();
     </script>
+
+    <!-- Google Analytics -->
+    <!-- TODO: Move property ID to configuration -->
+    <script>
+      window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+      ga('create', 'UA-107701468-1', 'auto');
+      ga('send', 'pageview');
+    </script>
+    <script async src='https://www.google-analytics.com/analytics.js'></script>
   </body>
 </html>

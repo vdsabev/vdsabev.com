@@ -27,12 +27,16 @@
       body {
         background: #ffffff;
         color: #000000;
-        font-family: 'Work Sans', sans-serif;
+        font-family: 'Nunito', sans-serif;
         font-size: 16px;
       }
 
       abbr {
         text-decoration: underline dotted #95a5a6;
+      }
+
+      a {
+        display: inline-block;
       }
 
       .narrow {
@@ -99,14 +103,9 @@
       .about-content {
         position: relative;
         padding-bottom: 0.5rem;
-      }
 
-      @media (min-width: 640px) {
-        .about-content {
-          display: grid;
-          grid-template-columns: auto 1fr;
-          grid-gap: 1rem;
-        }
+        display: grid;
+        grid-template-rows: auto 1fr;
       }
 
       .about-content::before,
@@ -130,20 +129,31 @@
         bottom: -1rem;
       }
 
-      .about-picture,
-      .about-social {
-        margin-bottom: 0.5rem;
-      }
-
       .about-picture {
+        grid-row: 1;
         width: 100%;
         max-width: 160px;
+        margin-right: 0.2rem;
+      }
+
+      .about-statement {
+        grid-row: 2;
+        margin-top: 0.5rem;
+        line-height: 1.25rem;
+      }
+
+      .about-statement p:first-child {
+        margin: 0;
+      }
+
+      .about-social {
+        grid-row: 3;
       }
 
       .about-social-icon {
-        height: 30px;
+        width: 36px;
         padding: 0 4px;
-        opacity: 0.4;
+        opacity: 0.33;
         transition: all 0.4s cubic-bezier(0.25, 1, 0.25, 1);
         transition-property: opacity, transform;
       }
@@ -153,8 +163,20 @@
         transform: scale(1.25);
       }
 
-      .about-statement p:first-child {
-        margin: 0;
+      @media (min-width: 640px) {
+        .about-content {
+          grid-gap: 0.8rem;
+          grid-template-columns: auto 1fr;
+        }
+
+        .about-social {
+          grid-row: 2;
+        }
+
+        .about-statement {
+          grid-row: 1 / 3;
+          margin-top: 0;
+        }
       }
 
       /* Posts */
@@ -201,7 +223,7 @@
       }
     </style>
 
-    <link href="https://fonts.googleapis.com/css?family=Acme|Work+Sans" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Acme|Nunito" rel="stylesheet">
   </head>
 
   <body>
@@ -215,25 +237,35 @@
 
     <section id="about" class="about narrow">
       <div class="about-content box">
-        <div class="about-info">
-          <img class="about-picture" src="picture.jpg" alt="Vladimir Sabev" />
-          <div class="about-social">
-            <a target="_blank" href="https://github.com/vdsabev" title="GitHub"><img class="about-social-icon" src="github.svg" alt="GitHub" /></a>
-            <a target="_blank" href="https://medium.com/@vdsabev" title="Medium"><img class="about-social-icon" src="medium.svg" alt="Medium" /></a>
-            <a target="_blank" href="https://twitter.com/vdsabev" title="Twitter"><img class="about-social-icon" src="twitter.svg" alt="Twitter" /></a>
-            <a target="_blank" href="https://linkedin.com/in/vdsabev" title="LinkedIn"><img class="about-social-icon" src="linkedin.svg" alt="LinkedIn" /></a>
-          </div>
-        </div>
+        <img class="about-picture" src="picture.jpg" alt="Vladimir Sabev" />
 
         <div class="about-statement">
           <p>I believe work should be exciting, fulfilling, and meaningful.</p>
-          <p>By using the right tool for each job, constantly refining my approach, and keeping in mind the value to my clients' business, I strive to create the best web applications possible.</p>
+          <p>By using the right tool for each job, constantly refining my approach, and keeping in mind the business value for my clients, I strive to create the best web applications possible.</p>
           <p>
             After more than <span id="about-statement-experience">7</span> years of professional experience and exposure to a wide range of technologies, I currently specialize in
             <abbr title="Front-end web development is the practice of producing HTML, CSS and JavaScript for a website or Web Application so that a user can see and interact with them directly">front end development</abbr>,
             <abbr title="Serverless computing is a cloud computing execution model in which the cloud provider dynamically manages the allocation of machine resources. Pricing is based on the actual amount of resources consumed by an application, rather than on pre-purchased units of capacity. It is a form of utility computing.">serverless computing</abbr>, and
             <abbr title="Progressive Web Apps, also known as Installable Web Apps or Hybrid Web Apps, are regular web pages or websites, but can appear to the user like traditional applications or native mobile applications. The application type attempts to combine features offered by most modern browsers with the benefits of mobile experience.">progressive web applications</abbr>.
           </p>
+        </div>
+
+        <div class="about-social">
+          <a class="inline-block" target="_blank" href="https://github.com/vdsabev" title="GitHub">
+            <img class="about-social-icon" src="github-square.svg" alt="GitHub" />
+          </a>
+
+          <a class="inline-block" target="_blank" href="https://twitter.com/vdsabev" title="Twitter">
+            <img class="about-social-icon" src="twitter-square.svg" alt="Twitter" />
+          </a>
+
+          <a class="inline-block" target="_blank" href="https://medium.com/@vdsabev" title="Medium">
+            <img class="about-social-icon" src="medium.svg" alt="Medium" />
+          </a>
+
+          <a class="inline-block" target="_blank" href="https://linkedin.com/in/vdsabev" title="LinkedIn">
+            <img class="about-social-icon" src="linkedin.svg" alt="LinkedIn" />
+          </a>
         </div>
       </div>
     </section>

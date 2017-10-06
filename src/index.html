@@ -31,15 +31,70 @@
         font-size: 16px;
       }
 
+      a {
+        display: inline-block;
+        text-decoration: none;
+      }
+
       abbr {
         text-decoration: none;
         border-bottom: 1px dotted #95a5a6;
         cursor: help;
       }
 
-      a {
-        display: inline-block;
-        text-decoration: none;
+      fieldset {
+        border: 0;
+        margin: 0;
+        padding: 0;
+        transition: all 0.4s cubic-bezier(0.25, 1, 0.25, 1);
+        transition-property: opacity, filter;
+      }
+
+      fieldset[disabled] {
+        opacity: 0.8;
+        filter: grayscale();
+      }
+
+      fieldset[disabled],
+      fieldset[disabled] textarea,
+      fieldset[disabled] input,
+      fieldset[disabled] button {
+        cursor: not-allowed;
+      }
+
+      textarea,
+      input,
+      button {
+        margin-bottom: 1rem;
+        border-radius: 0.25rem;
+        padding: 1rem 0.6rem;
+        transition: all 0.4s cubic-bezier(0.25, 1, 0.25, 1);
+      }
+
+      textarea,
+      input {
+        outline: none;
+        border: 1px solid #bdc3c7;
+        font-family: 'Nunito', sans-serif;
+        font-size: 1rem;
+        transition-property: box-shadow;
+      }
+
+      textarea:focus,
+      input:focus {
+        box-shadow: 0 0 6px rgba(0, 0, 0, 0.3);
+      }
+
+      textarea {
+        resize: vertical;
+        min-height: 200px;
+        max-height: 600px;
+      }
+
+      button {
+        cursor: pointer;
+        border: 0;
+        transition-property: box-shadow;
       }
 
       .narrow {
@@ -56,6 +111,7 @@
       }
 
       .about,
+      .contact,
       .post-list {
         margin-bottom: 3rem;
       }
@@ -78,7 +134,8 @@
       }
 
       .profile-avatar {
-        width: 240px;
+        width: 180px;
+        margin: 1.5rem;
       }
 
       .profile-title,
@@ -182,6 +239,44 @@
         }
       }
 
+      /* Contact */
+      #contact-text,
+      #contact-email {
+        width: 100%;
+        margin-top: 0.25rem;
+      }
+
+      .contact-submit {
+        width: 100%;
+        background: #2ecc71;
+        color: #ffffff;
+        font-family: 'Acme', sans-serif;
+        font-size: 1.5rem;
+        font-variant: small-caps;
+      }
+
+      #contact-success,
+      #contact-error {
+        display: none;
+        opacity: 0;
+        transition: opacity 0.4s cubic-bezier(0.25, 1, 0.25, 1);
+        font-size: 1.5rem;
+      }
+
+      #contact-success {
+        color: #2ecc71;
+      }
+
+      #contact-error {
+        color: #e74c3c;
+      }
+
+      #contact-success.shown,
+      #contact-error.shown {
+        display: block;
+        opacity: 1;
+      }
+
       /* Posts */
       .post-list-title,
       .post-item {
@@ -252,9 +347,9 @@
           <p>By using the right tool for each job, constantly refining my approach, and keeping in mind the business value for my clients, I strive to create the best web applications possible.</p>
           <p>
             After more than <span id="about-statement-experience">7</span> years of professional experience and exposure to a wide range of technologies, I currently specialize in
-            <abbr title="Front-end web development is the practice of producing HTML, CSS and JavaScript for a website or Web Application so that a user can see and interact with them directly">front end development</abbr>,
-            <abbr title="Serverless computing is a cloud computing execution model in which the cloud provider dynamically manages the allocation of machine resources. Pricing is based on the actual amount of resources consumed by an application, rather than on pre-purchased units of capacity. It is a form of utility computing.">serverless computing</abbr>, and
-            <abbr title="Progressive Web Apps, also known as Installable Web Apps or Hybrid Web Apps, are regular web pages or websites, but can appear to the user like traditional applications or native mobile applications. The application type attempts to combine features offered by most modern browsers with the benefits of mobile experience.">progressive web applications</abbr>.
+            <abbr title="A single-page application (SPA) is a web application or web site that interacts with the user by dynamically rewriting the current page rather than loading entire new pages from a server. This approach avoids interruption of the user experience between successive pages, making the application behave more like a desktop application.">single-page applications</abbr>,
+            <abbr title="Progressive Web Apps, also known as Installable Web Apps or Hybrid Web Apps, are regular web pages or websites, but can appear to the user like traditional applications or native mobile applications. The application type attempts to combine features offered by most modern browsers with the benefits of mobile experience.">progressive web applications</abbr>, and
+            <abbr title="Serverless computing is a cloud computing execution model in which the cloud provider dynamically manages the allocation of machine resources. Pricing is based on the actual amount of resources consumed by an application, rather than on pre-purchased units of capacity. It is a form of utility computing.">serverless computing</abbr>.
           </p>
         </div>
 
@@ -275,6 +370,51 @@
             <img class="about-social-icon" src="linkedin.svg" alt="LinkedIn" />
           </a>
         </div>
+      </div>
+    </section>
+
+    <section id="contact" class="contact narrow">
+      <h1 class="contact-title">Contact</h1>
+
+      <form name="form" onsubmit="return false">
+        <fieldset id="contact-fieldset">
+          <!-- TODO: Make availability and date range dynamic -->
+          <p>I'm currently <b style="color: #27ae60;">available</b> for projects and consulting for <b>Q4 2017 / Q1 2018</b>.</p>
+
+          <label>
+            So, how can I help?
+            <textarea
+              id="contact-text"
+              name="text"
+              placeholder="Feel free to introduce yourself, describe your business idea, and how you think I could fit in the project"
+              required
+            ></textarea>
+          </label>
+
+          <br />
+
+          <label>
+            And how can I reach you?
+            <input
+              id="contact-email"
+              type="email"
+              name="email"
+              placeholder="Email"
+              required
+            />
+          </label>
+
+          <br />
+
+          <button class="contact-submit" type="submit" onclick="submitContactForm()">SEND</button>
+        </fieldset>
+      </form>
+
+      <div id="contact-success">Thanks for reaching out 😊 I'll get back to you soon!</div>
+      <div id="contact-error">
+        Oops! Something went wrong 😐 The error has been logged - I'll see what I can do about it.
+        <!-- TODO: Send contact-text value as mailto text: http://www.angelfire.com/dc/html-webmaster/mailto.htm -->
+        And don't worry - you can still reach me at <a target="_blank" href="mailto:vdsabev@gmail.com">vdsabev@gmail.com</a>
       </div>
     </section>
 
@@ -303,9 +443,89 @@
       </div>
     </footer>
 
+    <!-- Application -->
     <script type="text/javascript">
-      document.getElementById('about-statement-experience').innerText = new Date().getFullYear() - 2010;
-      document.getElementById('footer-copyright-date').innerText = new Date().getFullYear();
+      (function () {
+        'use strict';
+
+        setText('about-statement-experience', new Date().getFullYear() - 2010);
+        setText('footer-copyright-date', new Date().getFullYear());
+
+        var contactFormSending; // TODO: Set cursor to progress
+        var contactFormSent;
+        window.submitContactForm = function () {
+          if (contactFormSending || contactFormSent) return;
+
+          var email = getValue('contact-email');
+          var text = getValue('contact-text');
+
+          if (!email) return console.error('Invalid email:', JSON.stringify(email));
+          if (!text) return console.error('Invalid text:', JSON.stringify(text));
+
+          var message = {
+            subject: 'VDSABEV.COM: New message from ' + email,
+            text: text
+          };
+
+          contactFormSending = true;
+          setClass('contact-success', 'shown', false);
+          setClass('contact-error', 'shown', false);
+          setDisabled('contact-fieldset', true);
+
+          // https://stackoverflow.com/questions/14873443/sending-an-http-post-using-javascript-triggered-event
+          var request = new XMLHttpRequest();
+
+          request.addEventListener('load', function () {
+            contactFormSending = false;
+            contactFormSent = true;
+            logEvent('contact.success', { message: message });
+            setClass('contact-success', 'shown', true);
+          });
+
+          request.addEventListener('error', function () {
+            contactFormSending = false;
+            console.error(request);
+            logEvent('contact.error', { message: message });
+            setClass('contact-error', 'shown', true);
+            setDisabled('contact-fieldset', false);
+          });
+
+          // TODO: Move URL to configuration
+          request.open('POST', 'https://us-central1-vladimir-sabev.cloudfunctions.net/sendEmail', true);
+          request.setRequestHeader('Content-Type', 'application/json;charset=UTF-8');
+          request.send(JSON.stringify(message));
+        };
+
+        function setText(elementId, text) {
+          document.getElementById(elementId).innerText = text;
+        }
+
+        function getValue(elementId, text) {
+          return document.getElementById(elementId).value;
+        }
+
+        function setDisabled(elementId, disabled) {
+          document.getElementById(elementId).disabled = disabled;
+        }
+
+        function setClass(elementId, className, status) {
+          var classList = document.getElementById(elementId).classList;
+          status ? classList.add(className) : classList.remove(className);
+        }
+
+        function logEvent(type, data) {
+          window.ga && ga('send', 'event', type, data);
+        }
+      })();
     </script>
+
+    <!-- Google Analytics -->
+    <!-- TODO: Move property ID to configuration -->
+    <script>
+      window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+      ga('create', 'UA-107701468-1', 'auto');
+      ga('send', 'pageview');
+    </script>
+    <script async src='https://www.google-analytics.com/analytics.js'></script>
   </body>
 </html>

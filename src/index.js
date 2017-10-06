@@ -1,11 +1,23 @@
+import './assets/avatar.png';
 import './style.css';
 
-import './assets/avatar.png';
-import './assets/picture.jpg';
+/** @jsx h */
+import { app, h } from 'hyperapp';
 
-import './assets/avatar.svg';
+import { Profile } from './Profile';
+import { About } from './About';
+import { Contact } from './Contact';
+import { PostList } from './PostList';
+import { Footer } from './Footer';
 
-import './assets/github-square.svg';
-import './assets/linkedin.svg';
-import './assets/medium.svg';
-import './assets/twitter-square.svg';
+app({
+  root: document.querySelector('#content'),
+  view: () =>
+    <div>
+      <Profile />
+      <About />
+      <Contact />
+      <PostList />
+      <Footer />
+    </div>
+});

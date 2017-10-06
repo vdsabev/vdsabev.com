@@ -32,9 +32,11 @@ module.exports = ({ production } = {}) => ({
       // Scripts
       {
         test: /\.jsx?$/,
-        include: ['./src'],
+        loader: 'babel-loader',
         exclude: [/node_modules/],
-        loader: 'babel-loader'
+        query: {
+          presets: ['es2015', 'react']
+        }
       },
 
       // Styles

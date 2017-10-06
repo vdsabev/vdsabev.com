@@ -195,8 +195,8 @@ button {
 }
 
 .about-social-icon {
-  height: 33px;
-  padding: 0 4px;
+  height: 34px;
+  padding: 0 5px;
   opacity: 0.33;
   transition: all 0.4s cubic-bezier(0.25, 1, 0.25, 1);
   transition-property: opacity, transform;

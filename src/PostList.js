@@ -8,7 +8,7 @@ export const PostList = () =>
   </section>
 ;
 
-// TODO: Load posts from Firestore
+// TODO: Move to Firestore
 const posts = [
   {
     url: 'https://medium.com/@vdsabev/simplify-your-layout-with-this-one-weird-trick-hint-its-css-grid-b9a2971a5649',

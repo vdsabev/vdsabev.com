@@ -46,6 +46,14 @@ fieldset[disabled] button {
   cursor: not-allowed;
 }
 
+
+fieldset.loading,
+fieldset.loading textarea,
+fieldset.loading input,
+fieldset.loading button {
+  cursor: progress;
+}
+
 textarea,
 input,
 button {
@@ -108,14 +116,15 @@ button {
   text-align: center;
 }
 
-@media (min-width: 800px) {
+/* NOTE: I can't quite decide whether it looks better with or without the grid */
+/* @media (min-width: 800px) {
   .profile {
     display: grid;
     grid-auto-flow: column;
     justify-content: center;
     align-items: center;
   }
-}
+} */
 
 .profile-avatar {
   width: 180px;

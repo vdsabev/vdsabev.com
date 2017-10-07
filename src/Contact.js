@@ -2,14 +2,16 @@
 import { h } from 'hyperapp';
 import classy from 'classwrap';
 
-// TODO: Move to Firestore
-const availableStyle = { color: '#27ae60' };
-const availableStatus = 'available';
-const availableRange = 'Q4 2017 / Q1 2018';
-const myEmailAddress = 'vdsabev@gmail.com';
+import { Actions } from './index';
 
-// TODO: Move to configuration
-const sendEmailUrl = 'https://us-central1-vladimir-sabev.cloudfunctions.net/sendEmail';
+const availableStyle = { color: '#27ae60' };
+
+// TODO: Move to Firestore
+const availability = {
+  status: 'available',
+  range: 'Q4 2017 / Q1 2018',
+};
+const myEmailAddress = 'vdsabev@gmail.com';
 
 export const Contact = {
   state: {
@@ -44,18 +46,16 @@ export const Contact = {
       const request = new XMLHttpRequest();
 
       request.addEventListener('load', () => {
-        logEvent('contact.success', { message });
+        Actions.log('contact.success', { message });
         update({ pending: false, success: true });
       });
 
       request.addEventListener('error', () => {
-        debugger;
-        console.error(request);
-        logEvent('contact.error', { message });
-        update({ pending: false });
+        Actions.error('contact.error', { message });
+        update({ pending: false, error: true });
       });
 
-      request.open('POST', sendEmailUrl, true);
+      request.open('POST', process.env.EMAIL_SERVICE_URL + 'fgvhbjn', true);
       request.setRequestHeader('Content-Type', 'application/json;charset=UTF-8');
       request.send(JSON.stringify(message));
     }
@@ -63,10 +63,10 @@ export const Contact = {
   view: ({ state, actions }) =>
     <section id="contact" class="contact narrow">
       <h1 class="contact-title">Contact</h1>
-      <p>I'm currently <b style={availableStyle}>{availableStatus}</b> for projects and consulting for <b>{availableRange}</b>.</p>
+      <p>I'm currently <b style={availableStyle}>{availability.status}</b> for projects and consulting for <b>{availability.range}</b>.</p>
 
       <form name="form" onsubmit="return false">
-        <fieldset id="contact-fieldset" disabled={state.pending || state.success}>
+        <fieldset id="contact-fieldset" class={classy({ loading: state.pending })} disabled={state.pending || state.success}>
           <label>
             So, how can I help?
             <textarea
@@ -103,15 +103,10 @@ export const Contact = {
       </div>
 
       <div id="contact-error" class={classy({ shown: state.error })}>
-        Oops! Something went wrong 😐 The error has been logged - I'll see what I can do about it.
-        {/* TODO: Send contact-text value as mailto text: http://www.angelfire.com/dc/html-webmaster/mailto.htm */}
-        And don't worry - you can still reach me at <a target="_blank" href={`mailto:${myEmailAddress}`}>{myEmailAddress}</a>
+        Oops! Something went wrong 😐 The error has been logged - I'll see what I can do about it. And don't worry - you can still reach me at&nbsp;
+        {/* NOTE: Email text is used for mailto body: http://www.angelfire.com/dc/html-webmaster/mailto.htm */}
+        <a target="_blank" href={`mailto:${myEmailAddress}?body=${state.text}`}>{myEmailAddress}</a>
       </div>
     </section>
 };
 
-const logEvent = (...args) => {
-  if (window.ga) {
-    window.ga('send', 'event', ...args);
-  }
-};

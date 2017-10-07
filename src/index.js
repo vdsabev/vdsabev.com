@@ -10,13 +10,24 @@ import { Contact } from './Contact';
 import { PostList } from './PostList';
 import { Footer } from './Footer';
 
-app({
-  root: document.querySelector('#content'),
+import { sendGoogleAnalyticsEvent } from './google-analytics';
+
+export const Actions = app({
   state: {
     contact: Contact.state
   },
   actions: {
-    contact: Contact.actions
+    contact: Contact.actions,
+
+    log(state, actions, name, data) {
+      sendGoogleAnalyticsEvent(name, data);
+    },
+    error(state, actions, name, data) {
+      sendGoogleAnalyticsEvent(name, data);
+      if (process.env.NODE_ENV === 'development') {
+        console.error(data);
+      }
+    }
   },
   view: (state, actions) =>
     <div>

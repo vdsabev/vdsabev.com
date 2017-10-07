@@ -9,10 +9,11 @@
     "deploy:quick": "npm run build && firebase deploy --only hosting"
   },
   "dependencies": {
+    "classwrap": "1.1.0",
     "hyperapp": "0.14.0"
   },
   "devDependencies": {
-    "autoprefixer": "7.1.4",
+    "autoprefixer": "7.1.5",
     "babel-core": "6.26.0",
     "babel-loader": "7.1.2",
     "babel-preset-env": "1.6.0",
@@ -33,6 +34,21 @@
     "workbox-webpack-plugin": "2.1.0"
   },
   "babel": {
-    "presets" : ["es2015", "react"]
+    "presets": [
+      "es2015",
+      "react"
+    ]
+  },
+  "eslintConfig": {
+    "parserOptions": {
+      "ecmaVersion": 5,
+      "ecmaFeatures": {
+        "jsx": true
+      },
+      "sourceType": "module"
+    },
+    "env": {
+      "es6": true
+    }
   }
 }

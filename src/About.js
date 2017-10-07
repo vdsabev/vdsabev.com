@@ -38,6 +38,7 @@ export const About = () =>
   </section>
 ;
 
+// NOTE: Should be >= 3 for enumerating like "a, b, and c" to work
 const specializations = [
   { name: 'single-page applications', description: 'A single-page application (SPA) is a web application or web site that interacts with the user by dynamically rewriting the current page rather than loading entire new pages from a server. This approach avoids interruption of the user experience between successive pages, making the application behave more like a desktop application.' },
   { name: 'progressive web applications', description: 'Progressive Web Apps, also known as Installable Web Apps or Hybrid Web Apps, are regular web pages or websites, but can appear to the user like traditional applications or native mobile applications. The application type attempts to combine features offered by most modern browsers with the benefits of mobile experience.' },
@@ -45,9 +46,9 @@ const specializations = [
 ];
 
 const Specialization = (specialization, index, array) => [
-  index < array.length - 1 ? ' ' : ' and ',
+  index < array.length - 1 ? null : 'and ',
   <abbr title={specialization.description}>{specialization.name}</abbr>,
-  index < array.length - 1 ? ', ' : ''
+  index < array.length - 1 ? ', ' : null
 ];
 
 const socialLinks = [

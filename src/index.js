@@ -12,11 +12,17 @@ import { Footer } from './Footer';
 
 app({
   root: document.querySelector('#content'),
-  view: () =>
+  state: {
+    contact: Contact.state
+  },
+  actions: {
+    contact: Contact.actions
+  },
+  view: (state, actions) =>
     <div>
       <Profile />
       <About />
-      <Contact />
+      <Contact.view state={state.contact} actions={actions.contact} />
       <PostList />
       <Footer />
     </div>

@@ -1,5 +1,5 @@
-const autoprefixer = require('autoprefixer');
 const path = require('path');
+const cssNext = require('postcss-cssnext');
 const env = require('var');
 const { define } = require('var/webpack');
 
@@ -16,7 +16,7 @@ module.exports = ({ production } = {}) => ({
   devtool: production ? false : 'inline-source-map',
   context: process.cwd(),
   entry: {
-    index: './src/index.js'
+    index: './src/app.js'
   },
   output: {
     publicPath: '/',
@@ -44,7 +44,26 @@ module.exports = ({ production } = {}) => ({
         test: /\.css$/,
         use: ExtractTextPlugin.extract({
           fallback: 'style-loader',
-          use: ['css-loader', 'postcss-loader']
+          use: [
+            'css-loader',
+            {
+              loader: 'postcss-loader',
+              options: {
+                plugins: [
+                  cssNext({
+                    features: {
+                      autoprefixer: {
+                        browsers: ['last 3 versions', '> 1%']
+                      },
+                      customProperties: {
+                        variables: require('./src/style').variables
+                      }
+                    }
+                  })
+                ]
+              }
+            }
+          ]
         })
       },
 
@@ -60,13 +79,6 @@ module.exports = ({ production } = {}) => ({
 
     new webpack.optimize.ModuleConcatenationPlugin(),
     new webpack.DefinePlugin(define(env, (envJsonKeys) => ['NODE_ENV', ...envJsonKeys])),
-    new webpack.LoaderOptionsPlugin({
-      options: {
-        postcss: () => [
-          autoprefixer({ browsers: ['last 3 versions', '> 1%'] })
-        ]
-      }
-    }),
 
     // `contenthash` is specific to this plugin, we would typically use `chunkhash`
     new ExtractTextPlugin('style.[contenthash].css'),

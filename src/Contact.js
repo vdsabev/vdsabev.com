@@ -2,7 +2,7 @@
 import { h } from 'hyperapp';
 import classy from 'classwrap';
 
-import { Actions } from './index';
+import { logger } from './logger';
 
 const availableStyle = { color: '#27ae60' };
 
@@ -46,16 +46,16 @@ export const Contact = {
       const request = new XMLHttpRequest();
 
       request.addEventListener('load', () => {
-        Actions.log('contact.success', { message });
+        logger.log('contact.success', { message });
         update({ pending: false, success: true });
       });
 
       request.addEventListener('error', () => {
-        Actions.error('contact.error', { message });
+        logger.error('contact.error', { message });
         update({ pending: false, error: true });
       });
 
-      request.open('POST', process.env.EMAIL_SERVICE_URL + 'fgvhbjn', true);
+      request.open('POST', process.env.EMAIL_SERVICE_URL, true);
       request.setRequestHeader('Content-Type', 'application/json;charset=UTF-8');
       request.send(JSON.stringify(message));
     }

@@ -3,7 +3,7 @@
     "source": "node_modules/firemail/functions"
   },
   "hosting": {
-    "public": "src",
+    "public": "build",
     "rewrites": [
       {
         "source": "**",

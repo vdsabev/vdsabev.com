@@ -1,12 +1,16 @@
 import './assets/avatar.png';
+import './animation.css';
 import './style.css';
 
 /** @jsx h */
 import { app, h } from 'hyperapp';
 import { App, AppViewModel } from './App';
 
-app({
+const Actions = app({
   state: AppViewModel.state,
   actions: AppViewModel.actions,
   view: (state, actions) => <App state={state} actions={actions} />
 });
+
+// We need to use `setTimeout` for the animation to run properly
+setTimeout(Actions.animate, 0);

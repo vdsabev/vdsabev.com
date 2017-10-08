@@ -1,28 +1,30 @@
-import './assets/avatar.png';
-import './style.css';
-
 /** @jsx h */
-import { app, h } from 'hyperapp';
+import { h } from 'hyperapp';
+import classy from 'classwrap';
 
 import { Profile } from './Profile';
 import { About } from './About';
-import { Contact } from './Contact';
+import { Contact, ContactViewModel } from './Contact';
 import { PostList } from './PostList';
 import { Footer } from './Footer';
 
-const { logger } = app({
+export const AppViewModel = {
   state: {
-    contact: Contact.state
+    animation: false,
+    contact: ContactViewModel.state
   },
   actions: {
-    contact: Contact.actions
-  },
-  view: (state, actions) =>
-    <div>
-      <Profile />
-      <About />
-      <Contact.view state={state.contact} actions={actions.contact} />
-      <PostList />
-      <Footer />
-    </div>
-});
+    animate: () => ({ animation: true }),
+    contact: ContactViewModel.actions
+  }
+};
+
+export const App = ({ state, actions }) =>
+  <div class={classy(['fade-in', { 'fade-in-start': state.animation  }])}>
+    <Profile />
+    <About />
+    <Contact state={state.contact} actions={actions.contact} />
+    <PostList />
+    <Footer />
+  </div>
+;

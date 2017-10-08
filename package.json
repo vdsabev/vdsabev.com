@@ -6,7 +6,8 @@
     "build:assets": "cd src && svgo avatar.svg && svg2png avatar.svg -w 100",
     "start": "webpack-dev-server --port 3000 --history-api-fallback",
     "deploy": "npm run build && firebase deploy",
-    "deploy:quick": "npm run build && firebase deploy --only hosting"
+    "deploy:functions": "firebase deploy --only functions",
+    "deploy:hosting": "npm run build && firebase deploy --only hosting"
   },
   "dependencies": {
     "classwrap": "1.1.0",

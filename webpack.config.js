@@ -11,12 +11,14 @@ const NullPlugin = require('webpack-null-plugin');
 const WorkboxPlugin = require('workbox-webpack-plugin');
 
 const BUILD_DIR = './build';
+const APP_DIR = './src';
+const style = require(`./${APP_DIR}/style`);
 
 module.exports = ({ production } = {}) => ({
   devtool: production ? false : 'inline-source-map',
   context: process.cwd(),
   entry: {
-    index: './src/app.js'
+    index: `./${APP_DIR}/index.js`
   },
   output: {
     publicPath: '/',
@@ -29,49 +31,9 @@ module.exports = ({ production } = {}) => ({
   },
   module: {
     rules: [
-      // Scripts
-      {
-        test: /\.jsx?$/,
-        loader: 'babel-loader',
-        exclude: [/node_modules/],
-        query: {
-          presets: ['es2015', 'react']
-        }
-      },
-
-      // Styles
-      {
-        test: /\.css$/,
-        use: ExtractTextPlugin.extract({
-          fallback: 'style-loader',
-          use: [
-            'css-loader',
-            {
-              loader: 'postcss-loader',
-              options: {
-                plugins: [
-                  cssNext({
-                    features: {
-                      autoprefixer: {
-                        browsers: ['last 3 versions', '> 1%']
-                      },
-                      customProperties: {
-                        variables: require('./src/style').variables
-                      }
-                    }
-                  })
-                ]
-              }
-            }
-          ]
-        })
-      },
-
-      // Assets
-      {
-        test: /\.(jpe?g|ico|gif|png|svg|wav|mp3|json)$/,
-        loader: 'file-loader?name=[name].[ext]'
-      }
+      javascriptRule,
+      cssRule,
+      assetRule
     ]
   },
   plugins: [
@@ -82,7 +44,7 @@ module.exports = ({ production } = {}) => ({
 
     // `contenthash` is specific to this plugin, we would typically use `chunkhash`
     new ExtractTextPlugin('style.[contenthash].css'),
-    new HtmlWebpackPlugin({ template: './src/index.ejs' }),
+    new HtmlWebpackPlugin({ template: `./${APP_DIR}/index.ejs`, style }),
     new WorkboxPlugin({
       globDirectory: BUILD_DIR,
       globPatterns: ['**/*.{html,js,css}'],
@@ -90,3 +52,40 @@ module.exports = ({ production } = {}) => ({
     })
   ]
 });
+
+const javascriptRule = {
+  test: /\.jsx?$/,
+  loader: 'babel-loader',
+  exclude: [/node_modules/],
+  query: {
+    presets: ['es2015', 'react']
+  }
+};
+
+const cssRule = {
+  test: /\.css$/,
+  use: ExtractTextPlugin.extract({
+    fallback: 'style-loader',
+    use: [
+      'css-loader',
+      {
+        loader: 'postcss-loader',
+        options: {
+          plugins: [
+            cssNext({
+              features: {
+                autoprefixer: { browsers: ['last 3 versions', '> 1%'] },
+                customProperties: { variables: style.css }
+              }
+            })
+          ]
+        }
+      }
+    ]
+  })
+};
+
+const assetRule = {
+  test: /\.(jpe?g|ico|gif|png|svg|wav|mp3|json)$/,
+  loader: 'file-loader?name=[name].[ext]'
+};

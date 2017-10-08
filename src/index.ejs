@@ -13,7 +13,9 @@
     <base href="/">
     <link rel="shortcut icon" href="avatar.png">
 
-    <link href="https://fonts.googleapis.com/css?family=Acme|Nunito" rel="stylesheet">
+    <% const values = (obj) => Object.keys(obj).map((key) => obj[key]) %>
+    <% const fonts = htmlWebpackPlugin.options.style.fonts; %>
+    <link href="https://fonts.googleapis.com/css?family=<%= values(fonts).join('|') %>" rel="stylesheet">
   </head>
 
   <body>
@@ -23,7 +25,7 @@
       ga('create', '<%= process.env.GOOGLE_ANALYTICS_PRODUCT_ID %>', 'auto');
       ga('send', 'pageview');
     </script>
-    <script async src='https://www.google-analytics.com/analytics.js'></script>
+    <script async src="https://www.google-analytics.com/analytics.js"></script>
     <% } %>
   </body>
 </html>

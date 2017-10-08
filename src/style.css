@@ -9,9 +9,9 @@ body {
 }
 
 body {
-  background: #ffffff;
-  color: #000000;
-  font-family: 'Nunito', sans-serif;
+  background: var(--neutralLighter);
+  color: var(--foregroundDarker);
+  font-family: var(--fontText), sans-serif;
   font-size: 16px;
 }
 
@@ -22,7 +22,7 @@ a {
 
 abbr {
   text-decoration: none;
-  border-bottom: 1px dotted #95a5a6;
+  border-bottom: 1px dotted var(--neutralDark);
   cursor: help;
 }
 
@@ -66,8 +66,8 @@ button {
 textarea,
 input {
   outline: none;
-  border: 1px solid #bdc3c7;
-  font-family: 'Nunito', sans-serif;
+  border: 1px solid var(--neutral);
+  font-family: var(--fontText), sans-serif;
   font-size: 1rem;
   transition-property: box-shadow;
 }
@@ -98,7 +98,7 @@ button {
 
 .box {
   box-shadow: 8px 8px 8px rgba(0, 0, 0, 0.15);
-  background: #ecf0f1;
+  background: var(--neutralLight);
   padding: 1.5rem;
 }
 
@@ -112,7 +112,7 @@ button {
 .profile {
   margin-top: 3rem;
   margin-bottom: 3rem;
-  font-family: 'Acme', sans-serif;
+  font-family: var(--fontProfile), sans-serif;
   text-align: center;
 }
 
@@ -166,7 +166,7 @@ button {
   position: absolute;
   display: block;
   transform: skew(-25deg);
-  color: #95a5a6;
+  color: var(--neutralDark);
   font-size: 2rem;
   font-weight: bold;
   content: '"';
@@ -241,9 +241,9 @@ button {
 
 .contact-submit {
   width: 100%;
-  background: #2ecc71;
-  color: #ffffff;
-  font-family: 'Acme', sans-serif;
+  background: var(--success);
+  color: var(--neutralLighter);
+  font-family: var(--fontProfile), sans-serif;
   font-size: 1.5rem;
   font-variant: small-caps;
 }
@@ -257,11 +257,11 @@ button {
 }
 
 #contact-success {
-  color: #2ecc71;
+  color: var(--success);
 }
 
 #contact-error {
-  color: #e74c3c;
+  color: var(--danger);
 }
 
 #contact-success.shown,
@@ -278,12 +278,12 @@ button {
 
 .post-item-title {
   font-size: 22px;
-  color: #333333;
+  color: var(--foregroundDark);
   transition: color var(--animationDuration) var(--animationEasing);
 }
 
 .post-item-title:hover {
-  color: #999999;
+  color: var(--foregroundLight);
 }
 
 .post-item-text {
@@ -292,20 +292,20 @@ button {
 
 .post-item-date {
   font-size: 14px;
-  color: #666666;
+  color: var(--foreground);
 }
 
 /* Footer */
 .footer-stripe {
   height: 5px;
-  background: #3498db;
-  background: linear-gradient(to right,#3498db, #2ecc71);
+  background: var(--info);
+  background: linear-gradient(to right, var(--info), var(--success));
 }
 
 footer {
-  background: #34495e;
+  background: var(--primary);
   padding: 1rem;
-  color: #ffffff;
+  color: var(--neutralLighter);
 }
 
 .footer-content {
@@ -314,6 +314,6 @@ footer {
 }
 
 .footer-content a {
-  color: #ffffff;
-  border-bottom: 1px dotted #ecf0f1;
+  color: var(--neutralLighter);
+  border-bottom: 1px dotted var(--neutralLight);
 }

@@ -13,7 +13,7 @@ const availability = {
 };
 const myEmailAddress = 'vdsabev@gmail.com';
 
-export const Contact = {
+export const ContactViewModel = {
   state: {
     pending: false,
     success: false,
@@ -59,54 +59,55 @@ export const Contact = {
       request.setRequestHeader('Content-Type', 'application/json;charset=UTF-8');
       request.send(JSON.stringify(message));
     }
-  },
-  view: ({ state, actions }) =>
-    <section id="contact" class="contact narrow">
-      <h1 class="contact-title">Contact</h1>
-      <p>I'm currently <b style={availableStyle}>{availability.status}</b> for projects and consulting for <b>{availability.range}</b>.</p>
-
-      <form name="form" onsubmit="return false">
-        <fieldset id="contact-fieldset" class={classy({ loading: state.pending })} disabled={state.pending || state.success}>
-          <label>
-            So, how can I help?
-            <textarea
-              id="contact-text"
-              name="text"
-              placeholder="Feel free to introduce yourself, describe your business idea, and how you think I could fit in the project"
-              oninput={actions.setText}
-              required
-            ></textarea>
-          </label>
-
-          <br />
-
-          <label>
-            And how can I reach you?
-            <input
-              id="contact-email"
-              type="email"
-              name="email"
-              placeholder="Email"
-              oninput={actions.setEmail}
-              required
-            />
-          </label>
-
-          <br />
-
-          <button class="contact-submit" type="submit" onclick={actions.submit}>SEND</button>
-        </fieldset>
-      </form>
-
-      <div id="contact-success" class={classy({ shown: state.success })}>
-        Thanks for reaching out 😊 I'll get back to you soon!
-      </div>
-
-      <div id="contact-error" class={classy({ shown: state.error })}>
-        Oops! Something went wrong 😐 The error has been logged - I'll see what I can do about it. And don't worry - you can still reach me at&nbsp;
-        {/* NOTE: Email text is used for mailto body: http://www.angelfire.com/dc/html-webmaster/mailto.htm */}
-        <a target="_blank" href={`mailto:${myEmailAddress}?body=${state.text}`}>{myEmailAddress}</a>
-      </div>
-    </section>
+  }
 };
 
+export const Contact = ({ state, actions }) =>
+  <section id="contact" class="contact narrow">
+    <h1 class="contact-title">Contact</h1>
+    <p>I'm currently <b style={availableStyle}>{availability.status}</b> for projects and consulting for <b>{availability.range}</b>.</p>
+
+    <form name="form" onsubmit="return false">
+      <fieldset id="contact-fieldset" class={classy({ loading: state.pending })} disabled={state.pending || state.success}>
+        <label>
+          So, how can I help?
+          <textarea
+            id="contact-text"
+            name="text"
+            placeholder="Feel free to introduce yourself, describe your business idea, and how you think I could fit in the project"
+            oninput={actions.setText}
+            required
+          ></textarea>
+        </label>
+
+        <br />
+
+        <label>
+          And how can I reach you?
+          <input
+            id="contact-email"
+            type="email"
+            name="email"
+            placeholder="Email"
+            oninput={actions.setEmail}
+            required
+          />
+        </label>
+
+        <br />
+
+        <button class="contact-submit" type="submit" onclick={actions.submit}>SEND</button>
+      </fieldset>
+    </form>
+
+    <div id="contact-success" class={classy({ shown: state.success })}>
+      Thanks for reaching out 😊 I'll get back to you soon!
+    </div>
+
+    <div id="contact-error" class={classy({ shown: state.error })}>
+      Oops! Something went wrong 😐 The error has been logged, I'll see what I can do about it. And don't worry - you can still reach me at&nbsp;
+      {/* NOTE: Email text is used for mailto body: http://www.angelfire.com/dc/html-webmaster/mailto.htm */}
+      <a target="_blank" href={`mailto:${myEmailAddress}?body=${state.text}`}>{myEmailAddress}</a>
+    </div>
+  </section>
+;

@@ -243,7 +243,6 @@ button {
   width: 100%;
   background: var(--success);
   color: var(--neutralLighter);
-  font-family: var(--fontProfile), sans-serif;
   font-size: 1.5rem;
   font-variant: small-caps;
 }
@@ -271,7 +270,6 @@ button {
 }
 
 /* Posts */
-.post-list-title,
 .post-item {
   margin-bottom: 2rem;
 }

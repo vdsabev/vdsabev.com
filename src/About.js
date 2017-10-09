@@ -18,7 +18,7 @@ export const About = () =>
       <img class="about-picture" src="picture.jpg" alt="Vladimir Sabev" />
 
       <div class="about-statement">
-        <p>I believe work should be exciting, fulfilling, and meaningful.</p>
+        <p>I believe work should be engaging, fulfilling, and meaningful.</p>
         <p>
           By using the right tool for each job,
           constantly refining my approach,

@@ -64,7 +64,6 @@ export const ContactViewModel = {
 
 export const Contact = ({ state, actions }) =>
   <section id="contact" class="contact narrow">
-    <h1 class="contact-title">Contact</h1>
     <p>I'm currently <b style={availableStyle}>{availability.status}</b> for projects and consulting for <b>{availability.range}</b>.</p>
 
     <form name="form" onsubmit="return false">

@@ -4,29 +4,25 @@ import './Navigation.css';
 import { h } from 'hyperapp';
 import classy from 'classwrap';
 
-export const Navigation = ({ currentPage, setCurrentPage }) =>
+import { router, Routes } from './index';
+
+export const Navigation = ({ currentRoute }) =>
   <header class="navigation narrow">
-    {pages.map(PageLink({
-      currentPage,
-      setCurrentPage: (...args) => {
-        setCurrentPage(...args);
-        return false;
-      }
-    }))}
+    {[Routes.CONTACT, Routes.POSTS].map(PageLink({ currentRoute }))}
   </header>
 ;
 
-const pages = [
-  { name: 'contact', text: 'Contact' },
-  { name: 'posts', text: 'Posts' }
-];
-
-const PageLink = ({ currentPage, setCurrentPage }) => (page) =>
+const PageLink = ({ currentRoute }) => (route) =>
   <a
-    href={`/${page.name}`}
-    class={classy(['navigation-page-link', { active: currentPage === page.name }])}
-    onclick={() => setCurrentPage(page.name)}
+    href={route.url}
+    class={classy(['navigation-page-link', { active: currentRoute === route }])}
+    onclick={setRoute(route)}
   >
-    {page.text}
+    {route.title}
   </a>
 ;
+
+const setRoute = (route) => () => {
+  router.setRoute(route);
+  return false;
+};

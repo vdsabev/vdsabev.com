@@ -9,23 +9,18 @@ import { Navigation } from './Navigation';
 import { PostList } from './PostList';
 import { Footer } from './Footer';
 
-import { switchy } from './utils';
+import { router, Routes } from './router';
 
 export const AppViewModel = {
   state: {
     animation: false,
-    currentPage: window.location.pathname.replace('/', '') || 'contact',
-
-    // Components
-    contact: ContactViewModel.state
+    contact: ContactViewModel.state,
+    router: router.state
   },
   actions: {
     animate: () => ({ animation: true }),
-    setCurrentPage(state, actions, newPage) {
-      window.history.pushState(null, null, `/${newPage}`);
-      return { currentPage: newPage };
-    },
-    contact: ContactViewModel.actions
+    contact: ContactViewModel.actions,
+    router: router.actions
   }
 };
 
@@ -33,11 +28,9 @@ export const App = ({ state, actions }) =>
   <div class={classy(['fade-in', { 'fade-in-start': state.animation  }])}>
     <Profile />
     <About />
-    <Navigation currentPage={state.currentPage} setCurrentPage={actions.setCurrentPage} />
-    {switchy(state.currentPage, {
-      contact: () => <Contact state={state.contact} actions={actions.contact} />,
-      posts: () => <PostList />
-    })}
+    <Navigation currentRoute={state.router.route} />
+    {state.router.route === Routes.CONTACT ? <Contact state={state.contact} actions={actions.contact} /> : null}
+    {state.router.route === Routes.POSTS   ? <PostList /> : null}
     <Footer />
   </div>
 ;

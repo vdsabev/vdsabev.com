@@ -14,3 +14,6 @@ const Actions = app({
 
 // We need to use `setTimeout` for the animation to run properly
 setTimeout(Actions.animate, 0);
+
+export const { router } = Actions;
+export { Routes } from './router';

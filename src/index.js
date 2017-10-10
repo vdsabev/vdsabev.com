@@ -6,9 +6,8 @@ import './style.css';
 /** @jsx h */
 import { app, h } from 'hyperapp';
 import { App, AppModule } from './App';
-import { router } from './router';
 
-const Actions = app({
+export const Actions = app({
   state: AppModule.state,
   actions: AppModule.actions,
   view: (state, actions) => <App state={state} actions={actions} />
@@ -25,8 +24,4 @@ function initializeApp() {
   if (navigator.serviceWorker && process.env.NODE_ENV === 'production') {
     navigator.serviceWorker.register('service-worker.js', { scope: './' });
   }
-
-  // TODO: Find a better way to do this
-  // Router
-  router.setRoute = Actions.router.setRoute;
 }

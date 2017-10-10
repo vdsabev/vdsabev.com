@@ -1,5 +1,6 @@
 /** @jsx h */
 import { h } from 'hyperapp';
+import { Actions } from './index';
 
 export const Routes = {
   HOME: { path: '/', title: 'Freelance Web Developer' },
@@ -9,13 +10,6 @@ export const Routes = {
 
 const initialRouteKey = window.location.pathname.replace('/', '');
 const initialRoute = Routes[initialRouteKey.toUpperCase()] || Routes.CONTACT;
-
-export const router = {
-  route: initialRoute,
-  setRoute() {
-    throw new Error(`'setRoute' action hasn't been initialized yet!`);
-  }
-};
 
 export const RouterModule = {
   state: {
@@ -29,11 +23,6 @@ export const RouterModule = {
         document.title = `Vladimir Sabev - ${newRoute.title}`;
       }
 
-      // TODO: Find a better way to do this
-      // Copy the current route into the `router` object so we can use it
-      // without explicitly passing it down the component tree
-      router.route = newRoute;
-
       return { route: newRoute };
     }
   }
@@ -46,6 +35,6 @@ export const Link = (props, children) =>
 ;
 
 const setRouteAndReturnFalse = (route) => () => {
-  router.setRoute(route);
+  Actions.router.setRoute(route);
   return false;
 };

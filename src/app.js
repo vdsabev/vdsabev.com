@@ -20,6 +20,9 @@ export const AppModule = {
     router: RouterModule.state
   },
   actions: {
+    // NOTE: This is a thunk, it will get the state, but not re-render
+    getState: (state) => () => state,
+
     animate: () => ({ animation: true }),
 
     // TODO: Move inside `{ modules }` when the next version of Hyperapp is released

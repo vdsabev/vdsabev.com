@@ -32,6 +32,7 @@
     "webpack": "3.6.0",
     "webpack-dev-server": "2.9.1",
     "webpack-null-plugin": "0.0.2",
+    "webpack-pwa-manifest": "3.3.2",
     "workbox-webpack-plugin": "2.1.0"
   },
   "babel": {

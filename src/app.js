@@ -32,7 +32,7 @@ export const App = ({ state, actions }) =>
   <div class={classy(['fade-in', { 'fade-in-start': state.animation  }])}>
     <Profile />
     <About />
-    <Navigation currentRoute={state.router.route} />
+    <Navigation />
     {state.router.route === Routes.CONTACT ? <Contact state={state.contact} actions={actions.contact} /> : null}
     {state.router.route === Routes.POSTS   ? <PostList /> : null}
     <Footer />

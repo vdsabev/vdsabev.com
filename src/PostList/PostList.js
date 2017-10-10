@@ -1,8 +1,10 @@
+import './PostList.css';
+
 /** @jsx h */
 import { app, h } from 'hyperapp';
 
 export const PostList = () =>
-  <section id="post-list" class="post-list narrow">
+  <section class="post-list narrow spacer">
     {posts.map(PostItem)}
   </section>
 ;

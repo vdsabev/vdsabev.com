@@ -1,9 +1,11 @@
-import './assets/picture.jpg';
+import './picture.jpg';
 
-import './assets/github-square.svg';
-import './assets/twitter-square.svg';
-import './assets/medium.svg';
-import './assets/linkedin.svg';
+import './github-square.svg';
+import './twitter-square.svg';
+import './medium.svg';
+import './linkedin.svg';
+
+import './About.css';
 
 /** @jsx h */
 import { app, h } from 'hyperapp';
@@ -13,7 +15,7 @@ const thisYear = new Date().getFullYear();
 const yearsOfExperience = thisYear - yearIStartedWorking;
 
 export const About = () =>
-  <section id="about" class="about narrow">
+  <section class="about narrow spacer">
     <div class="about-content box">
       <img class="about-picture" src="picture.jpg" alt="Vladimir Sabev" />
 

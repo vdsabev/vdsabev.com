@@ -1,0 +1,37 @@
+.profile {
+  margin-top: 3rem;
+  margin-bottom: 3rem;
+  font-family: var(--fontProfile), sans-serif;
+  text-align: center;
+}
+
+/* NOTE: I can't quite decide whether it looks better with or without the grid */
+/* @media (min-width: 800px) {
+  .profile {
+    display: grid;
+    grid-auto-flow: column;
+    justify-content: center;
+    align-items: center;
+  }
+} */
+
+.profile-avatar {
+  width: 180px;
+  margin: 1.5rem;
+}
+
+.profile-title,
+.profile-subtitle {
+  -webkit-margin-before: 0;
+  -webkit-margin-after: 0;
+}
+
+.profile-title {
+  font-size: 3rem;
+  font-weight: normal;
+  margin: 0;
+}
+
+.profile-subtitle {
+  font-size: 1.5rem;
+}

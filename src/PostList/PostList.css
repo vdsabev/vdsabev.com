@@ -1,0 +1,22 @@
+.post-item {
+  margin-bottom: 2rem;
+}
+
+.post-item-title {
+  font-size: 22px;
+  color: var(--foregroundDark);
+  transition: color var(--animationDuration) var(--animationEasing);
+}
+
+.post-item-title:hover {
+  color: var(--foregroundLight);
+}
+
+.post-item-text {
+  margin: 0.33rem 0;
+}
+
+.post-item-date {
+  font-size: 14px;
+  color: var(--foreground);
+}

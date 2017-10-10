@@ -4,7 +4,7 @@ import './Navigation.css';
 import { h } from 'hyperapp';
 import classy from 'classwrap';
 
-import { router, Routes } from './index';
+import { router, Routes } from '../index';
 
 export const Navigation = ({ currentRoute }) =>
   <header class="navigation narrow">

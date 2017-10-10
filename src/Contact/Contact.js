@@ -5,17 +5,19 @@ import { h } from 'hyperapp';
 import classy from 'classwrap';
 
 import { logger } from '../logger';
+import { css } from '../style';
 
-const availableStyle = { color: '#27ae60' };
+const getAvailabilityStyle = (status) => ({ color: status === 'available' ? css.success : css.danger });
 
 // TODO: Move to Firestore
 const availability = {
   status: 'available',
-  range: 'Q4 2017 / Q1 2018',
+  range: 'Q4 2017 / Q1 2018'
 };
+
 const myEmailAddress = 'vdsabev@gmail.com';
 
-export const ContactViewModel = {
+export const ContactModule = {
   state: {
     pending: false,
     success: false,
@@ -66,7 +68,7 @@ export const ContactViewModel = {
 
 export const Contact = ({ state, actions }) =>
   <section class="contact narrow spacer">
-    <p>I'm currently <b style={availableStyle}>{availability.status}</b> for projects and consulting for <b>{availability.range}</b>.</p>
+    <p>I'm currently <b style={getAvailabilityStyle(availability.status)}>{availability.status}</b> for projects and consulting for <b>{availability.range}</b>.</p>
 
     <form name="form" onsubmit="return false">
       <fieldset class={classy({ loading: state.pending })} disabled={state.pending || state.success}>

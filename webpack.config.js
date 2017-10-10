@@ -47,8 +47,9 @@ module.exports = ({ production } = {}) => ({
     new ExtractTextPlugin('style.[contenthash].css'),
     new HtmlWebpackPlugin({ template: `./${APP_DIR}/index.ejs`, style }),
     new PwaManifestPlugin({
-      name: 'Vladimir Sabev - Freelance Web Developer',
       short_name: 'vdsabev.com',
+      name: 'Vladimir Sabev',
+      description: 'Freelance Web Developer',
       background_color: style.css.neutralLighter,
       theme_color: style.css.primary,
       start_url: '/',

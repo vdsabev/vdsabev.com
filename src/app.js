@@ -4,23 +4,27 @@ import classy from 'classwrap';
 
 import { Profile } from './Profile';
 import { About } from './About';
-import { Contact, ContactViewModel } from './Contact';
+import { Contact, ContactModule } from './Contact';
 import { Navigation } from './Navigation';
 import { PostList } from './PostList';
 import { Footer } from './Footer';
 
-import { router, Routes } from './router';
+import { RouterModule, Routes } from './router';
 
-export const AppViewModel = {
+export const AppModule = {
   state: {
     animation: false,
-    contact: ContactViewModel.state,
-    router: router.state
+
+    // TODO: Move inside `{ modules }` when the next version of Hyperapp is released
+    contact: ContactModule.state,
+    router: RouterModule.state
   },
   actions: {
     animate: () => ({ animation: true }),
-    contact: ContactViewModel.actions,
-    router: router.actions
+
+    // TODO: Move inside `{ modules }` when the next version of Hyperapp is released
+    contact: ContactModule.actions,
+    router: RouterModule.actions
   }
 };
 

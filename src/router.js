@@ -6,7 +6,7 @@ export const Routes = {
 
 const initialRouteKey = window.location.pathname.replace('/', '');
 
-export const router = {
+export const RouterModule = {
   state: {
     route: Routes[initialRouteKey.toUpperCase()] || Routes.CONTACT
   },

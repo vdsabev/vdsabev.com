@@ -1,6 +1,5 @@
 /** @jsx h */
 import { h } from 'hyperapp';
-import { Actions } from './index';
 
 export const Routes = {
   HOME: { path: '/', title: 'Freelance Web Developer' },
@@ -13,7 +12,19 @@ const getRouteFromKey = (key) => Routes[key] || Routes.CONTACT;
 const initialRouteKey = getRouteKeyFromPath(window.location.pathname);
 const initialRoute = getRouteFromKey(initialRouteKey);
 
+// NOTE: Allows us to use the `setRoute` action in the `Link` component
+let setRoute;
+
 export const RouterModule = {
+  init(state, actions) {
+    setRoute = actions.setRoute;
+
+    window.history.replaceState(initialRouteKey, null, initialRoute.path);
+    window.addEventListener('popstate', (e) => {
+      // NOTE: We're restoring the state from the route key, which may stop working if we change a route's key
+      actions.setRoute({ route: getRouteFromKey(e && e.state), options: { skipHistoryStateUpdate: true } });
+    });
+  },
   state: {
     route: initialRoute
   },
@@ -38,13 +49,6 @@ export const RouterModule = {
   }
 };
 
-// TODO: Move inside `app({ init })` function when the next version of Hyperapp is released,
-// and use `actions.setRoute` from witin the slice
-window.history.replaceState(initialRouteKey, null, initialRoute.path);
-window.addEventListener('popstate', (e) => {
-  Actions.router.setRoute({ route: getRouteFromKey(e && e.state), options: { skipHistoryStateUpdate: true } });
-});
-
 // Both `href` and `onclick` can be overridden by the developer for more flexibility.
 // Notice that we use `onclick || setRouteAndReturnFalse` to avoid creating an extra function
 // in case the developer decided to provide the `onclick` event themselves.
@@ -53,6 +57,7 @@ export const Link = ({ route, options, onclick, ...props }, children) =>
 ;
 
 const setRouteAndReturnFalse = (route, options) => () => {
-  Actions.router.setRoute({ route, options });
+  if (!setRoute) throw new Error(`'setRoute' hasn't been initialized yet!`);
+  setRoute({ route, options });
   return false; // Cancels the default route change so we can get a nice SPA :)
 };

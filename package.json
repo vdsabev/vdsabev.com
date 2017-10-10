@@ -11,7 +11,7 @@
   },
   "dependencies": {
     "classwrap": "1.1.0",
-    "hyperapp": "0.14.0"
+    "hyperapp": "0.15.0"
   },
   "devDependencies": {
     "babel-core": "6.26.0",

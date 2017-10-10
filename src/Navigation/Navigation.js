@@ -4,7 +4,7 @@ import './Navigation.css';
 import { h } from 'hyperapp';
 import classy from 'classwrap';
 
-import { Actions } from '../index';
+import { Actions } from '../App';
 import { Routes, Link } from '../router';
 
 export const Navigation = () => {

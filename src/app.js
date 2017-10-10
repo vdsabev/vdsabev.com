@@ -1,5 +1,5 @@
 /** @jsx h */
-import { h } from 'hyperapp';
+import { app, h } from 'hyperapp';
 import classy from 'classwrap';
 
 import { Profile } from './Profile';
@@ -11,33 +11,35 @@ import { Footer } from './Footer';
 
 import { RouterModule, Routes } from './router';
 
-export const AppModule = {
-  state: {
-    animation: false,
+export const Actions = app({
+  init(state, actions) {
+    // We need to use `setTimeout` for the animation to run properly
+    setTimeout(actions.animate, 0);
 
-    // TODO: Move inside `{ modules }` when the next version of Hyperapp is released
-    contact: ContactModule.state,
-    router: RouterModule.state
+    // PWA
+    if (navigator.serviceWorker && process.env.NODE_ENV === 'production') {
+      navigator.serviceWorker.register('service-worker.js', { scope: './' });
+    }
+  },
+  modules: {
+    contact: ContactModule,
+    router: RouterModule
+  },
+  state: {
+    animation: false
   },
   actions: {
-    // NOTE: This is a thunk, it will get the state, but not re-render
+    // NOTE: This is a thunk, it will return the state, but not re-render
     getState: (state) => () => state,
-
-    animate: () => ({ animation: true }),
-
-    // TODO: Move inside `{ modules }` when the next version of Hyperapp is released
-    contact: ContactModule.actions,
-    router: RouterModule.actions
-  }
-};
-
-export const App = ({ state, actions }) =>
-  <div class={classy(['fade-in', { 'fade-in-start': state.animation  }])}>
-    <Profile />
-    <About />
-    <Navigation />
-    {state.router.route === Routes.CONTACT ? <Contact state={state.contact} actions={actions.contact} /> : null}
-    {state.router.route === Routes.POSTS   ? <PostList /> : null}
-    <Footer />
-  </div>
-;
+    animate: () => ({ animation: true })
+  },
+  view: (state, actions) =>
+    <div class={classy(['fade-in', { 'fade-in-start': state.animation  }])}>
+      <Profile />
+      <About />
+      <Navigation />
+      {state.router.route === Routes.CONTACT ? <Contact state={state.contact} actions={actions.contact} /> : null}
+      {state.router.route === Routes.POSTS   ? <PostList /> : null}
+      <Footer />
+    </div>
+});

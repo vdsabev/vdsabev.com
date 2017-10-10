@@ -10,7 +10,6 @@ export const Routes = {
 
 const getRouteKeyFromPath = (path) => path ? path.replace('/', '').toUpperCase() : '';
 const getRouteFromKey = (key) => Routes[key] || Routes.CONTACT;
-const getRouteFromPath = (path) => getRouteFromKey(getRouteKeyFromPath(path));
 const initialRouteKey = getRouteKeyFromPath(window.location.pathname);
 const initialRoute = getRouteFromKey(initialRouteKey);
 
@@ -43,7 +42,7 @@ export const RouterModule = {
 // and use `actions.setRoute` from witin the slice
 window.history.replaceState(initialRouteKey, null, initialRoute.path);
 window.addEventListener('popstate', (e) => {
-  Actions.router.setRoute({ route: getRouteFromPath(e && e.state), options: { skipHistoryStateUpdate: true } });
+  Actions.router.setRoute({ route: getRouteFromKey(e && e.state), options: { skipHistoryStateUpdate: true } });
 });
 
 // Both `href` and `onclick` can be overridden by the developer for more flexibility.

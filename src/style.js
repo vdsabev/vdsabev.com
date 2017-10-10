@@ -33,6 +33,5 @@ style.css = {
 
 // Export for both Node.js and the browser
 (function (exports) {
-  // TODO: Test
   Object.assign(exports, style);
 }(typeof exports === 'undefined' ? (this.moduleName = {}) : exports));

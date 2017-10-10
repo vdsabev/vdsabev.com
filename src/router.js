@@ -16,9 +16,15 @@ export const RouterModule = {
     route: initialRoute
   },
   actions: {
-    // TODO: Support more arguments for `history.pushState`, e.g. { replace: true }
-    setRoute(state, actions, newRoute) {
-      window.history.pushState(null, null, newRoute.path);
+    setRoute(state, actions, newRoute, options) {
+      const historyState = { route: newRoute, options };
+      if (options && options.replace) {
+        window.history.replaceState(historyState, null, newRoute.path);
+      }
+      else {
+        window.history.pushState(historyState, null, newRoute.path);
+      }
+
       if (newRoute.title) {
         document.title = `Vladimir Sabev - ${newRoute.title}`;
       }
@@ -28,13 +34,21 @@ export const RouterModule = {
   }
 };
 
-// TODO: Support overriding onclick
-// TODO: Use rest arguments `{ route, onclick, ...props }`
-export const Link = (props, children) =>
-  <a {...props} href={props.route.url} onclick={setRouteAndReturnFalse(props.route)}>{children}</a>
+// TODO: Move inside `app({ init })` function when the next version of Hyperapp is released
+window.addEventListener('popstate', (e) => {
+  if (e && e.state) {
+    Actions.router.setRoute(e.state.route, { ...e.state.options, replace: true });
+  }
+});
+
+// Both `href` and `onclick` can be overridden by the developer for more flexibility.
+// Notice that we use `onclick || setRouteAndReturnFalse` to avoid creating an extra function
+// in case the developer decided to provide the `onclick` event themselves.
+export const Link = ({ route, options, onclick, ...props }, children) =>
+  <a href={route.path} {...props} onclick={onclick || setRouteAndReturnFalse(route, options)}>{children}</a>
 ;
 
-const setRouteAndReturnFalse = (route) => () => {
-  Actions.router.setRoute(route);
-  return false;
+const setRouteAndReturnFalse = (...args) => () => {
+  Actions.router.setRoute(...args);
+  return false; // Cancels the default route change so we can get a nice SPA :)
 };

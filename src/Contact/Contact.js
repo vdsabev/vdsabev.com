@@ -15,8 +15,6 @@ const availability = {
   range: 'Q4 2017 / Q1 2018'
 };
 
-const myEmailAddress = 'vdsabev@gmail.com';
-
 export const ContactModule = {
   state: {
     pending: false,
@@ -110,7 +108,7 @@ export const Contact = ({ state, actions }) =>
     <div class={classy(['contact-error', { shown: state.error }])}>
       Oops! Something went wrong 😐 Sorry about that, the error has been logged, I'll see what I can do about it. And don't worry - you can still reach me at&nbsp;
       {/* NOTE: Email text is used for mailto body: http://www.angelfire.com/dc/html-webmaster/mailto.htm */}
-      <a target="_blank" href={`mailto:${myEmailAddress}?body=${state.text}`}>{myEmailAddress}</a>
+      <a target="_blank" href={`mailto:${process.env.EMAIL_ADDRESS}?body=${state.text}`}>{process.env.EMAIL_ADDRESS}</a>
     </div>
   </section>
 ;

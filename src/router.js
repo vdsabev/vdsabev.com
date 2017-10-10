@@ -21,7 +21,7 @@ export const RouterModule = {
 
     window.history.replaceState(initialRouteKey, null, initialRoute.path);
     window.addEventListener('popstate', (e) => {
-      // NOTE: We're restoring the state from the route key, which may stop working if we change a route's key
+      // NOTE: We're restoring the state from the route key, which will stop working if we change a route's key
       actions.setRoute({ route: getRouteFromKey(e && e.state), options: { skipHistoryStateUpdate: true } });
     });
   },
@@ -51,7 +51,7 @@ export const RouterModule = {
 
 // Both `href` and `onclick` can be overridden by the developer for more flexibility.
 // Notice that we use `onclick || setRouteAndReturnFalse` to avoid creating an extra function
-// in case the developer decided to provide the `onclick` event themselves.
+// in case the developer decided to provide the `onclick` handler themselves.
 export const Link = ({ route, options, onclick, ...props }, children) =>
   <a href={route.path} {...props} onclick={onclick || setRouteAndReturnFalse(route, options)}>{children}</a>
 ;

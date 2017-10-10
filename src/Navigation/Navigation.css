@@ -1,0 +1,31 @@
+.navigation {
+  margin-bottom: 1rem;
+}
+
+.navigation-page-link {
+  cursor: pointer;
+  display: inline-block;
+  margin-right: 0.25rem;
+  border-radius: 0.25rem;
+  border: 3px dashed transparent;
+  padding: 0.5rem;
+  font-size: 1.5rem;
+  color: var(--foregroundDark);
+
+  transition: all var(--animationDuration) var(--animationEasing);
+  transition-property: background, border-color;
+}
+
+.navigation-page-link:hover {
+  border-color: var(--neutralLight);
+}
+
+.navigation-page-link:active {
+  /* No transition for color, otherwise the color transition can't be seen in typical usage */
+  color: var(--foreground);
+}
+
+.navigation-page-link.active {
+  background: var(--neutralLight);
+  border-color: transparent;
+}

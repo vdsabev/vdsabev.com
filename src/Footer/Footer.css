@@ -1,0 +1,21 @@
+.footer-stripe {
+  height: 5px;
+  background: var(--info);
+  background: linear-gradient(to right, var(--info), var(--success));
+}
+
+.footer {
+  background: var(--primary);
+  padding: 1rem;
+  color: var(--neutralLighter);
+}
+
+.footer-content {
+  display: grid;
+  grid-template-columns: 1fr auto;
+}
+
+.footer-content a {
+  color: var(--neutralLighter);
+  border-bottom: 1px dotted var(--neutralLight);
+}

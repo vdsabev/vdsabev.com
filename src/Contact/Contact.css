@@ -1,0 +1,35 @@
+.contact-text,
+.contact-email {
+  width: 100%;
+  margin-top: 0.25rem;
+}
+
+.contact-submit {
+  width: 100%;
+  background: var(--success);
+  color: var(--neutralLighter);
+  font-size: 1.5rem;
+  font-variant: small-caps;
+}
+
+.contact-success,
+.contact-error {
+  display: none;
+  opacity: 0;
+  transition: opacity var(--animationDuration) var(--animationEasing);
+  font-size: 1.5rem;
+}
+
+.contact-success {
+  color: var(--success);
+}
+
+.contact-error {
+  color: var(--danger);
+}
+
+.contact-success.shown,
+.contact-error.shown {
+  display: block;
+  opacity: 1;
+}

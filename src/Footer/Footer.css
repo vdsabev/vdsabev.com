@@ -6,13 +6,20 @@
 
 .footer {
   background: var(--primary);
-  padding: 1rem;
+  padding: 2rem 1rem;
   color: var(--neutralLighter);
 }
 
 .footer-content {
-  display: grid;
-  grid-template-columns: 1fr auto;
+  text-align: center;
+}
+
+@media (min-width: 480px) {
+  .footer-content {
+    display: grid;
+    grid-template-columns: auto auto;
+    justify-content: space-between;
+  }
 }
 
 .footer-content a {

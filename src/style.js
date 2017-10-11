@@ -33,5 +33,5 @@ style.css = {
 
 // Export for both Node.js and the browser
 (function (exports) {
-  Object.assign(exports, style);
+  Object.keys(style).forEach((key) => exports[key] = style[key]);
 }(typeof exports === 'undefined' ? (this.moduleName = {}) : exports));

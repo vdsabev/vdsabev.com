@@ -5,16 +5,6 @@
   text-align: center;
 }
 
-/* NOTE: I can't quite decide whether it looks better with or without the grid */
-/* @media (min-width: 800px) {
-  .profile {
-    display: grid;
-    grid-auto-flow: column;
-    justify-content: center;
-    align-items: center;
-  }
-} */
-
 .profile-avatar {
   width: 180px;
   margin: 1.5rem;

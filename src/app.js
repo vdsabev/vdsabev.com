@@ -34,14 +34,14 @@ export const Actions = app({
     getState: (state) => () => state,
     animate: () => ({ animation: true })
   },
-  view: (state, actions) =>
+  view: ({ router, ...state }, actions) =>
     <div class={classy(['fade-in', { 'fade-in-start': state.animation  }])}>
       <Profile />
       <About />
       <Navigation />
-      {state.router.route === Routes.CONTACT ? <Contact state={state.contact} actions={actions.contact} /> : null}
-      {state.router.route === Routes.POSTS   ? <Posts /> : null}
-      {state.router.route === Routes.TALKS   ? <Talks /> : null}
+      {router.route === Routes.CONTACT ? <Contact state={state.contact} actions={actions.contact} /> : null}
+      {router.route === Routes.POSTS   ? <Posts /> : null}
+      {router.route === Routes.TALKS   ? <Talks /> : null}
       <Footer />
     </div>
 });

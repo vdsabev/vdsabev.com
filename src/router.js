@@ -57,8 +57,14 @@ export const Link = ({ route, options, onclick, ...props }, children) =>
   <a href={route.path} {...props} onclick={onclick || setRouteAndReturnFalse(route, options)}>{children}</a>
 ;
 
-const setRouteAndReturnFalse = (route, options) => () => {
-  if (!setRoute) throw new Error(`'setRoute' hasn't been initialized yet!`);
+const setRouteAndReturnFalse = (route, options) => (e) => {
   setRoute({ route, options });
-  return false; // Cancels the default route change so we can get a nice SPA :)
+
+  // Developers must explicitly set options to `{ scroll: false }` to disable scrolling
+  if (!(options && options.scroll === false)) {
+    e.currentTarget.scrollIntoView({ behavior: 'smooth', block: 'start', inline: 'nearest' });
+  }
+
+  // Cancel the default route change so we can get a nice SPA :)
+  return false;
 };

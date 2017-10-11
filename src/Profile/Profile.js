@@ -3,7 +3,7 @@ import './avatar.svg';
 import './Profile.css';
 
 /** @jsx h */
-import { app, h } from 'hyperapp';
+import { h } from 'hyperapp';
 
 export const Profile = () =>
   <section class="profile narrow">

@@ -17,7 +17,7 @@
 
     <% const values = (obj) => Object.keys(obj).map((key) => obj[key]) %>
     <% const fonts = htmlWebpackPlugin.options.style.fonts; %>
-    <link href="https://fonts.googleapis.com/css?family=<%= values(fonts).join('|') %>" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=<%= values(fonts).map((font) => font.split(/\s+/).join('+')).join('|') %>" rel="stylesheet">
   </head>
 
   <body>

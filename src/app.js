@@ -2,12 +2,13 @@
 import { app, h } from 'hyperapp';
 import classy from 'classwrap';
 
-import { Profile } from './Profile';
 import { About } from './About';
 import { Contact, ContactModule } from './Contact';
-import { Navigation } from './Navigation';
-import { PostList } from './PostList';
 import { Footer } from './Footer';
+import { Navigation } from './Navigation';
+import { Posts } from './Post';
+import { Profile } from './Profile';
+import { Talks } from './Talk';
 
 import { RouterModule, Routes } from './router';
 
@@ -39,7 +40,8 @@ export const Actions = app({
       <About />
       <Navigation />
       {state.router.route === Routes.CONTACT ? <Contact state={state.contact} actions={actions.contact} /> : null}
-      {state.router.route === Routes.POSTS   ? <PostList /> : null}
+      {state.router.route === Routes.POSTS   ? <Posts /> : null}
+      {state.router.route === Routes.TALKS   ? <Talks /> : null}
       <Footer />
     </div>
 });

@@ -12,8 +12,13 @@ export const Navigation = () => {
 
   return (
     <header class="navigation narrow">
-      <Link class={classy(['navigation-page-link', { active: router.route === Routes.CONTACT }])} route={Routes.CONTACT}>{Routes.CONTACT.title}</Link>
-      <Link class={classy(['navigation-page-link', { active: router.route === Routes.POSTS }])} route={Routes.POSTS}>{Routes.POSTS.title}</Link>
+      <PageLink currentRoute={router.route} pageRoute={Routes.CONTACT} />
+      <PageLink currentRoute={router.route} pageRoute={Routes.POSTS} />
+      <PageLink currentRoute={router.route} pageRoute={Routes.TALKS} />
     </header>
   );
 };
+
+const PageLink = ({ currentRoute, pageRoute }) =>
+  <Link class={classy(['navigation-page-link', { active: currentRoute === pageRoute }])} route={pageRoute}>{pageRoute.title}</Link>
+;

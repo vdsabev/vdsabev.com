@@ -4,7 +4,8 @@ import { h } from 'hyperapp';
 export const Routes = {
   HOME: { path: '/', title: 'Freelance Web Developer' },
   CONTACT: { path: '/contact', title: 'Contact' },
-  POSTS: { path: '/posts', title: 'Posts' }
+  POSTS: { path: '/posts', title: 'Posts' },
+  TALKS: { path: '/talks', title: 'Talks' }
 };
 
 const getRouteKeyFromPath = (path) => path ? path.replace('/', '').toUpperCase() : '';

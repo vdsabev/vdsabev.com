@@ -4,7 +4,7 @@ style.animationDuration = 0.4;
 
 style.fonts = {
   profile: 'Acme',
-  text: 'Nunito'
+  text: 'PT Sans'
 };
 
 style.css = {

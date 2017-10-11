@@ -15,7 +15,7 @@
 .about-content::after {
   position: absolute;
   display: block;
-  transform: skew(-25deg);
+  transform: skew(-15deg);
   color: var(--neutralDark);
   font-size: 2rem;
   font-weight: bold;

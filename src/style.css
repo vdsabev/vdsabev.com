@@ -105,3 +105,15 @@ button {
 .spacer {
   margin-bottom: 3rem;
 }
+
+.pull-left {
+  float: left;
+}
+
+.pull-right {
+  float: right;
+}
+
+.clear {
+  clear: both;
+}

@@ -1,17 +1,6 @@
-.skills-disclaimer {
-  margin-bottom: 1rem;
-}
-
-.skill,
-.skills-legend {
-  display: grid;
-  grid-template-columns: auto auto;
-  justify-content: space-between;
-}
-
 .skill {
   position: relative;
-  padding-bottom: calc(2rem + 10px);
+  padding-bottom: 3rem;
 }
 
 .skill-name {
@@ -24,12 +13,11 @@
 
 .skill-range-background,
 .skill-range {
-  grid-row: 2;
   position: absolute;
   left: 0;
   right: 0;
   margin-top: 0.25rem;
-  height: 10px;
+  height: 1.3rem;
 }
 
 .skill-range-background {
@@ -42,6 +30,7 @@
   transition-property: left, right;
 }
 
-.skills-legend {
-  font-weight: bold;
+.skill-year {
+  padding: 0 0.2rem;
+  color: var(--neutralLighter);
 }

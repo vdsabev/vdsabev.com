@@ -6,9 +6,9 @@ import { About } from './About';
 import { Contact, ContactModule } from './Contact';
 import { Footer } from './Footer';
 import { Navigation } from './Navigation';
-import { Posts } from './Post';
+import { Posts } from './Posts';
 import { Profile } from './Profile';
-import { Talks } from './Talk';
+import { Talks } from './Talks';
 
 import { RouterModule, Routes } from './router';
 

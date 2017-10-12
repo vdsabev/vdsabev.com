@@ -11,7 +11,7 @@
 
 .skill {
   position: relative;
-  padding-bottom: calc(1rem + 20px);
+  padding-bottom: calc(2rem + 10px);
 }
 
 .skill-name {

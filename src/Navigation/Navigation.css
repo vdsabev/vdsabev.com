@@ -1,5 +1,8 @@
 .navigation {
-  margin-bottom: 1rem;
+  position: sticky;
+  top: 0;
+  padding: 1rem;
+  background: var(--neutralLighter);
 }
 
 .navigation-page-link {

@@ -36,6 +36,13 @@ const skills = [
   },
 
   {
+    name: 'Single-page Applications',
+    // description: '',
+    from: '2012-09',
+    level: 'expert'
+  },
+
+  {
     name: 'MongoDB',
     // description: '',
     from: '2012-09',
@@ -70,6 +77,13 @@ const skills = [
     // description: '',
     from: '2017-03',
     level: 'advanced'
+  },
+
+  {
+    name: 'Progressive Web Applications',
+    // description: '',
+    from: '2017-03',
+    level: 'intermediate'
   },
 
   {

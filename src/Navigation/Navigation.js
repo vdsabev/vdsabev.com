@@ -13,6 +13,7 @@ export const Navigation = () => {
   return (
     <header class="navigation narrow">
       <PageLink currentRoute={router.route} pageRoute={Routes.CONTACT} />
+      <PageLink currentRoute={router.route} pageRoute={Routes.SKILLS} />
       <PageLink currentRoute={router.route} pageRoute={Routes.POSTS} />
       <PageLink currentRoute={router.route} pageRoute={Routes.TALKS} />
     </header>

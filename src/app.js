@@ -8,6 +8,7 @@ import { Footer } from './Footer';
 import { Navigation } from './Navigation';
 import { Posts } from './Posts';
 import { Profile } from './Profile';
+import { Skills } from './Skills';
 import { Talks } from './Talks';
 
 import { RouterModule, Routes } from './router';
@@ -40,6 +41,7 @@ export const Actions = app({
       <About />
       <Navigation />
       {router.route === Routes.CONTACT ? <Contact state={state.contact} actions={actions.contact} /> : null}
+      {router.route === Routes.SKILLS ? <Skills /> : null}
       {router.route === Routes.POSTS   ? <Posts /> : null}
       {router.route === Routes.TALKS   ? <Talks /> : null}
       <Footer />

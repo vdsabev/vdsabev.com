@@ -2,7 +2,7 @@
 import { h } from 'hyperapp';
 import { Articles } from '../Article';
 
-// TODO: Move to Firestore
+// TODO: Move to Firebase Database
 const posts = [
   {
     url: 'https://medium.com/@vdsabev/exploring-unidirectional-components-in-mithril-part-1-hyperapp-e33ce35a224',

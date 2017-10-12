@@ -2,7 +2,7 @@
 import { h } from 'hyperapp';
 import { Articles } from '../Article';
 
-// TODO: Move to Firestore
+// TODO: Move to Firebase Database
 const talks = [
   {
     url: 'https://dev.bg/събитие/как-да-оценяваме-времето-и-труда-си-кат',

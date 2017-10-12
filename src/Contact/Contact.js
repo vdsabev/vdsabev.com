@@ -9,7 +9,7 @@ import { css } from '../style';
 
 const getAvailabilityStyle = (status) => ({ color: status === 'available' ? css.success : css.danger });
 
-// TODO: Move to Firestore
+// TODO: Move to Firebase Database
 const availability = {
   status: 'available',
   range: 'Q4 2017 / Q1 2018'

@@ -1,0 +1,19 @@
+.page-container {
+  position: relative;
+  /* Prevent jumping around the too much when navigating */
+  min-height: 80vh;
+  /* Prevents overflowing when we switch from a container with small height to one with large height */
+  overflow: hidden;
+}
+
+.page-fade-out {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  /* Make background white for a beautiful page transition */
+  background: var(--neutralLighter);
+  transition: opacity var(--animationDuration) var(--animationEasing);
+  opacity: 0;
+}

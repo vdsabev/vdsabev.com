@@ -6,19 +6,21 @@ import { h } from 'hyperapp';
 import { Actions } from '../App';
 import { Loader } from '../Loader';
 
+import { animationDuration } from '../style';
+
 export const Page = (props) => {
   const state = Actions.getState();
+  if (!state.router) throw new Error(`Invalid value of 'state.router': ${state.roter}`);
   if (state.router.route !== props.route) return null;
 
+  // NOTE: Page must be a top-level module for state & actions to be accessed
+  // TODO: Use dot notation to reach deeper into the state if necessary
   const moduleState = state[props.module];
   if (!moduleState) throw new Error(`Invalid module state for: ${props.module}`);
 
   const moduleActions = Actions[props.module];
-  if (!moduleActions) throw new Error(`Invalid module actions for: ${props.module}`);
+  // Module actions are optional, so we don't need to validate them
 
-  // NOTE: We don't need to set `$resolved` to false on element remove, because
-  // the data only has to be loaded once throughout the lifecycle of the application
-  // onremove={() => moduleState.$resolved = false}
   if (props.resolve && !moduleState.$resolved) {
     if (!moduleState.$pending) {
       moduleState.$pending = true;
@@ -35,10 +37,22 @@ export const Page = (props) => {
     return <Loader key={props.module} />;
   }
 
-  return <props.view key={props.module} state={moduleState} actions={moduleActions} onremove={fadeOutPage} />;
+  return (
+    <props.view
+      key={props.module}
+      state={moduleState}
+      actions={moduleActions}
+      onremove={props.cache ? fadeOutPage : invalidateCacheAndFadeOutPage(moduleState) }
+    />
+  );
 };
 
 const fadeOutPage = (el) => (remove) => {
   el.classList.add('page-fade-out');
   setTimeout(remove, 1000 * animationDuration);
+};
+
+const invalidateCacheAndFadeOutPage = (cache) => (el) => {
+  cache.$resolved = false;
+  fadeOutPage(el);
 };

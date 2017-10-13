@@ -12,7 +12,6 @@ import { Profile } from './Profile';
 import { Skills, SkillsModule } from './Skills';
 import { Talks, TalksModule } from './Talks';
 
-import { animationDuration } from './style';
 import { RouterModule, Routes } from './router';
 
 export const Actions = app({
@@ -41,16 +40,16 @@ export const Actions = app({
     getState: (state) => () => state,
     animate: () => ({ animation: true })
   },
-  view: ({ router, ...state }, actions) =>
+  view: (state, actions) =>
     <div class={classy(['fade-in', { 'fade-in-start': state.animation  }])}>
       <Profile />
       <About />
       <Navigation />
       <div class="page-container">
-        <Page route={Routes.CONTACT} module="contact" view={Contact} resolve={actions.contact.getData} />
-        <Page route={Routes.POSTS}   module="posts"   view={Posts}   resolve={actions.posts.getData} />
-        <Page route={Routes.SKILLS}  module="skills"  view={Skills}  resolve={actions.skills.getData} />
-        <Page route={Routes.TALKS}   module="talks"   view={Talks}   resolve={actions.talks.getData} />
+        <Page route={Routes.CONTACT} module="contact" view={Contact} resolve={actions.contact.getData} cache />
+        <Page route={Routes.POSTS}   module="posts"   view={Posts}   resolve={actions.posts.getData}   cache />
+        <Page route={Routes.SKILLS}  module="skills"  view={Skills}  resolve={actions.skills.getData}  cache />
+        <Page route={Routes.TALKS}   module="talks"   view={Talks}   resolve={actions.talks.getData}   cache />
       </div>
       <Footer />
     </div>

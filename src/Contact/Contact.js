@@ -44,23 +44,16 @@ export const ContactModule = {
       };
     },
     sendEmail: (state, actions, message) => (update) => {
-      // TODO: Extract to `Services` and maybe rewrite with `fetch`, or rewrite fetch` with `XMLHttpRequest`
-      // https://stackoverflow.com/questions/14873443/sending-an-http-post-using-javascript-triggered-event
-      const request = new XMLHttpRequest();
-
-      request.addEventListener('load', () => {
-        logger.log('contact.success', { message });
-        update({ pending: false, success: true });
-      });
-
-      request.addEventListener('error', () => {
-        logger.error('contact.error', { message });
-        update({ pending: false, error: true });
-      });
-
-      request.open('POST', process.env.EMAIL_SERVICE_URL, true);
-      request.setRequestHeader('Content-Type', 'application/json;charset=UTF-8');
-      request.send(JSON.stringify(message));
+      Services.sendEmail(message)
+        .then(() => {
+          logger.log('contact.success', { message });
+          update({ pending: false, success: true });
+        })
+        .catch(() => {
+          logger.error('contact.error', { message });
+          update({ pending: false, error: true });
+        })
+      ;
     }
   }
 };

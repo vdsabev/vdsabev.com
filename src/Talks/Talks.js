@@ -12,4 +12,4 @@ export const TalksModule = {
   }
 };
 
-export const Talks = ({ state, actions, ...props }) => Articles({ articles: state.talks, oncreate: actions.getData, ...props });
+export const Talks = ({ state, actions, ...props }) => Articles({ articles: state.talks, ...props });

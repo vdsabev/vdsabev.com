@@ -22,7 +22,7 @@ export const SkillsModule = {
 };
 
 export const Skills = ({ state, actions, ...props }) =>
-  <section class="skills narrow spacer" oncreate={actions.getData} {...props}>
+  <section class="skills narrow spacer" {...props}>
     {state.skills.map(Skill({ min: state.min, max: state.max }))}
   </section>
 ;

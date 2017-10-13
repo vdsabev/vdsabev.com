@@ -93,6 +93,23 @@ button {
   transition-property: box-shadow;
 }
 
+.page-container {
+  position: relative;
+  min-height: 80vh;
+}
+
+/* Make background white for a more beautiful page transition */
+.page-fade-out {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background: var(--neutralLighter);
+  transition: opacity var(--animationDuration) var(--animationEasing);
+  opacity: 0;
+}
+
 .narrow {
   width: 100%;
   max-width: 800px;

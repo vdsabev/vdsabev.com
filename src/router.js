@@ -52,19 +52,17 @@ export const RouterModule = {
   }
 };
 
-// Both `href` and `onclick` can be overridden by the developer for more flexibility.
-// Notice that we use `onclick || setRouteAndReturnFalse` to avoid creating an extra function
-// in case the developer decided to provide the `onclick` handler themselves.
+// `href` can be overridden for more flexibility
+// `onclick` handler will be called after main click handler if provided
 export const Link = ({ route, options, onclick, ...props }, children) =>
-  <a href={route.path} {...props} onclick={onclick || setRouteAndReturnFalse(route, options)}>{children}</a>
+  <a href={route.path} {...props} onclick={setRouteAndReturnFalse(route, options, onclick)}>{children}</a>
 ;
 
-const setRouteAndReturnFalse = (route, options) => (e) => {
+const setRouteAndReturnFalse = (route, options, onclick) => (e) => {
   setRoute({ route, options });
 
-  // Developers must explicitly set options to `{ scroll: false }` to disable scrolling
-  if (!(options && options.scroll === false)) {
-    e.currentTarget.scrollIntoView({ behavior: 'smooth', block: 'start', inline: 'nearest' });
+  if (onclick) {
+    onclick(e);
   }
 
   // Cancel the default route change so we can get a nice SPA :)

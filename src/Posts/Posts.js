@@ -12,4 +12,4 @@ export const PostsModule = {
   }
 };
 
-export const Posts = ({ state, actions, ...props }) => Articles({ articles: state.posts, oncreate: actions.getData, ...props });
+export const Posts = ({ state, actions, ...props }) => Articles({ articles: state.posts, ...props });

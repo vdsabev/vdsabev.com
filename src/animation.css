@@ -6,3 +6,8 @@
 .fade-in-start {
   opacity: 1;
 }
+
+@keyframes spinRight {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}

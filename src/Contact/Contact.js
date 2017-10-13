@@ -24,6 +24,7 @@ export const ContactModule = {
   },
   actions: {
     getData: () => (update) => Services.getAvailability().then((availability) => ({ availability })).then(update),
+
     setText: (state, actions, e) => ({ text: e.currentTarget.value }),
     setEmail: (state, actions, e) => ({ email: e.currentTarget.value }),
     submit(state, actions) {
@@ -59,7 +60,7 @@ export const ContactModule = {
 };
 
 export const Contact = ({ state, actions, ...props }) =>
-  <section class="contact narrow spacer" oncreate={actions.getData} {...props}>
+  <section class="contact narrow spacer" {...props}>
     <p>I'm currently <b style={getAvailabilityStyle(state.availability.status)}>{state.availability.status}</b> for projects and consulting for <b>{state.availability.range}</b>.</p>
 
     <form name="form" onsubmit="return false">

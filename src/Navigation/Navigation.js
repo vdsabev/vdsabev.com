@@ -21,5 +21,9 @@ export const Navigation = () => {
 };
 
 const PageLink = ({ currentRoute, pageRoute }) =>
-  <Link class={classy(['navigation-page-link', { active: currentRoute === pageRoute }])} route={pageRoute}>{pageRoute.title}</Link>
+  <Link
+    class={classy(['navigation-page-link', { active: currentRoute === pageRoute }])}
+    route={pageRoute}
+    options={{ scroll: false }}
+  >{pageRoute.title}</Link>
 ;

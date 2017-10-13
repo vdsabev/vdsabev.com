@@ -10,5 +10,9 @@
         "destination": "/index.html"
       }
     ]
+  },
+  "rules": {
+    ".read": true,
+    ".write": false
   }
 }

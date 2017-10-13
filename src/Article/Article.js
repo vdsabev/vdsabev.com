@@ -3,14 +3,11 @@ import './Article.css';
 /** @jsx h */
 import { h } from 'hyperapp';
 
-export const Articles = (articles) => {
-  const formattedArticles = articles.slice().reverse();
-  return () =>
-    <section class="articles narrow spacer">
-      {formattedArticles.map(Article)}
-    </section>
-  ;
-};
+export const Articles = ({ articles, ...props }) =>
+  <section class="articles narrow spacer" {...props}>
+    {articles.map(Article)}
+  </section>
+;
 
 const Article = (article) =>
   <article key={article.url} class="article-item">

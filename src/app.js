@@ -6,10 +6,10 @@ import { About } from './About';
 import { Contact, ContactModule } from './Contact';
 import { Footer } from './Footer';
 import { Navigation } from './Navigation';
-import { Posts } from './Posts';
+import { Posts, PostsModule } from './Posts';
 import { Profile } from './Profile';
-import { Skills } from './Skills';
-import { Talks } from './Talks';
+import { Skills, SkillsModule } from './Skills';
+import { Talks, TalksModule } from './Talks';
 
 import { RouterModule, Routes } from './router';
 
@@ -25,6 +25,10 @@ export const Actions = app({
   },
   modules: {
     contact: ContactModule,
+    posts: PostsModule,
+    skills: SkillsModule,
+    talks: TalksModule,
+
     router: RouterModule
   },
   state: {
@@ -40,10 +44,10 @@ export const Actions = app({
       <Profile />
       <About />
       <Navigation />
-      {router.route === Routes.CONTACT ? <Contact state={state.contact} actions={actions.contact} /> : null}
-      {router.route === Routes.SKILLS ? <Skills /> : null}
-      {router.route === Routes.POSTS   ? <Posts /> : null}
-      {router.route === Routes.TALKS   ? <Talks /> : null}
+      {router.route === Routes.CONTACT ? <Contact key="contact" state={state.contact} actions={actions.contact} /> : null}
+      {router.route === Routes.POSTS   ? <Posts   key="posts"   state={state.posts}   actions={actions.posts}   /> : null}
+      {router.route === Routes.SKILLS  ? <Skills  key="skills"  state={state.skills}  actions={actions.skills}  /> : null}
+      {router.route === Routes.TALKS   ? <Talks   key="talks"   state={state.talks}   actions={actions.talks}   /> : null}
       <Footer />
     </div>
 });

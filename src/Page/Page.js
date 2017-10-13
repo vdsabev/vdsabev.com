@@ -8,51 +8,65 @@ import { Loader } from '../Loader';
 
 import { animationDuration } from '../style';
 
+const cachedModules = {};
+
+// NOTE: Currently, the page must be a top-level module for state & actions to be accessed
+// If necessary, we can allow using dot notation to go deeper *inception.jpg*
 export const Page = (props) => {
   const state = Actions.getState();
   if (!state.router) throw new Error(`Invalid value of 'state.router': ${state.roter}`);
   if (state.router.route !== props.route) return null;
 
-  // NOTE: Page must be a top-level module for state & actions to be accessed
-  // TODO: Use dot notation to reach deeper into the state if necessary
-  const moduleState = state[props.module];
-  if (!moduleState) throw new Error(`Invalid module state for: ${props.module}`);
-
-  const moduleActions = Actions[props.module];
-  // Module actions are optional, so we don't need to validate them
-
-  if (props.resolve && !moduleState.$resolved) {
-    if (!moduleState.$pending) {
-      moduleState.$pending = true;
-      props.resolve()
-        .then(() => {
-          moduleState.$resolved = true;
-          moduleState.$pending = false;
-        })
-        .catch(() => {
-          moduleState.$pending = false;
-        })
-      ;
-    }
-    return <Loader key={props.module} />;
-  }
+  const MaybeLoader = resolveWithLoader(props.module, props.resolve);
+  if (MaybeLoader != null) return MaybeLoader;
 
   return (
     <props.view
       key={props.module}
-      state={moduleState}
-      actions={moduleActions}
-      onremove={props.cache ? fadeOutPage : invalidateCacheAndFadeOutPage(moduleState) }
+      state={state[props.module]}
+      actions={Actions[props.module]}
+      onremove={props.cache ? fadeOutPage : invalidateCacheAndFadeOutPage(props.module) }
     />
   );
 };
 
+const resolveWithLoader = (moduleKey, resolve) => {
+  if (!resolve) return null;
+
+  if (!cachedModules[moduleKey]) {
+    cachedModules[moduleKey] = {};
+  }
+
+  const cachedModule = cachedModules[moduleKey];
+  if (cachedModule.$resolved) return null;
+
+  if (!cachedModule.$pending) {
+    cachedModule.$pending = true;
+    resolve()
+      .then(() => {
+        cachedModule.$resolved = true;
+        cachedModule.$pending = false;
+      })
+      .catch(() => {
+        cachedModule.$pending = false;
+      })
+    ;
+  }
+
+  return <Loader key={moduleKey} />;
+};
+
+const invalidateCacheAndFadeOutPage = (moduleKey) => (el) => {
+  const cachedModule = cachedModules[moduleKey];
+  if (cachedModule) {
+    cachedModule.$resolved = false;
+  }
+
+  fadeOutPage(el);
+};
+
+
 const fadeOutPage = (el) => (remove) => {
   el.classList.add('page-fade-out');
   setTimeout(remove, 1000 * animationDuration);
-};
-
-const invalidateCacheAndFadeOutPage = (cache) => (el) => {
-  cache.$resolved = false;
-  fadeOutPage(el);
 };

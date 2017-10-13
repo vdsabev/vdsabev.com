@@ -4,6 +4,7 @@
   "scripts": {
     "build": "webpack -p --env.production --display-modules",
     "build:assets": "cd src && svgo avatar.svg && svg2png avatar.svg -w 100",
+    "profile": "webpack --profile --json > ./build/profile.json && webpack-bundle-analyzer ./build/profile.json",
     "start": "webpack-dev-server --port 3000 --history-api-fallback",
     "deploy": "npm run build && firebase deploy",
     "deploy:functions": "firebase deploy --only functions",

@@ -13,6 +13,7 @@ const WorkboxPlugin = require('workbox-webpack-plugin');
 
 const BUILD_DIR = './build';
 const APP_DIR = './src';
+const packageJson = require('./package.json');
 const style = require(`./${APP_DIR}/style`);
 
 module.exports = ({ production } = {}) => ({
@@ -76,7 +77,7 @@ const javascriptRule = {
   loader: 'babel-loader',
   exclude: [/node_modules/],
   query: {
-    presets: ['es2015', 'react']
+    presets: packageJson.babel.presets
   }
 };
 

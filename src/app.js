@@ -6,12 +6,28 @@ import { About } from './About';
 import { Contact, ContactModule } from './Contact';
 import { Footer } from './Footer';
 import { Navigation } from './Navigation';
-import { Posts } from './Posts';
+import { Page, PageModule } from './Page';
+import { Posts, PostsModule } from './Posts';
 import { Profile } from './Profile';
-import { Skills } from './Skills';
-import { Talks } from './Talks';
+import { Skills, SkillsModule } from './Skills';
+import { Talks, TalksModule } from './Talks';
 
-import { RouterModule, Routes } from './router';
+import { createRouter } from './router';
+
+export const Routes = {
+  HOME: { path: '/', title: 'Freelance Web Developer' },
+  CONTACT: { path: '/contact', title: 'Contact' },
+  SKILLS: { path: '/skills', title: 'Skills' },
+  POSTS: { path: '/posts', title: 'Posts' },
+  TALKS: { path: '/talks', title: 'Talks' }
+};
+
+const router = createRouter({
+  routes: Routes,
+  defaultRoute: Routes.CONTACT
+});
+
+export const Link = router.Link;
 
 export const Actions = app({
   init(state, actions) {
@@ -23,27 +39,37 @@ export const Actions = app({
       navigator.serviceWorker.register('service-worker.js', { scope: './' });
     }
   },
-  modules: {
-    contact: ContactModule,
-    router: RouterModule
-  },
   state: {
     animation: false
   },
   actions: {
-    // NOTE: This is a thunk, it will return the state, but not re-render
-    getState: (state) => () => state,
-    animate: () => ({ animation: true })
+    animate: () => ({ animation: true }),
+
+    // Thunks that return slices of the state, but don't cause a re-render
+    getRoute: (state) => () => state.router.route,
+    // NOTE: If needed, we can allow using dot notation to go deeper *inception.jpg*
+    getModuleState: (state, actions, moduleKey) => () => state[moduleKey],
+    getModuleActions: (state, actions, moduleKey) => () => actions[moduleKey]
   },
-  view: ({ router, ...state }, actions) =>
+  modules: {
+    contact: ContactModule,
+    posts: PostsModule,
+    skills: SkillsModule,
+    talks: TalksModule,
+
+    router: router.module
+  },
+  view: (state, actions) =>
     <div class={classy(['fade-in', { 'fade-in-start': state.animation  }])}>
       <Profile />
       <About />
       <Navigation />
-      {router.route === Routes.CONTACT ? <Contact state={state.contact} actions={actions.contact} /> : null}
-      {router.route === Routes.SKILLS ? <Skills /> : null}
-      {router.route === Routes.POSTS   ? <Posts /> : null}
-      {router.route === Routes.TALKS   ? <Talks /> : null}
+      <div class="page-container">
+        <Page route={Routes.CONTACT} module="contact" view={Contact} resolve={actions.contact.getData} cache />
+        <Page route={Routes.SKILLS}  module="skills"  view={Skills}  resolve={actions.skills.getData}  cache />
+        <Page route={Routes.POSTS}   module="posts"   view={Posts}   resolve={actions.posts.getData}   cache />
+        <Page route={Routes.TALKS}   module="talks"   view={Talks}   resolve={actions.talks.getData}   cache />
+      </div>
       <Footer />
     </div>
 });

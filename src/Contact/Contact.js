@@ -5,18 +5,17 @@ import { h } from 'hyperapp';
 import classy from 'classwrap';
 
 import { logger } from '../logger';
+import { Services } from '../services';
 import { css } from '../style';
 
 const getAvailabilityStyle = (status) => ({ color: status === 'available' ? css.success : css.danger });
 
-// TODO: Move to Firebase Database
-const availability = {
-  status: 'available',
-  range: 'Q4 2017 / Q1 2018'
-};
-
 export const ContactModule = {
   state: {
+    availability: {
+      status: '...',
+      range: '...'
+    },
     pending: false,
     success: false,
     error: false,
@@ -24,6 +23,8 @@ export const ContactModule = {
     email: ''
   },
   actions: {
+    getData: () => (update) => Services.getAvailability().then((availability) => ({ availability })).then(update),
+
     setText: (state, actions, e) => ({ text: e.currentTarget.value }),
     setEmail: (state, actions, e) => ({ email: e.currentTarget.value }),
     submit(state, actions) {
@@ -44,29 +45,23 @@ export const ContactModule = {
       };
     },
     sendEmail: (state, actions, message) => (update) => {
-      // https://stackoverflow.com/questions/14873443/sending-an-http-post-using-javascript-triggered-event
-      const request = new XMLHttpRequest();
-
-      request.addEventListener('load', () => {
-        logger.log('contact.success', { message });
-        update({ pending: false, success: true });
-      });
-
-      request.addEventListener('error', () => {
-        logger.error('contact.error', { message });
-        update({ pending: false, error: true });
-      });
-
-      request.open('POST', process.env.EMAIL_SERVICE_URL, true);
-      request.setRequestHeader('Content-Type', 'application/json;charset=UTF-8');
-      request.send(JSON.stringify(message));
+      Services.sendEmail(message)
+        .then(() => {
+          logger.log('contact.success', { message });
+          update({ pending: false, success: true });
+        })
+        .catch(() => {
+          logger.error('contact.error', { message });
+          update({ pending: false, error: true });
+        })
+      ;
     }
   }
 };
 
-export const Contact = ({ state, actions }) =>
-  <section class="contact narrow spacer">
-    <p>I'm currently <b style={getAvailabilityStyle(availability.status)}>{availability.status}</b> for projects and consulting for <b>{availability.range}</b>.</p>
+export const Contact = ({ state, actions, ...props }) =>
+  <section class="contact narrow spacer" {...props}>
+    <p>I'm currently <b style={getAvailabilityStyle(state.availability.status)}>{state.availability.status}</b> for projects and consulting for <b>{state.availability.range}</b>.</p>
 
     <form name="form" onsubmit="return false">
       <fieldset class={classy({ loading: state.pending })} disabled={state.pending || state.success}>

@@ -6,7 +6,7 @@ import { About } from './About';
 import { Contact, ContactModule } from './Contact';
 import { Footer } from './Footer';
 import { Navigation } from './Navigation';
-import { Page } from './Page';
+import { Page, PageModule } from './Page';
 import { Posts, PostsModule } from './Posts';
 import { Profile } from './Profile';
 import { Skills, SkillsModule } from './Skills';
@@ -36,9 +36,12 @@ export const Actions = app({
     animation: false
   },
   actions: {
-    // NOTE: This is a thunk, it will return the state, but not re-render
-    getState: (state) => () => state,
-    animate: () => ({ animation: true })
+    animate: () => ({ animation: true }),
+
+    // Thunks that return slices of the state, but don't cause a re-render
+    getRoute: (state) => () => state.router.route,
+    getModuleState: (state, actions, moduleKey) => () => state[moduleKey],
+    getModuleActions: (state, actions, moduleKey) => () => actions[moduleKey]
   },
   view: (state, actions) =>
     <div class={classy(['fade-in', { 'fade-in-start': state.animation  }])}>
@@ -47,8 +50,8 @@ export const Actions = app({
       <Navigation />
       <div class="page-container">
         <Page route={Routes.CONTACT} module="contact" view={Contact} resolve={actions.contact.getData} cache />
-        <Page route={Routes.POSTS}   module="posts"   view={Posts}   resolve={actions.posts.getData}   cache />
         <Page route={Routes.SKILLS}  module="skills"  view={Skills}  resolve={actions.skills.getData}  cache />
+        <Page route={Routes.POSTS}   module="posts"   view={Posts}   resolve={actions.posts.getData}   cache />
         <Page route={Routes.TALKS}   module="talks"   view={Talks}   resolve={actions.talks.getData}   cache />
       </div>
       <Footer />

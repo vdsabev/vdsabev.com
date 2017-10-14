@@ -5,32 +5,29 @@ import { h } from 'hyperapp';
 
 import { Actions } from '../App';
 import { Loader } from '../Loader';
-
 import { animationDuration } from '../style';
-
-const cachedModules = {};
 
 // NOTE: Currently, the page must be a top-level module for state & actions to be accessed
 // If necessary, we can allow using dot notation to go deeper *inception.jpg*
 export const Page = (props) => {
-  const state = Actions.getState();
-  if (!state.router) throw new Error(`Invalid value of 'state.router': ${state.roter}`);
-  if (state.router.route !== props.route) return null;
+  if (Actions.getRoute() !== props.route) return null;
 
-  const MaybeLoader = resolveWithLoader(props.module, props.resolve);
+  const MaybeLoader = cacheAndResolveWithLoader(props.module, props.resolve);
   if (MaybeLoader != null) return MaybeLoader;
 
   return (
     <props.view
       key={props.module}
-      state={state[props.module]}
-      actions={Actions[props.module]}
+      state={Actions.getModuleState(props.module)}
+      actions={Actions.getModuleActions(props.module)}
       onremove={props.cache ? fadeOutPage : invalidateCacheAndFadeOutPage(props.module) }
     />
   );
 };
 
-const resolveWithLoader = (moduleKey, resolve) => {
+const cachedModules = {};
+
+const cacheAndResolveWithLoader = (moduleKey, resolve) => {
   if (!resolve) return null;
 
   if (!cachedModules[moduleKey]) {

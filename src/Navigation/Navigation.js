@@ -8,17 +8,17 @@ import { Actions } from '../App';
 import { Routes, Link } from '../router';
 
 export const Navigation = () => {
-  const { router } = Actions.getState();
+  const currentRoute = Actions.getRoute();
   const scrollToContainer = (e) => {
     e.currentTarget.scrollIntoView({ behavior: 'smooth', block: 'start', inline: 'start' });
   };
 
   return (
     <header class="navigation narrow">
-      <PageLink currentRoute={router.route} pageRoute={Routes.CONTACT} onclick={scrollToContainer} />
-      <PageLink currentRoute={router.route} pageRoute={Routes.SKILLS} onclick={scrollToContainer} />
-      <PageLink currentRoute={router.route} pageRoute={Routes.POSTS} onclick={scrollToContainer} />
-      <PageLink currentRoute={router.route} pageRoute={Routes.TALKS} onclick={scrollToContainer} />
+      <PageLink currentRoute={currentRoute} pageRoute={Routes.CONTACT} onclick={scrollToContainer} />
+      <PageLink currentRoute={currentRoute} pageRoute={Routes.SKILLS} onclick={scrollToContainer} />
+      <PageLink currentRoute={currentRoute} pageRoute={Routes.POSTS} onclick={scrollToContainer} />
+      <PageLink currentRoute={currentRoute} pageRoute={Routes.TALKS} onclick={scrollToContainer} />
     </header>
   );
 };

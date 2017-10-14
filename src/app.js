@@ -35,7 +35,7 @@ export const Actions = app({
     setTimeout(actions.animate, 0);
 
     // PWA
-    if (navigator.serviceWorker && process.env.NODE_ENV === 'production') {
+    if (process.env.NODE_ENV === 'production' && navigator.serviceWorker) {
       navigator.serviceWorker.register('service-worker.js', { scope: './' });
     }
   },

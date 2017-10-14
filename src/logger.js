@@ -14,7 +14,7 @@ export const logger = {
 };
 
 const sendGoogleAnalyticsEvent = (...args) => {
-  if (window.ga && process.env.NODE_ENV === 'production') {
+  if (process.env.NODE_ENV === 'production' && window.ga) {
     window.ga('send', 'event', ...args);
   }
 };

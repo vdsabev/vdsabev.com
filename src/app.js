@@ -47,6 +47,7 @@ export const Actions = app({
 
     // Thunks that return slices of the state, but don't cause a re-render
     getRoute: (state) => () => state.router.route,
+    // NOTE: If needed, we can allow using dot notation to go deeper *inception.jpg*
     getModuleState: (state, actions, moduleKey) => () => state[moduleKey],
     getModuleActions: (state, actions, moduleKey) => () => actions[moduleKey]
   },

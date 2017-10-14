@@ -7,8 +7,6 @@ import { Actions } from '../App';
 import { Loader } from '../Loader';
 import { animationDuration } from '../style';
 
-// NOTE: Currently, the page must be a top-level module for state & actions to be accessed
-// If necessary, we can allow using dot notation to go deeper *inception.jpg*
 export const Page = (props) => {
   if (Actions.getRoute() !== props.route) return null;
 

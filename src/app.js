@@ -12,7 +12,22 @@ import { Profile } from './Profile';
 import { Skills, SkillsModule } from './Skills';
 import { Talks, TalksModule } from './Talks';
 
-import { RouterModule, Routes } from './router';
+import { createRouter } from './router';
+
+export const Routes = {
+  HOME: { path: '/', title: 'Freelance Web Developer' },
+  CONTACT: { path: '/contact', title: 'Contact' },
+  SKILLS: { path: '/skills', title: 'Skills' },
+  POSTS: { path: '/posts', title: 'Posts' },
+  TALKS: { path: '/talks', title: 'Talks' }
+};
+
+const router = createRouter({
+  routes: Routes,
+  defaultRoute: Routes.CONTACT
+});
+
+export const Link = router.Link;
 
 export const Actions = app({
   init(state, actions) {
@@ -24,14 +39,6 @@ export const Actions = app({
       navigator.serviceWorker.register('service-worker.js', { scope: './' });
     }
   },
-  modules: {
-    contact: ContactModule,
-    posts: PostsModule,
-    skills: SkillsModule,
-    talks: TalksModule,
-
-    router: RouterModule
-  },
   state: {
     animation: false
   },
@@ -42,6 +49,14 @@ export const Actions = app({
     getRoute: (state) => () => state.router.route,
     getModuleState: (state, actions, moduleKey) => () => state[moduleKey],
     getModuleActions: (state, actions, moduleKey) => () => actions[moduleKey]
+  },
+  modules: {
+    contact: ContactModule,
+    posts: PostsModule,
+    skills: SkillsModule,
+    talks: TalksModule,
+
+    router: router.module
   },
   view: (state, actions) =>
     <div class={classy(['fade-in', { 'fade-in-start': state.animation  }])}>

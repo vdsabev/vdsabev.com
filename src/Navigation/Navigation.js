@@ -4,8 +4,7 @@ import './Navigation.css';
 import { h } from 'hyperapp';
 import classy from 'classwrap';
 
-import { Actions } from '../App';
-import { Routes, Link } from '../router';
+import { Actions, Routes, Link } from '../App';
 
 export const Navigation = () => {
   const currentRoute = Actions.getRoute();

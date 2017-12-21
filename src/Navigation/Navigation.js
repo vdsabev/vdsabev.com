@@ -8,24 +8,24 @@ import { App, Routes } from '../App';
 import { Link } from '../router';
 
 export const Navigation = () => {
-  const currentRoute = App.getRoute();
+  const currentPath = App.getRouterPath();
   const scrollToContainer = (e) => {
     e.currentTarget.scrollIntoView({ behavior: 'smooth', block: 'start', inline: 'start' });
   };
 
   return (
     <header class="navigation narrow">
-      <PageLink currentRoute={currentRoute} pageRoute={Routes.CONTACT} onclick={scrollToContainer} />
-      <PageLink currentRoute={currentRoute} pageRoute={Routes.SKILLS}  onclick={scrollToContainer} />
-      <PageLink currentRoute={currentRoute} pageRoute={Routes.POSTS}   onclick={scrollToContainer} />
-      <PageLink currentRoute={currentRoute} pageRoute={Routes.TALKS}   onclick={scrollToContainer} />
+      <PageLink pageRoute={Routes.CONTACT} currentPath={currentPath} onclick={scrollToContainer} />
+      <PageLink pageRoute={Routes.SKILLS}  currentPath={currentPath} onclick={scrollToContainer} />
+      <PageLink pageRoute={Routes.POSTS}   currentPath={currentPath} onclick={scrollToContainer} />
+      <PageLink pageRoute={Routes.TALKS}   currentPath={currentPath} onclick={scrollToContainer} />
     </header>
   );
 };
 
-const PageLink = ({ currentRoute, pageRoute, ...props }) =>
+const PageLink = ({ pageRoute, currentPath, ...props }) =>
   <Link
-    class={classy(['navigation-page-link', { active: currentRoute === pageRoute }])}
+    class={classy(['navigation-page-link', { active: currentPath === pageRoute.path }])}
     to={pageRoute.path}
     {...props}
   >{pageRoute.title}</Link>

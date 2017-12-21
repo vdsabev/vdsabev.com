@@ -1,4 +1,3 @@
-/** @jsx h */
 import { h } from './dom';
 import { location } from '@hyperapp/router/src/location';
 
@@ -12,11 +11,14 @@ export const RouterModel = {
   subscribe: location.subscribe,
 };
 
-export const Link = (props, children) => {
-  var to = props.to;
-  var location = props.location || window.location;
+const createLink = (h) => (props, children) => {
+  const to = props.to;
+  const location = props.location || window.location;
 
   props.href = to;
+
+  // TODO: Remove when https://github.com/hyperapp/router/issues/19 is fixed
+  const originalOnClick = props.onclick;
   props.onclick = (e) => {
     const shouldFollowUrl = (
       e.button !== 0 ||
@@ -35,7 +37,13 @@ export const Link = (props, children) => {
         history.pushState(location.pathname, '', to)
       }
     }
+
+    if (originalOnClick) {
+      originalOnClick(e);
+    }
   }
 
-  return <a {...props}>{children}</a>;
+  return h('a', props, children);
 };
+
+export const Link = createLink(h);

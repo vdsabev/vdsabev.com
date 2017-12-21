@@ -10,10 +10,10 @@ import { Navigation } from './Navigation';
 // import { Page } from './Page';
 import { Posts, PostsModel } from './Posts';
 import { Profile } from './Profile';
+import { Pages, PageRedirect, PageRoute } from './Page';
+import { RouterModel } from './router';
 import { Skills, SkillsModel } from './Skills';
 import { Talks, TalksModel } from './Talks';
-
-import { RouterModel, Redirect, Route, Switch } from './router';
 
 export const Routes = {
   HOME: { path: '/', title: 'Freelance Web Developer' },
@@ -26,14 +26,14 @@ export const Routes = {
 
 const AppModel = {
   animation: false,
-
   animate: () => ({ animation: true }),
+
+  router: RouterModel,
+
   contact: ContactModel,
   posts: PostsModel,
   skills: SkillsModel,
   talks: TalksModel,
-
-  router: RouterModel,
 };
 
 const AppView = ({ model }) =>
@@ -41,35 +41,15 @@ const AppView = ({ model }) =>
     <Profile />
     <About />
     <Navigation />
-    <div class="page-container">
-      <Switch>
-        <RouteRedirect from={Routes.HOME} to={Routes.CONTACT} />
-        <RoutePage route={Routes.CONTACT} model={model.contact} view={Contact} />
-        <RoutePage route={Routes.SKILLS}  model={model.skills}  view={Skills}  />
-        <RoutePage route={Routes.POSTS}   model={model.posts}   view={Posts}   />
-        <RoutePage route={Routes.TALKS}   model={model.talks}   view={Talks}   />
-      </Switch>
-    </div>
+    <Pages>
+      <PageRedirect from={Routes.HOME} to={Routes.CONTACT} />
+      <PageRoute route={Routes.CONTACT} model={model.contact} view={Contact} />
+      <PageRoute route={Routes.SKILLS}  model={model.skills}  view={Skills}  />
+      <PageRoute route={Routes.POSTS}   model={model.posts}   view={Posts}   />
+      <PageRoute route={Routes.TALKS}   model={model.talks}   view={Talks}   />
+    </Pages>
     <Footer />
   </div>
-;
-
-const RouteRedirect = (props) =>
-  <Route
-    path={props.from.path}
-    render={() =>
-      <Redirect from={props.from.path} to={props.to.path} />
-    }
-  />
-;
-
-const RoutePage = (props) =>
-  <Route
-    path={props.route.path}
-    render={() =>
-      <props.view key={props.route.path} model={props.model} oncreate={props.model.getData} />
-    }
-  />
 ;
 
 const store = app({
@@ -79,11 +59,8 @@ const store = app({
 });
 
 export const App = {
-  getRoute() {
-    return store.model.router;
-  },
-  getModel(modelName) {
-    return store.model[modelName];
+  getRouterPath() {
+    return store.model.router.pathname;
   }
 };
 

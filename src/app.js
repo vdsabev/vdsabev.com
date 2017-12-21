@@ -17,7 +17,6 @@ import { Talks, TalksModel } from './Talks';
 
 export const Routes = {
   HOME: { path: '/', title: 'Freelance Web Developer' },
-  // TODO: Redirect to contact when opening `/`
   CONTACT: { path: '/contact', title: 'Contact' },
   SKILLS: { path: '/skills', title: 'Skills' },
   POSTS: { path: '/posts', title: 'Posts' },
@@ -58,12 +57,6 @@ const store = app({
   view: AppView
 });
 
-export const App = {
-  getRouterPath() {
-    return store.model.router.pathname;
-  }
-};
-
 // We need to use `setTimeout` for the animation to run properly
 setTimeout(store.model.animate, 0);
 
@@ -74,3 +67,9 @@ store.model.router.subscribe(store.model.router);
 if (process.env.NODE_ENV === 'production' && navigator.serviceWorker) {
   navigator.serviceWorker.register('service-worker.js', { scope: './' });
 }
+
+export const App = {
+  getRouterPath() {
+    return store.model.router.pathname;
+  }
+};

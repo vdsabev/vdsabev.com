@@ -5,7 +5,7 @@ import { h } from '../dom';
 import { classy } from '../classy';
 
 import { App } from '../App';
-// import { Loader } from '../Loader';
+import { Loader } from '../Loader';
 import { Redirect, Route, Switch } from '../router';
 import { transitionDuration } from '../style';
 
@@ -24,21 +24,24 @@ export const PageRedirect = (props) =>
   />
 ;
 
-// TODO: Show loader while loading data
-// TODO: Cache data
 export const PageRoute = (props) =>
   <Route
     path={props.route.path}
-    render={() =>
-      <props.view
-        key={props.route.path}
-        model={props.model}
-        oncreate={props.model.getData}
-        onremove={fadeOutPage}
-      />
-    }
+    render={() => {
+      if (!cachedPageRoutes[props.route.path]) {
+        cachedPageRoutes[props.route.path] = true;
+        props.model.getData().catch(() => {
+          cachedPageRoutes[props.route.path] = false;
+        });
+        return <Loader key={props.route.path} />;
+      }
+
+      return <props.view key={props.route.path} model={props.model} onremove={fadeOutPage} />;
+    }}
   />
 ;
+
+const cachedPageRoutes = {};
 
 const fadeOutPage = (el) => (remove) => {
   el.classList.add('page-fade-out');

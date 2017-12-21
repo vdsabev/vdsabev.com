@@ -21,13 +21,13 @@ export const App = ({ model }) =>
     <Profile />
     <About />
     <Navigation />
-      <Pages>
-        <PageRedirect from={Routes.HOME} to={Routes.CONTACT} />
-        <PageRoute route={Routes.CONTACT} model={model.contact} view={Contact} />
-        <PageRoute route={Routes.SKILLS}  model={model.skills}  view={Skills}  />
-        <PageRoute route={Routes.POSTS}   model={model.posts}   view={Posts}   />
-        <PageRoute route={Routes.TALKS}   model={model.talks}   view={Talks}   />
-      </Pages>
+    <Pages>
+      <PageRedirect from={Routes.HOME} to={Routes.CONTACT} />
+      <PageRoute route={Routes.CONTACT} model={model.contact} view={Contact} />
+      <PageRoute route={Routes.SKILLS}  model={model.skills}  view={Skills}  />
+      <PageRoute route={Routes.POSTS}   model={model.posts}   view={Posts}   />
+      <PageRoute route={Routes.TALKS}   model={model.talks}   view={Talks}   />
+    </Pages>
     <Footer />
   </div>
 ;

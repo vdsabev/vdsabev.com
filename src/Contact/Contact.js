@@ -20,19 +20,21 @@ export const ContactModel = {
   error: false,
   text: '',
   email: '',
-  getData: () => (update) => Services.getAvailability().then((availability) => ({ availability })).then(update),
+  getData() {
+    return Services.getAvailability().then((availability) => ({ availability }));
+  },
 
-  setText: (model, e) => ({ text: e.currentTarget.value }),
-  setEmail: (model, e) => ({ email: e.currentTarget.value }),
-  submit(model) {
-    if (model.pending || model.success) return;
+  setText: (e) => ({ text: e.currentTarget.value }),
+  setEmail: (e) => ({ email: e.currentTarget.value }),
+  submit() {
+    if (this.pending || this.success) return;
 
-    if (!model.email) return console.error('Invalid email:', JSON.stringify(model.email));
-    if (!model.text) return console.error('Invalid text:', JSON.stringify(model.text));
+    if (!this.email) return console.error('Invalid email:', JSON.stringify(this.email));
+    if (!this.text) return console.error('Invalid text:', JSON.stringify(this.text));
 
-    model.sendEmail({
-      subject: `VDSABEV.COM: New message from ${model.email}`,
-      text: model.text
+    this.sendEmail({
+      subject: `VDSABEV.COM: New message from ${this.email}`,
+      text: this.text
     });
 
     return {
@@ -41,17 +43,14 @@ export const ContactModel = {
       error: false
     };
   },
-  sendEmail: (model, message) => (update) => {
-    Services.sendEmail(message)
-      .then(() => {
-        logger.log('contact.success', { message });
-        update({ pending: false, success: true });
-      })
-      .catch(() => {
-        logger.error('contact.error', { message });
-        update({ pending: false, error: true });
-      })
-    ;
+  sendEmail(message) {
+    return Services.sendEmail(message).then(() => {
+      logger.log('contact.success', { message });
+      return { pending: false, success: true };
+    }).catch(() => {
+      logger.error('contact.error', { message });
+      return { pending: false, error: true };
+    });
   }
 };
 

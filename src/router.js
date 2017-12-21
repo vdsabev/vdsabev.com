@@ -2,6 +2,10 @@
 import { h } from './dom';
 import { location } from '@hyperapp/router/src/location';
 
+export { Redirect } from '@hyperapp/router/src/Redirect';
+export { Route } from '@hyperapp/router/src/Route';
+export { Switch } from '@hyperapp/router/src/Switch';
+
 export const RouterModel = {
   ...location.state,
   ...location.actions,
@@ -35,11 +39,3 @@ export const Link = (props, children) => {
 
   return <a {...props}>{children}</a>;
 };
-
-// TODO: Finish
-export const Route = ({ path, render, model }) => {
-  if (path === window.location.pathname) {
-    model.getData();
-    return render({ key: path, model });
-  }
-}

@@ -13,7 +13,7 @@ import { Profile } from './Profile';
 import { Skills, SkillsModel } from './Skills';
 import { Talks, TalksModel } from './Talks';
 
-import { Route, RouterModel } from './router';
+import { RouterModel, Redirect, Route, Switch } from './router';
 
 export const Routes = {
   HOME: { path: '/', title: 'Freelance Web Developer' },
@@ -42,17 +42,34 @@ const AppView = ({ model }) =>
     <About />
     <Navigation />
     <div class="page-container">
-      <Route path={Routes.CONTACT.path} render={Contact} model={model.contact} />
-      <Route path={Routes.SKILLS.path}  render={Skills}  model={model.skills}  />
-      <Route path={Routes.POSTS.path}   render={Posts}   model={model.posts}   />
-      <Route path={Routes.TALKS.path}   render={Talks}   model={model.talks}   />
-      {/* <Page route={Routes.CONTACT} model="contact" view={Contact} resolve={model.contact.getData} cache /> */}
-      {/* <Page route={Routes.SKILLS}  model="skills"  view={Skills}  resolve={model.skills.getData}  cache /> */}
-      {/* <Page route={Routes.POSTS}   model="posts"   view={Posts}   resolve={model.posts.getData}   cache /> */}
-      {/* <Page route={Routes.TALKS}   model="talks"   view={Talks}   resolve={model.talks.getData}   cache /> */}
+      <Switch>
+        <RouteRedirect from={Routes.HOME} to={Routes.CONTACT} />
+        <RoutePage route={Routes.CONTACT} model={model.contact} view={Contact} />
+        <RoutePage route={Routes.SKILLS}  model={model.skills}  view={Skills}  />
+        <RoutePage route={Routes.POSTS}   model={model.posts}   view={Posts}   />
+        <RoutePage route={Routes.TALKS}   model={model.talks}   view={Talks}   />
+      </Switch>
     </div>
     <Footer />
   </div>
+;
+
+const RouteRedirect = (props) =>
+  <Route
+    path={props.from.path}
+    render={() =>
+      <Redirect from={props.from.path} to={props.to.path} />
+    }
+  />
+;
+
+const RoutePage = (props) =>
+  <Route
+    path={props.route.path}
+    render={() =>
+      <props.view key={props.route.path} model={props.model} oncreate={props.model.getData} />
+    }
+  />
 ;
 
 const store = app({

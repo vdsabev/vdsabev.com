@@ -42,12 +42,9 @@ module.exports = ({ production } = {}) => ({
     production ? new CleanWebpackPlugin([`${BUILD_DIR}/*`]) : new NullPlugin(),
 
     new webpack.optimize.ModuleConcatenationPlugin(),
-    new webpack.DefinePlugin(Object.assign(
-      define(env, (envJsonKeys) => envJsonKeys),
-      {
-        NODE_ENV: production ? 'production' : 'development'
-      }
-    )),
+    new webpack.DefinePlugin(Object.assign(define(env), {
+      'process.env.NODE_ENV': JSON.stringify(production ? 'production' : 'development')
+    })),
 
     // `contenthash` is specific to this plugin, we would typically use `chunkhash`
     new ExtractTextPlugin('style.[contenthash].css'),

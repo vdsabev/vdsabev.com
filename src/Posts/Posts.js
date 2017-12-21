@@ -1,15 +1,13 @@
 /** @jsx h */
-import { h } from 'hyperapp';
+import { h } from '../dom';
 import { Articles } from '../Article';
 import { Services } from '../services';
 
-export const PostsModule = {
-  state: {
-    posts: []
-  },
-  actions: {
-    getData: () => (update) => Services.getPosts().then((posts) => ({ posts: posts.slice().reverse() })).then(update)
+export const PostsModel = {
+  posts: [],
+  getData() {
+    return Services.getPosts().then((posts) => ({ posts: posts.slice().reverse() }));
   }
 };
 
-export const Posts = ({ state, actions, ...props }) => Articles({ articles: state.posts, ...props });
+export const Posts = ({ model, ...props }) => Articles({ articles: model.posts, ...props });

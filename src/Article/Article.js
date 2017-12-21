@@ -1,7 +1,7 @@
 import './Article.css';
 
 /** @jsx h */
-import { h } from 'hyperapp';
+import { h } from '../dom';
 
 export const Articles = ({ articles, ...props }) =>
   <section class="articles narrow spacer" {...props}>

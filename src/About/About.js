@@ -8,7 +8,7 @@ import './linkedin.svg';
 import './About.css';
 
 /** @jsx h */
-import { h } from 'hyperapp';
+import { h } from '../dom';
 
 const yearIStartedWorking = 2010;
 const thisYear = new Date().getFullYear();

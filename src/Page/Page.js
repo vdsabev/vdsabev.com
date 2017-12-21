@@ -1,65 +1,63 @@
 import './Page.css';
 
 /** @jsx h */
-import { h } from 'hyperapp';
+import { h } from '../dom';
 
-import { Actions } from '../App';
+import { App } from '../App';
 import { Loader } from '../Loader';
 import { animationDuration } from '../style';
 
 export const Page = (props) => {
-  if (Actions.getRoute() !== props.route) return null;
+  if (App.getRoute().pathname !== props.route.path) return null;
 
-  const MaybeLoader = cacheAndResolveWithLoader(props.module, props.resolve);
+  const MaybeLoader = cacheAndResolveWithLoader(props.model, props.resolve);
   if (MaybeLoader != null) return MaybeLoader;
 
   return (
     <props.view
-      key={props.module}
-      state={Actions.getModuleState(props.module)}
-      actions={Actions.getModuleActions(props.module)}
-      onremove={props.cache ? fadeOutPage : invalidateCacheAndFadeOutPage(props.module) }
+      key={props.model}
+      model={App.getModel(props.model)}
+      onremove={props.cache ? fadeOutPage : invalidateCacheAndFadeOutPage(props.model) }
     />
   );
 };
 
-const cachedModules = {};
+const cachedModels = {};
 
-const cacheAndResolveWithLoader = (moduleKey, resolve) => {
+const cacheAndResolveWithLoader = (modelKey, resolve) => {
   if (!resolve) return null;
 
-  if (!cachedModules[moduleKey]) {
-    cachedModules[moduleKey] = {};
+  if (!cachedModels[modelKey]) {
+    cachedModels[modelKey] = {};
   }
 
-  const cachedModule = cachedModules[moduleKey];
-  if (cachedModule.$resolved) return null;
+  const cachedModel = cachedModels[modelKey];
+  if (cachedModel.$resolved) return null;
 
-  if (!cachedModule.$pending) {
-    cachedModule.$pending = true;
+  if (!cachedModel.$pending) {
+    cachedModel.$pending = true;
     resolve()
       .then(() => {
-        cachedModule.$resolved = true;
-        cachedModule.$pending = false;
+        cachedModel.$resolved = true;
+        cachedModel.$pending = false;
       })
       .catch(() => {
-        cachedModule.$pending = false;
+        cachedModel.$pending = false;
       })
     ;
   }
 
-  return <Loader key={moduleKey} />;
+  return <Loader key={modelKey} />;
 };
 
-const invalidateCacheAndFadeOutPage = (moduleKey) => (el) => {
-  const cachedModule = cachedModules[moduleKey];
-  if (cachedModule) {
-    cachedModule.$resolved = false;
+const invalidateCacheAndFadeOutPage = (modelKey) => (el) => {
+  const cachedModel = cachedModels[modelKey];
+  if (cachedModel) {
+    cachedModel.$resolved = false;
   }
 
   fadeOutPage(el);
 };
-
 
 const fadeOutPage = (el) => (remove) => {
   el.classList.add('page-fade-out');

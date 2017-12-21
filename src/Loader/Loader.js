@@ -1,7 +1,7 @@
 import './Loader.css';
 
 /** @jsx h */
-import { h } from 'hyperapp';
+import { h } from '../dom';
 
 export const Loader = (props) =>
   <div class="loader" {...props}>

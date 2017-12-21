@@ -13,7 +13,7 @@
   font-size: 1.5rem;
   color: var(--foregroundDark);
 
-  transition: all var(--animationDuration) var(--animationEasing);
+  transition: all var(--transitionDuration) var(--transitionEasing);
   transition-property: background, border-color;
 }
 

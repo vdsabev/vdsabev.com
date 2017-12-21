@@ -13,5 +13,10 @@
   border: 5px solid var(--info);
   border-right-color: var(--neutralLight);
   border-radius: 50%;
-  animation: spinRight calc(2 * var(--animationDuration)) linear infinite;
+  animation: spinRight calc(2 * var(--transitionDuration)) linear infinite;
+}
+
+@keyframes spinRight {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
 }

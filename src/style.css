@@ -34,7 +34,7 @@ fieldset {
   border: 0;
   margin: 0;
   padding: 0;
-  transition: all var(--animationDuration) var(--animationEasing);
+  transition: all var(--transitionDuration) var(--transitionEasing);
   transition-property: opacity, filter;
 }
 
@@ -50,7 +50,6 @@ fieldset[disabled] button {
   cursor: not-allowed;
 }
 
-
 fieldset.loading,
 fieldset.loading textarea,
 fieldset.loading input,
@@ -64,7 +63,7 @@ button {
   margin-bottom: 1rem;
   border-radius: 0.25rem;
   padding: 1rem 0.6rem;
-  transition: all var(--animationDuration) var(--animationEasing);
+  transition: all var(--transitionDuration) var(--transitionEasing);
 }
 
 textarea,
@@ -98,12 +97,6 @@ button {
   max-width: 800px;
   margin: 0 auto;
   padding: 0 1.5rem;
-}
-
-.box {
-  box-shadow: 8px 8px 8px rgba(0, 0, 0, 0.15);
-  background: var(--neutralLight);
-  padding: 1.5rem;
 }
 
 .spacer {

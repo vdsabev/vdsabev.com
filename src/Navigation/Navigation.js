@@ -4,8 +4,9 @@ import './Navigation.css';
 import { h } from '../dom';
 import { classy } from '../classy';
 
-import { App, Routes } from '../App';
+import { App } from '../App';
 import { Link } from '../router';
+import { Routes } from '../Routes';
 
 export const Navigation = () => {
   const currentPath = App.getRouterPath();

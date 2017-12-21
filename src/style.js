@@ -1,6 +1,6 @@
 const style = {};
 
-style.animationDuration = 0.4;
+style.transitionDuration = 0.4;
 
 style.fonts = {
   profile: 'Acme',
@@ -8,9 +8,9 @@ style.fonts = {
 };
 
 style.css = {
-  animationDuration: `${style.animationDuration}s`,
-  animationEasing: 'cubic-bezier(0.25, 1, 0.25, 1)',
-  animationElastic: 'cubic-bezier(0.5, 2, 0.5, 0.5)',
+  transitionDuration: `${style.transitionDuration}s`,
+  transitionEasing: 'cubic-bezier(0.25, 1, 0.25, 1)',
+  transitionElastic: 'cubic-bezier(0.5, 2, 0.5, 0.5)',
 
   fontProfile: style.fonts.profile,
   fontText: style.fonts.text,

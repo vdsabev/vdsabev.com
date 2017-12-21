@@ -11,6 +11,7 @@ export const RouterModel = {
   subscribe: location.subscribe,
 };
 
+// TODO: Remove when https://github.com/hyperapp/router/pulls/32 is merges
 const createLink = (h) => (props, children) => {
   const to = props.to;
   const location = props.location || window.location;

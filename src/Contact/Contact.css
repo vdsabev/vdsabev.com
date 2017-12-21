@@ -16,7 +16,7 @@
 .contact-error {
   display: none;
   opacity: 0;
-  transition: opacity var(--animationDuration) var(--animationEasing);
+  transition: opacity var(--transitionDuration) var(--transitionEasing);
   font-size: 1.5rem;
 }
 

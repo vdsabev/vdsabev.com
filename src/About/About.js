@@ -16,7 +16,7 @@ const yearsOfExperience = thisYear - yearIStartedWorking;
 
 export const About = () =>
   <section class="about narrow spacer">
-    <div class="about-content box">
+    <div class="about-content">
       <img class="about-picture" src="picture.jpg" alt="Vladimir Sabev" />
 
       <div class="about-statement">

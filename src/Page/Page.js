@@ -7,7 +7,7 @@ import { classy } from '../classy';
 import { App } from '../App';
 // import { Loader } from '../Loader';
 import { Redirect, Route, Switch } from '../router';
-import { animationDuration } from '../style';
+import { transitionDuration } from '../style';
 
 export const Pages = (props, children) =>
   <div {...props} class={classy(['page-container', props.class])}>
@@ -42,5 +42,5 @@ export const PageRoute = (props) =>
 
 const fadeOutPage = (el) => (remove) => {
   el.classList.add('page-fade-out');
-  setTimeout(remove, 1000 * animationDuration);
+  setTimeout(remove, 1000 * transitionDuration);
 };

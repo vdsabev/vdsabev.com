@@ -1,7 +1,7 @@
 import './Footer.css';
 
 /** @jsx h */
-import { h } from 'hyperapp';
+import { h } from '../dom';
 
 const thisYear = new Date().getFullYear();
 

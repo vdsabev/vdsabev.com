@@ -1,27 +1,33 @@
 import './Navigation.css';
 
 /** @jsx h */
-import { h } from 'hyperapp';
-import classy from 'classwrap';
+import { h } from '../dom';
+import { classy } from '../classy';
 
-import { Actions, Routes, Link } from '../App';
+import { App } from '../App';
+import { Link } from '../router';
+import { Routes } from '../Routes';
 
 export const Navigation = () => {
-  const currentRoute = Actions.getRoute();
+  const currentPath = App.getRouterPath();
   const scrollToContainer = (e) => {
     e.currentTarget.scrollIntoView({ behavior: 'smooth', block: 'start', inline: 'start' });
   };
 
   return (
     <header class="navigation narrow">
-      <PageLink currentRoute={currentRoute} pageRoute={Routes.CONTACT} onclick={scrollToContainer} />
-      <PageLink currentRoute={currentRoute} pageRoute={Routes.SKILLS} onclick={scrollToContainer} />
-      <PageLink currentRoute={currentRoute} pageRoute={Routes.POSTS} onclick={scrollToContainer} />
-      <PageLink currentRoute={currentRoute} pageRoute={Routes.TALKS} onclick={scrollToContainer} />
+      <PageLink pageRoute={Routes.CONTACT} currentPath={currentPath} onclick={scrollToContainer} />
+      <PageLink pageRoute={Routes.SKILLS}  currentPath={currentPath} onclick={scrollToContainer} />
+      <PageLink pageRoute={Routes.POSTS}   currentPath={currentPath} onclick={scrollToContainer} />
+      <PageLink pageRoute={Routes.TALKS}   currentPath={currentPath} onclick={scrollToContainer} />
     </header>
   );
 };
 
-const PageLink = ({ currentRoute, pageRoute, ...props }) =>
-  <Link class={classy(['navigation-page-link', { active: currentRoute === pageRoute }])} route={pageRoute} {...props}>{pageRoute.title}</Link>
+const PageLink = ({ pageRoute, currentPath, ...props }) =>
+  <Link
+    class={classy(['navigation-page-link', { active: currentPath === pageRoute.path }])}
+    to={pageRoute.path}
+    {...props}
+  >{pageRoute.title}</Link>
 ;

@@ -8,7 +8,7 @@ import './linkedin.svg';
 import './About.css';
 
 /** @jsx h */
-import { h } from 'hyperapp';
+import { h } from '../dom';
 
 const yearIStartedWorking = 2010;
 const thisYear = new Date().getFullYear();
@@ -16,7 +16,7 @@ const yearsOfExperience = thisYear - yearIStartedWorking;
 
 export const About = () =>
   <section class="about narrow spacer">
-    <div class="about-content box">
+    <div class="about-content">
       <img class="about-picture" src="picture.jpg" alt="Vladimir Sabev" />
 
       <div class="about-statement">

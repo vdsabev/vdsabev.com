@@ -1,15 +1,13 @@
 import './Skills.css';
 
 /** @jsx h */
-import { h } from 'hyperapp';
+import { h } from '../dom';
 import { Services } from '../services';
 
-export const SkillsModule = {
-  state: {
-    skills: []
-  },
-  actions: {
-    getData: () => (update) => Services.getSkills().then((skills) => ({
+export const SkillsModel = {
+  skills: [],
+  getData() {
+    return Services.getSkills().then((skills) => ({
       min: Math.min(...skills.map((skill) => new Date(skill.from).getTime())),
       max: Date.now(),
       skills: skills.map((skill) => ({
@@ -17,13 +15,13 @@ export const SkillsModule = {
         from: new Date(skill.from).getTime(),
         to: skill.to != null ? new Date(skill.to).getTime() : skill.to
       }))
-    })).then(update)
+    }));
   }
 };
 
-export const Skills = ({ state, actions, ...props }) =>
+export const Skills = ({ model, ...props }) =>
   <section class="skills narrow spacer" {...props}>
-    {state.skills.map(Skill({ min: state.min, max: state.max }))}
+    {model.skills.map(Skill({ min: model.min, max: model.max }))}
   </section>
 ;
 

@@ -26,7 +26,7 @@
 
 .skill-range {
   background: var(--info);
-  transition: all var(--animationDuration) var(--animationEasing);
+  transition: all var(--transitionDuration) var(--transitionEasing);
   transition-property: left, right;
 }
 

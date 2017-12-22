@@ -1,67 +1,49 @@
 import './Page.css';
 
 /** @jsx h */
-import { h } from 'hyperapp';
+import { h } from '../dom';
+import { classy } from '../classy';
 
-import { Actions } from '../App';
+import { App } from '../App';
 import { Loader } from '../Loader';
-import { animationDuration } from '../style';
+import { Redirect, Route, Switch } from '../router';
+import { transitionDuration } from '../style';
 
-export const Page = (props) => {
-  if (Actions.getRoute() !== props.route) return null;
+export const Pages = (props, children) =>
+  <div {...props} class={classy(['page-container', props.class])}>
+    <Switch>{children}</Switch>
+  </div>
+;
 
-  const MaybeLoader = cacheAndResolveWithLoader(props.module, props.resolve);
-  if (MaybeLoader != null) return MaybeLoader;
+export const PageRedirect = (props) =>
+  <Route
+    path={props.from.path}
+    render={() =>
+      <Redirect from={props.from.path} to={props.to.path} />
+    }
+  />
+;
 
-  return (
-    <props.view
-      key={props.module}
-      state={Actions.getModuleState(props.module)}
-      actions={Actions.getModuleActions(props.module)}
-      onremove={props.cache ? fadeOutPage : invalidateCacheAndFadeOutPage(props.module) }
-    />
-  );
-};
+export const PageRoute = (props) =>
+  <Route
+    path={props.route.path}
+    render={() => {
+      if (!cachedPageRoutes[props.route.path]) {
+        cachedPageRoutes[props.route.path] = true;
+        props.model.getData().catch(() => {
+          cachedPageRoutes[props.route.path] = false;
+        });
+        return <Loader key={props.route.path} />;
+      }
 
-const cachedModules = {};
+      return <props.view key={props.route.path} model={props.model} onremove={fadeOutPage} />;
+    }}
+  />
+;
 
-const cacheAndResolveWithLoader = (moduleKey, resolve) => {
-  if (!resolve) return null;
-
-  if (!cachedModules[moduleKey]) {
-    cachedModules[moduleKey] = {};
-  }
-
-  const cachedModule = cachedModules[moduleKey];
-  if (cachedModule.$resolved) return null;
-
-  if (!cachedModule.$pending) {
-    cachedModule.$pending = true;
-    resolve()
-      .then(() => {
-        cachedModule.$resolved = true;
-        cachedModule.$pending = false;
-      })
-      .catch(() => {
-        cachedModule.$pending = false;
-      })
-    ;
-  }
-
-  return <Loader key={moduleKey} />;
-};
-
-const invalidateCacheAndFadeOutPage = (moduleKey) => (el) => {
-  const cachedModule = cachedModules[moduleKey];
-  if (cachedModule) {
-    cachedModule.$resolved = false;
-  }
-
-  fadeOutPage(el);
-};
-
+const cachedPageRoutes = {};
 
 const fadeOutPage = (el) => (remove) => {
   el.classList.add('page-fade-out');
-  setTimeout(remove, 1000 * animationDuration);
+  setTimeout(remove, 1000 * transitionDuration);
 };

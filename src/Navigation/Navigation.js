@@ -3,25 +3,16 @@ import './Navigation.css';
 /** @jsx h */
 import { h } from '../dom';
 import { classy } from '../classy';
-
-import { App } from '../App';
 import { Link } from '../router';
-import { Routes } from '../Routes';
 
-export const Navigation = () => {
-  const currentPath = App.getRouterPath();
-  const scrollToContainer = (e) => {
-    e.currentTarget.scrollIntoView({ behavior: 'smooth', block: 'start', inline: 'start' });
-  };
+export const Navigation = ({ routes, currentPath }) =>
+  <header class="navigation narrow">
+    {routes.map((route) => <PageLink pageRoute={route} currentPath={currentPath} onclick={scrollToContainer} />)}
+  </header>
+;
 
-  return (
-    <header class="navigation narrow">
-      <PageLink pageRoute={Routes.CONTACT} currentPath={currentPath} onclick={scrollToContainer} />
-      <PageLink pageRoute={Routes.SKILLS}  currentPath={currentPath} onclick={scrollToContainer} />
-      <PageLink pageRoute={Routes.POSTS}   currentPath={currentPath} onclick={scrollToContainer} />
-      <PageLink pageRoute={Routes.TALKS}   currentPath={currentPath} onclick={scrollToContainer} />
-    </header>
-  );
+const scrollToContainer = (e) => {
+  e.currentTarget.scrollIntoView({ behavior: 'smooth', block: 'start', inline: 'start' });
 };
 
 const PageLink = ({ pageRoute, currentPath, ...props }) =>

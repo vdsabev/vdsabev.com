@@ -4,7 +4,6 @@ import './Page.css';
 import { h } from '../dom';
 import { classy } from '../classy';
 
-import { App } from '../App';
 import { Loader } from '../Loader';
 import { Redirect, Route, Switch } from '../router';
 import { transitionDuration } from '../style';
@@ -28,9 +27,9 @@ export const PageRoute = (props) =>
   <Route
     path={props.route.path}
     render={() => {
-      if (!cachedPageRoutes[props.route.path]) {
+      if (!cachedPageRoutes[props.route.path] && props.resolve) {
         cachedPageRoutes[props.route.path] = true;
-        props.model.getData().catch(() => {
+        props.resolve().catch(() => {
           cachedPageRoutes[props.route.path] = false;
         });
         return <Loader key={props.route.path} />;

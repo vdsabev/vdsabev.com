@@ -2,12 +2,12 @@ import { app } from 'derpy';
 import { patch } from '../dom';
 
 import { AppModel } from './AppModel';
-import { App as AppView } from './App';
+import { App } from './App';
 
 const store = app({
   patch,
   model: AppModel,
-  view: AppView
+  view: App
 });
 
 // We need to use `setTimeout` for the animation to run properly
@@ -20,9 +20,3 @@ store.model.router.subscribe(store.model.router);
 if (process.env.NODE_ENV === 'production' && navigator.serviceWorker) {
   navigator.serviceWorker.register('service-worker.js', { scope: './' });
 }
-
-export const App = {
-  getRouterPath() {
-    return store.model.router.pathname;
-  }
-};

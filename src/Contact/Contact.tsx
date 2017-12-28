@@ -3,12 +3,13 @@ import './Contact.css';
 /** @jsx h */
 import { h } from '../dom';
 import { classy } from '../classy';
-
 import { css } from '../style';
+
+import { ContactModel } from './ContactModel';
 
 const getAvailabilityStyle = (status) => ({ color: status === 'available' ? css.success : css.danger });
 
-export const Contact = ({ model, ...props }) =>
+export const Contact = ({ model, ...props }: { model: ContactModel }) =>
   <section class="contact narrow spacer" {...props}>
     <p>I'm currently <b style={getAvailabilityStyle(model.availability.status)}>{model.availability.status}</b> for projects and consulting for <b>{model.availability.range}</b>.</p>
 

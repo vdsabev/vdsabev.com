@@ -1,18 +1,14 @@
-import { h } from './dom';
-import { location } from '@hyperapp/router/src/location';
+interface Hyperscript {
+  (tag: string, props: any, children: any[]): any;
+}
 
-export { Redirect } from '@hyperapp/router/src/Redirect';
-export { Route } from '@hyperapp/router/src/Route';
-export { Switch } from '@hyperapp/router/src/Switch';
-
-export const RouterModel = {
-  ...location.state,
-  ...location.actions,
-  subscribe: location.subscribe,
-};
+interface Properties extends Partial<HTMLAnchorElement> {
+  to: string;
+  location?: Location;
+}
 
 // TODO: Remove when https://github.com/hyperapp/router/pulls/32 is merges
-const createLink = (h) => (props, children) => {
+export const createLink = (h: Hyperscript) => (props: Properties, children: any[]) => {
   const to = props.to;
   const location = props.location || window.location;
 
@@ -20,7 +16,7 @@ const createLink = (h) => (props, children) => {
 
   // TODO: Remove when https://github.com/hyperapp/router/issues/19 is fixed
   const originalOnClick = props.onclick;
-  props.onclick = (e) => {
+  props.onclick = function (e) {
     const shouldFollowUrl = (
       e.button !== 0 ||
       e.altKey ||
@@ -28,7 +24,7 @@ const createLink = (h) => (props, children) => {
       e.ctrlKey ||
       e.shiftKey ||
       props.target === '_blank' ||
-      e.currentTarget.origin !== location.origin
+      (e.currentTarget as any).origin !== location.origin
     );
 
     if (!shouldFollowUrl) {
@@ -40,11 +36,9 @@ const createLink = (h) => (props, children) => {
     }
 
     if (originalOnClick) {
-      originalOnClick(e);
+      originalOnClick.call(this, e);
     }
   }
 
   return h('a', props, children);
 };
-
-export const Link = createLink(h);

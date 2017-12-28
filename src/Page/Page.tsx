@@ -40,9 +40,9 @@ export const PageRoute = (props) =>
   />
 ;
 
-const cachedPageRoutes = {};
+const cachedPageRoutes: Record<string, boolean> = {};
 
-const fadeOutPage = (el) => (remove) => {
+const fadeOutPage = (el: Element) => (remove: Function) => {
   el.classList.add('page-fade-out');
   setTimeout(remove, 1000 * transitionDuration);
 };

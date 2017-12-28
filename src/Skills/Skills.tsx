@@ -2,24 +2,25 @@ import './Skills.css';
 
 /** @jsx h */
 import { h } from '../dom';
+import { Skill, SkillsModel } from './SkillsModel';
 
-export const Skills = ({ model, ...props }) =>
+export const Skills = ({ model, ...props }: { model: SkillsModel }) =>
   <section class="skills narrow spacer" {...props}>
     {model.skills.map(Skill({ min: model.min, max: model.max }))}
   </section>
 ;
 
 // TODO: Animate progress bar from left to right
-const Skill = ({ min, max }) => {
+const Skill = ({ min, max }: Partial<SkillsModel>) => {
   const range = max - min;
-  const getLeftPosition = (skill) => 100 * (skill.from - min) / range;
-  const getRightPosition = (skill) => skill.to != null ? 100 * (max - skill.to) / range : 0;
+  const getLeftPosition = (skill: Skill) => 100 * ((skill.from as number) - min) / range;
+  const getRightPosition = (skill: Skill) => skill.to != null ? 100 * (max - (skill.to as number)) / range : 0;
 
-  return (skill) => {
+  return (skill: Skill) => {
     const left = `${getLeftPosition(skill)}%`;
     const right = `${getRightPosition(skill)}%`;
-    const fromYear = new Date(skill.from).getFullYear();
-    const toYear = skill.to != null ? new Date(skill.to).getFullYear() : new Date().getFullYear();
+    const fromYear = new Date(skill.from as number).getFullYear();
+    const toYear = skill.to != null ? new Date(skill.to as number).getFullYear() : new Date().getFullYear();
     const years = toYear - fromYear;
 
     return (

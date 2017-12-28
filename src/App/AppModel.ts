@@ -19,9 +19,9 @@ export const AppModel = {
     Routes.TALKS,
   ],
 
-  about: AboutModel,
-  contact: ContactModel,
-  posts: PostsModel,
-  skills: SkillsModel,
-  talks: TalksModel,
+  about: new AboutModel(),
+  contact: new ContactModel(),
+  posts: new PostsModel(),
+  skills: new SkillsModel(),
+  talks: new TalksModel(),
 };

@@ -9,8 +9,23 @@ import './About.css';
 
 /** @jsx h */
 import { h } from '../dom';
+import { AboutModel } from './AboutModel';
 
-export const About = ({ model }) =>
+declare global {
+  var process: { env: Record<string, string | number> };
+
+  namespace React {
+    interface HTMLAttributes<T> {
+      class?: string;
+    }
+
+    interface SVGAttributes<T> {
+      class?: string;
+    }
+  }
+}
+
+export const About = ({ model }: { model: AboutModel }) =>
   <section class="about narrow spacer">
     <div class="about-content">
       <img class="about-picture" src="picture.jpg" alt="Vladimir Sabev" />

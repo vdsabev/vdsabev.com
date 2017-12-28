@@ -1,0 +1,26 @@
+{
+  "compileOnSave": false,
+  "compilerOptions": {
+    "alwaysStrict": true,
+    "experimentalDecorators": true,
+    "noImplicitAny": true,
+    "noImplicitReturns": true,
+    "noUnusedLocals": true,
+    "sourceMap": true,
+    "suppressImplicitAnyIndexErrors": false,
+
+    "baseUrl": "src",
+    "lib": ["dom", "es5", "es2015"],
+    "module": "commonjs",
+    "target": "es5",
+
+    "jsx": "react",
+    "jsxFactory": "h"
+  },
+  "exclude": [
+    "node_modules"
+  ],
+  "include": [
+    "src"
+  ]
+}

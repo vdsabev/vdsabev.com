@@ -12,7 +12,6 @@
   },
   "dependencies": {
     "@hyperapp/router": "0.4.1",
-    "@types/react": "16.0.31",
     "classcat": "1.1.1",
     "derpy": "0.4.0",
     "picodom": "1.0.2"

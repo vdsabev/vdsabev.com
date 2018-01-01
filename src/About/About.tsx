@@ -9,21 +9,7 @@ import './About.css';
 
 /** @jsx h */
 import { h } from '../dom';
-import { AboutModel } from './AboutModel';
-
-declare global {
-  var process: { env: Record<string, string | number> };
-
-  namespace React {
-    interface HTMLAttributes<T> {
-      class?: string;
-    }
-
-    interface SVGAttributes<T> {
-      class?: string;
-    }
-  }
-}
+import { AboutModel, Specialization, SocialLink } from './AboutModel';
 
 export const About = ({ model }: { model: AboutModel }) =>
   <section class="about narrow spacer">
@@ -51,13 +37,13 @@ export const About = ({ model }: { model: AboutModel }) =>
   </section>
 ;
 
-const Specialization = (specialization, index, array) => [
+const Specialization = (specialization: Specialization, index: number, array: Specialization[]) => [
   index < array.length - 1 ? null : 'and ',
   <abbr title={specialization.description}>{specialization.name}</abbr>,
   index < array.length - 1 ? ', ' : null
 ];
 
-const SocialLink = (link) =>
+const SocialLink = (link: SocialLink) =>
   <a class="inline-block" target="_blank" href={link.url} title={link.name}>
     <img class="about-social-icon" src={link.icon} alt={link.name} />
   </a>

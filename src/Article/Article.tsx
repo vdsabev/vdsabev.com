@@ -3,7 +3,11 @@ import './Article.css';
 import { h } from '../dom';
 import { Article } from './ArticleModel';
 
-export const Articles = ({ articles, ...props }: { articles: Article[] }) =>
+interface Properties extends Partial<HTMLDivElement> {
+  articles: Article[];
+}
+
+export const Articles = ({ articles, ...props }: Properties) =>
   <section class="articles narrow spacer" {...props}>
     {articles.map(Article)}
   </section>

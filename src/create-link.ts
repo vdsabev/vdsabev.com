@@ -1,8 +1,9 @@
 interface Hyperscript {
-  (tag: string, props: any, children: any[]): any;
+  (tag: string, props: any, children: any[]): JSX.Element;
 }
 
 interface Properties extends Partial<HTMLAnchorElement> {
+  class?: string;
   to: string;
   location?: Location;
 }

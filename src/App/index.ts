@@ -4,10 +4,11 @@ import { patch } from '../dom';
 import { AppModel } from './AppModel';
 import { App } from './App';
 
+// TODO: Types
 const store = app({
-  patch,
+  patch: patch as any,
   model: AppModel,
-  view: App
+  view: App as any
 });
 
 // We need to use `setTimeout` for the animation to run properly

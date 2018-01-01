@@ -1,19 +1,17 @@
-const style = {};
+export const transitionDuration = 0.4;
 
-style.transitionDuration = 0.4;
-
-style.fonts = {
+export const fonts = {
   profile: 'Acme',
   text: 'PT Sans'
 };
 
-style.css = {
-  transitionDuration: `${style.transitionDuration}s`,
+export const css = {
+  transitionDuration: `${transitionDuration}s`,
   transitionEasing: 'cubic-bezier(0.25, 1, 0.25, 1)',
   transitionElastic: 'cubic-bezier(0.5, 2, 0.5, 0.5)',
 
-  fontProfile: style.fonts.profile,
-  fontText: style.fonts.text,
+  fontProfile: fonts.profile,
+  fontText: fonts.text,
 
   foregroundLight: '#999999',
   foreground: '#666666',
@@ -30,8 +28,3 @@ style.css = {
   danger: '#e74c3c',
   info: '#3498db'
 };
-
-// Export for both Node.js and the browser
-(function (exports) {
-  Object.keys(style).forEach((key) => exports[key] = style[key]);
-}(typeof exports === 'undefined' ? (this.moduleName = {}) : exports));

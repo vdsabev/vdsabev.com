@@ -7,7 +7,7 @@ import { css } from '../style';
 
 import { ContactModel } from './ContactModel';
 
-const getAvailabilityStyle = (status) => ({ color: status === 'available' ? css.success : css.danger });
+const getAvailabilityStyle = (status: string) => ({ color: status === 'available' ? css.success : css.danger });
 
 export const Contact = ({ model, ...props }: { model: ContactModel }) =>
   <section class="contact narrow spacer" {...props}>

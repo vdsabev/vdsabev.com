@@ -4,6 +4,7 @@ export interface Skill {
   from: string | number;
   to: string | number;
   name: string;
+  description: string;
   level: string;
 }
 

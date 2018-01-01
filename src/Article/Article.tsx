@@ -1,6 +1,5 @@
 import './Article.css';
 
-/** @jsx h */
 import { h } from '../dom';
 import { Article } from './ArticleModel';
 

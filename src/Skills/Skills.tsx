@@ -1,6 +1,5 @@
 import './Skills.css';
 
-/** @jsx h */
 import { h } from '../dom';
 import { Skill, SkillsModel } from './SkillsModel';
 

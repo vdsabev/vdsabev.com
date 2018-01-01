@@ -1,6 +1,5 @@
 import './Contact.css';
 
-/** @jsx h */
 import { h } from '../dom';
 import { classy } from '../classy';
 import { css } from '../style';

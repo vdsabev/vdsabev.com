@@ -1,6 +1,5 @@
 import './Loader.css';
 
-/** @jsx h */
 import { h } from '../dom';
 
 export const Loader = (props) =>

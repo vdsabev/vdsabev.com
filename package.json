@@ -23,37 +23,5 @@
   "cmless": {
     "script": "src/index.ts",
     "style": "src/style.ts"
-  },
-  "babel": {
-    "presets": [
-      "react",
-      [
-        "env",
-        {
-          "targets": {
-            "browsers": [
-              "last 3 versions",
-              "> 1%"
-            ]
-          }
-        }
-      ]
-    ],
-    "plugins": [
-      "transform-object-rest-spread"
-    ]
-  },
-  "eslintConfig": {
-    "parserOptions": {
-      "sourceType": "module",
-      "ecmaVersion": 5,
-      "ecmaFeatures": {
-        "experimentalObjectRestSpread": true,
-        "jsx": true
-      }
-    },
-    "env": {
-      "es6": true
-    }
   }
 }

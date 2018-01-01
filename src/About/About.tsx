@@ -7,7 +7,6 @@ import './linkedin.svg';
 
 import './About.css';
 
-/** @jsx h */
 import { h } from '../dom';
 import { AboutModel, Specialization, SocialLink } from './AboutModel';
 

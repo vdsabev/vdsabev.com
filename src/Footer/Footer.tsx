@@ -1,6 +1,5 @@
 import './Footer.css';
 
-/** @jsx h */
 import { h } from '../dom';
 
 const thisYear = new Date().getFullYear();

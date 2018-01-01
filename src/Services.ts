@@ -1,6 +1,18 @@
-import { logger } from './logger';
+namespace Service {
+  export interface Params {
+    method: Method;
+    url: Url;
+    responseType?: ResponseType;
+    data?: Data;
+  }
 
-const sendRequest = ({ method, url, responseType, data }) => new Promise((resolve, reject) => {
+  export type Method = 'GET' | 'POST';
+  export type Url = string;
+  export type ResponseType = 'json';
+  export type Data = any;
+}
+
+const sendRequest = <T = void>({ method, url, responseType, data }: Service.Params) => new Promise<T>((resolve, reject) => {
   // https://stackoverflow.com/questions/14873443/sending-an-http-post-using-javascript-triggered-event
   const request = new XMLHttpRequest();
 
@@ -29,16 +41,16 @@ const sendRequest = ({ method, url, responseType, data }) => new Promise((resolv
 });
 
 const http = {
-  get: (url, data) => sendRequest({ method: 'GET', url, data, responseType: 'json' }),
-  post: (url, data) => sendRequest({ method: 'POST', url, data })
+  get: <T>(url: Service.Url, data?: Service.Data) => sendRequest<T>({ method: 'GET', url, data, responseType: 'json' }),
+  post: <T>(url: Service.Url, data: Service.Data) => sendRequest<T>({ method: 'POST', url, data })
 };
 
 const firebase = {
-  get: (path) => () => http.get(`${process.env.FIREBASE_DATABASE_URL}/${path}.json`).catch(logger.error)
+  get: (path: string) => <T>() => http.get<T>(`${process.env.FIREBASE_DATABASE_URL}/${path}.json`)
 };
 
 export const Services = {
-  sendEmail: (data) => http.post(process.env.EMAIL_SERVICE_URL, data),
+  sendEmail: (data: Service.Data) => http.post(process.env.EMAIL_SERVICE_URL as string, data),
 
   getAvailability: firebase.get('availability'),
   getPosts: firebase.get('posts'),

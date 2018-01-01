@@ -1,6 +1,11 @@
 import { logger } from '../logger';
 import { Services } from '../services';
 
+interface Availability {
+  status: string;
+  range: string;
+}
+
 export class ContactModel {
   availability = {
     status: '...',
@@ -13,7 +18,7 @@ export class ContactModel {
   email = '';
 
   async getData(): Promise<Partial<ContactModel>> {
-    return { availability: await Services.getAvailability() };
+    return { availability: await Services.getAvailability<Availability>() };
   }
 
   setText(e: Event): Partial<ContactModel> {

@@ -2,14 +2,13 @@ interface Hyperscript {
   (tag: string, props: any, children: any[]): JSX.Element;
 }
 
-interface Properties extends Partial<HTMLAnchorElement> {
-  class?: string;
+interface LinkProps extends Props<HTMLAnchorElement> {
   to: string;
   location?: Location;
 }
 
 // TODO: Remove when https://github.com/hyperapp/router/pulls/32 is merges
-export const createLink = (h: Hyperscript) => (props: Properties, children: any[]) => {
+export const createLink = (h: Hyperscript) => (props: LinkProps, children: Children) => {
   const to = props.to;
   const location = props.location || window.location;
 

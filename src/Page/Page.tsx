@@ -9,23 +9,22 @@ import { Route as RouteType } from '../Routes';
 import { transitionDuration } from '../style';
 
 // Pages
-interface PagesProperties extends Partial<HTMLDivElement> {
-  class?: string;
+interface PagesProps extends Props<HTMLDivElement> {
 }
 
-export const Pages = (props: PagesProperties, children: JSX.Element[]) =>
+export const Pages = (props: PagesProps, children: JSX.Element[]) =>
   <div {...props} class={classy(['page-container', props.class])}>
     <Switch>{children}</Switch>
   </div>
 ;
 
 // Page Redirect
-interface PageRedirectProperties {
+interface PageRedirectProps {
   from: RouteType;
   to: RouteType;
 }
 
-export const PageRedirect = (props: PageRedirectProperties) =>
+export const PageRedirect = (props: PageRedirectProps) =>
   <Route
     path={props.from.path}
     render={() =>
@@ -37,14 +36,14 @@ export const PageRedirect = (props: PageRedirectProperties) =>
 // Page Route
 const cachedPageRoutes: Record<string, boolean> = {};
 
-interface PageRouteProperties {
+interface PageRouteProps {
   route: RouteType;
   resolve?: () => Promise<any>;
   model: any;
   view: (props: any) => JSX.Element;
 }
 
-export const PageRoute = (props: PageRouteProperties) =>
+export const PageRoute = (props: PageRouteProps) =>
   <Route
     path={props.route.path}
     render={() => {

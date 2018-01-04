@@ -1,13 +1,9 @@
-declare global {
-  interface Window {
-    ga: Function;
-  }
-
-  const process: {
-    env: Record<string, string | number>
-  };
-}
-
+// Assets
+import './logo.png';
 import './favicon.png';
+
+// Style
 import './style.css';
+
+// Application
 import './App';

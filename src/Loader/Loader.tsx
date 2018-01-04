@@ -2,7 +2,7 @@ import './Loader.css';
 
 import { h } from '../dom';
 
-interface Properties extends Partial<HTMLDivElement> {
+interface Properties extends Props<HTMLDivElement> {
   key?: string;
 }
 

@@ -1,5 +1,3 @@
-/// <reference path="./router.d.ts" />
-
 import { h } from './dom';
 import { createLink } from './create-link';
 import { location } from '@hyperapp/router/src/location';

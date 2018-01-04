@@ -16,7 +16,7 @@ const scrollToContainer = (e: Event) => {
   (e.currentTarget as Element).scrollIntoView({ behavior: 'smooth', block: 'start', inline: 'start' });
 };
 
-interface PageLinkProperties extends Partial<HTMLAnchorElement> {
+interface PageLinkProperties extends Props<HTMLAnchorElement> {
   pageRoute: Route;
   currentPath: string;
 }

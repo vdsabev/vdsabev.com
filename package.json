@@ -17,7 +17,7 @@
     "picodom": "1.0.2"
   },
   "devDependencies": {
-    "cmless": "0.2.2",
+    "cmless": "0.2.3",
     "firemail": "1.4.0"
   },
   "cmless": {

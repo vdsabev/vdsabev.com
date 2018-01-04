@@ -1,8 +1,8 @@
 import { Articles } from '../Article';
 import { PostsModel } from './PostsModel';
 
-interface Properties extends Partial<HTMLDivElement> {
+interface PostsProps extends Props<HTMLDivElement> {
   model: PostsModel;
 }
 
-export const Posts = ({ model, ...props }: Properties) => Articles({ articles: model.posts, ...props });
+export const Posts = ({ model, ...props }: PostsProps) => Articles({ articles: model.posts, ...props });

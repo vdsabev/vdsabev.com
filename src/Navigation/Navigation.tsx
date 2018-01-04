@@ -16,12 +16,12 @@ const scrollToContainer = (e: Event) => {
   (e.currentTarget as Element).scrollIntoView({ behavior: 'smooth', block: 'start', inline: 'start' });
 };
 
-interface PageLinkProperties extends Props<HTMLAnchorElement> {
+interface PageLinkProps extends Props<HTMLAnchorElement> {
   pageRoute: Route;
   currentPath: string;
 }
 
-const PageLink = ({ pageRoute, currentPath, ...props }: PageLinkProperties) =>
+const PageLink = ({ pageRoute, currentPath, ...props }: PageLinkProps) =>
   <Link
     class={classy(['navigation-page-link', { active: currentPath === pageRoute.path }])}
     to={pageRoute.path}

@@ -8,7 +8,10 @@ declare global {
     class?: string;
     oncreate?(el: VNode<P>): void;
     onupdate?(el: VNode<P>): void;
-    onremove?(el: VNode<P>, done: () => void): void;
+    // TODO: Update signature when picodom hits 2.0
+    // https://github.com/hyperapp/hyperapp/blob/master/docs/concepts/lifecycle-events.md#onremove
+    // onremove?(el: VNode<P>, done: () => void): void;
+    onremove?(el: VNode<P>): (done: Function) => any | void;
     ondestroy?(el: VNode<P>): void;
   };
 

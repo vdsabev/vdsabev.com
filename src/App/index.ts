@@ -1,14 +1,13 @@
-import { app } from 'derpy';
+import { app } from 'derpy/app/picodom';
 import { patch } from '../dom';
 
 import { AppModel } from './AppModel';
 import { App } from './App';
 
-// TODO: Types
 const store = app({
-  patch: patch as any,
+  patch,
   model: AppModel,
-  view: App as any
+  view: App
 });
 
 // We need to use `setTimeout` for the animation to run properly

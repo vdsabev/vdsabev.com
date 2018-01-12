@@ -21,6 +21,7 @@ export const Contact = ({ model, ...props }: { model: ContactModel }) =>
             name="text"
             placeholder="Feel free to introduce yourself, describe your business idea, and how you think I could fit in the project"
             oninput={model.setText}
+            value={model.text}
             required
           ></textarea>
         </label>
@@ -35,6 +36,7 @@ export const Contact = ({ model, ...props }: { model: ContactModel }) =>
             name="email"
             placeholder="Email"
             oninput={model.setEmail}
+            value={model.email}
             required
           />
         </label>

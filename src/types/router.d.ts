@@ -1,8 +1,14 @@
 declare module '@hyperapp/router/src/location' {
   const location: {
-    state: any,
-    actions: any,
-    subscribe: any
+    state: {
+      pathname: string,
+      previous: string
+    },
+    actions: {
+      go: (pathname: string) => void,
+      set: <T>(data: T) => T
+    },
+    subscribe: (actions: any) => () => void
   }
 }
 

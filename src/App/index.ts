@@ -6,7 +6,7 @@ import { App } from './App';
 
 const store = app({
   patch,
-  model: AppModel,
+  model: new AppModel(),
   view: App
 });
 

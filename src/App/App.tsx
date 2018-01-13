@@ -17,7 +17,7 @@ import { Talks } from '../Talks';
 
 import { AppModel } from './AppModel';
 
-export const App = ({ model }: { model: typeof AppModel }) =>
+export const App = ({ model }: { model: AppModel }) =>
   <div class={classy(['fade-in', { 'fade-in-start': model.animation }])}>
     <Profile />
     <About model={model.about} />

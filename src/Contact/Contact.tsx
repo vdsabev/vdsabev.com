@@ -20,7 +20,7 @@ export const Contact = ({ model, ...props }: { model: ContactModel }) =>
             class="contact-text"
             name="text"
             placeholder="Feel free to introduce yourself, describe your business idea, and how you think I could fit in the project"
-            oninput={model.setText}
+            onblur={model.setText}
             value={model.text}
             required
           ></textarea>
@@ -35,7 +35,7 @@ export const Contact = ({ model, ...props }: { model: ContactModel }) =>
             type="email"
             name="email"
             placeholder="Email"
-            oninput={model.setEmail}
+            onblur={model.setEmail}
             value={model.email}
             required
           />

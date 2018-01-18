@@ -1,20 +1,30 @@
 import './Page.css';
 
-/** @jsx h */
 import { h } from '../dom';
 import { classy } from '../classy';
 
 import { Loader } from '../Loader';
 import { Redirect, Route, Switch } from '../router';
+import { Route as RouteType } from '../Routes';
 import { transitionDuration } from '../style';
 
-export const Pages = (props, children) =>
+// Pages
+interface PagesProps extends Props<HTMLDivElement> {
+}
+
+export const Pages = (props: PagesProps, children: JSX.Element[]) =>
   <div {...props} class={classy(['page-container', props.class])}>
     <Switch>{children}</Switch>
   </div>
 ;
 
-export const PageRedirect = (props) =>
+// Page Redirect
+interface PageRedirectProps {
+  from: RouteType;
+  to: RouteType;
+}
+
+export const PageRedirect = (props: PageRedirectProps) =>
   <Route
     path={props.from.path}
     render={() =>
@@ -23,7 +33,17 @@ export const PageRedirect = (props) =>
   />
 ;
 
-export const PageRoute = (props) =>
+// Page Route
+const cachedPageRoutes: Record<string, boolean> = {};
+
+interface PageRouteProps {
+  route: RouteType;
+  resolve?: () => Promise<any>;
+  model: any;
+  view: (props: any) => JSX.Element;
+}
+
+export const PageRoute = (props: PageRouteProps) =>
   <Route
     path={props.route.path}
     render={() => {
@@ -40,9 +60,7 @@ export const PageRoute = (props) =>
   />
 ;
 
-const cachedPageRoutes = {};
-
-const fadeOutPage = (el) => (remove) => {
+const fadeOutPage = (el: Element) => (remove: Function) => {
   el.classList.add('page-fade-out');
   setTimeout(remove, 1000 * transitionDuration);
 };

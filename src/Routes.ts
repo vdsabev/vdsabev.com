@@ -1,3 +1,8 @@
+export interface Route {
+  path: string;
+  title: string;
+}
+
 export const Routes = {
   HOME: { path: '/', title: 'Freelance Web Developer' },
   CONTACT: { path: '/contact', title: 'Contact' },

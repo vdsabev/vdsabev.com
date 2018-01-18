@@ -2,7 +2,6 @@ import './avatar.svg';
 
 import './Profile.css';
 
-/** @jsx h */
 import { h } from '../dom';
 
 export const Profile = () =>

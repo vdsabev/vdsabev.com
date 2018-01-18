@@ -1,4 +1,4 @@
-import { app } from 'derpy';
+import { app } from 'derpy/app/picodom';
 import { patch } from '../dom';
 
 import { AppModel } from './AppModel';
@@ -6,7 +6,7 @@ import { App } from './App';
 
 const store = app({
   patch,
-  model: AppModel,
+  model: new AppModel(),
   view: App
 });
 

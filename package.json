@@ -12,44 +12,17 @@
   },
   "dependencies": {
     "@hyperapp/router": "0.4.1",
-    "classcat": "1.1.1",
-    "derpy": "0.4.0",
+    "classcat": "1.1.2",
+    "derpy": "0.6.6",
     "picodom": "1.0.2"
   },
   "devDependencies": {
-    "cmless": "0.1.0",
-    "firemail": "1.4.0"
+    "cmless": "0.3.0",
+    "firemail": "1.5.0"
   },
-  "babel": {
-    "presets": [
-      "react",
-      [
-        "env",
-        {
-          "targets": {
-            "browsers": [
-              "last 3 versions",
-              "> 1%"
-            ]
-          }
-        }
-      ]
-    ],
-    "plugins": [
-      "transform-object-rest-spread"
-    ]
-  },
-  "eslintConfig": {
-    "parserOptions": {
-      "sourceType": "module",
-      "ecmaVersion": 5,
-      "ecmaFeatures": {
-        "experimentalObjectRestSpread": true,
-        "jsx": true
-      }
-    },
-    "env": {
-      "es6": true
-    }
+  "cmless": {
+    "input": "src",
+    "script": "src/index.ts",
+    "style": "src/style.ts"
   }
 }

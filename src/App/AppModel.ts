@@ -7,21 +7,21 @@ import { PostsModel } from '../Posts';
 import { SkillsModel } from '../Skills';
 import { TalksModel } from '../Talks';
 
-export const AppModel = {
-  animation: false,
-  animate: () => ({ animation: true }),
+export class AppModel {
+  animation = false;
+  animate = () => ({ animation: true });
 
-  router: RouterModel,
-  routes: [
+  router = RouterModel;
+  routes = [
     Routes.CONTACT,
     Routes.SKILLS,
     Routes.POSTS,
     Routes.TALKS,
-  ],
+  ];
 
-  about: AboutModel,
-  contact: ContactModel,
-  posts: PostsModel,
-  skills: SkillsModel,
-  talks: TalksModel,
-};
+  about = new AboutModel();
+  contact = new ContactModel();
+  posts = new PostsModel();
+  skills = new SkillsModel();
+  talks = new TalksModel();
+}

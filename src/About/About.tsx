@@ -7,10 +7,10 @@ import './linkedin.svg';
 
 import './About.css';
 
-/** @jsx h */
 import { h } from '../dom';
+import { AboutModel, Specialization, SocialLink } from './AboutModel';
 
-export const About = ({ model }) =>
+export const About = ({ model }: { model: AboutModel }) =>
   <section class="about narrow spacer">
     <div class="about-content">
       <img class="about-picture" src="picture.jpg" alt="Vladimir Sabev" />
@@ -36,13 +36,13 @@ export const About = ({ model }) =>
   </section>
 ;
 
-const Specialization = (specialization, index, array) => [
+const Specialization = (specialization: Specialization, index: number, array: Specialization[]) => [
   index < array.length - 1 ? null : 'and ',
   <abbr title={specialization.description}>{specialization.name}</abbr>,
   index < array.length - 1 ? ', ' : null
 ];
 
-const SocialLink = (link) =>
+const SocialLink = (link: SocialLink) =>
   <a class="inline-block" target="_blank" href={link.url} title={link.name}>
     <img class="about-social-icon" src={link.icon} alt={link.name} />
   </a>

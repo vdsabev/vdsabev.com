@@ -12,13 +12,13 @@
   },
   "dependencies": {
     "@hyperapp/router": "0.4.1",
-    "classcat": "1.1.1",
-    "derpy": "0.5.0",
+    "classcat": "1.1.2",
+    "derpy": "0.6.6",
     "picodom": "1.0.2"
   },
   "devDependencies": {
     "cmless": "0.3.0",
-    "firemail": "1.4.0"
+    "firemail": "1.5.0"
   },
   "cmless": {
     "input": "src",

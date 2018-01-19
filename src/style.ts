@@ -2,7 +2,7 @@ export const transitionDuration = 0.4;
 
 export const fonts = {
   profile: 'Acme',
-  text: 'PT Sans'
+  text: 'PT Sans',
 };
 
 export const css = {
@@ -26,5 +26,5 @@ export const css = {
   primary: '#34495e',
   success: '#2ecc71',
   danger: '#e74c3c',
-  info: '#3498db'
+  info: '#3498db',
 };

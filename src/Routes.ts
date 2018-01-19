@@ -8,5 +8,5 @@ export const Routes = {
   CONTACT: { path: '/contact', title: 'Contact' },
   SKILLS: { path: '/skills', title: 'Skills' },
   POSTS: { path: '/posts', title: 'Posts' },
-  TALKS: { path: '/talks', title: 'Talks' }
+  TALKS: { path: '/talks', title: 'Talks' },
 };

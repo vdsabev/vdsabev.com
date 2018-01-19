@@ -1,3 +1,3 @@
 declare const process: {
-  env: Record<string, string | number>
+  env: Record<string, string | number>;
 };

@@ -7,7 +7,7 @@ import { App } from './App';
 const store = app({
   patch,
   model: new AppModel(),
-  view: App
+  view: App,
 });
 
 // We need to use `setTimeout` for the animation to run properly

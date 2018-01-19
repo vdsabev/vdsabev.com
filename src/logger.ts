@@ -10,7 +10,7 @@ export const logger = {
     if (process.env.NODE_ENV !== 'production') {
       console.error(eventName, data);
     }
-  }
+  },
 };
 
 const sendGoogleAnalyticsEvent = (...args: any[]) => {

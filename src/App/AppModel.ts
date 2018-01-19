@@ -12,12 +12,7 @@ export class AppModel {
   animate = () => ({ animation: true });
 
   router = RouterModel;
-  routes = [
-    Routes.CONTACT,
-    Routes.SKILLS,
-    Routes.POSTS,
-    Routes.TALKS,
-  ];
+  navigationRoutes = [Routes.CONTACT, Routes.SKILLS, Routes.POSTS, Routes.TALKS];
 
   about = new AboutModel();
   contact = new ContactModel();

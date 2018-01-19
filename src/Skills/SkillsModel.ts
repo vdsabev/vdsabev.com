@@ -17,11 +17,11 @@ export class SkillsModel {
     return Services.getSkills().then((skills: Skill[]) => ({
       min: Math.min(...skills.map((skill) => new Date(skill.from as string).getTime())),
       max: Date.now(),
-      skills: skills.map((skill) => ({
+      skills: skills.map<Skill>((skill) => ({
         ...skill,
         from: new Date(skill.from as string).getTime(),
-        to: skill.to != null ? new Date(skill.to as string).getTime() : skill.to
-      } as Skill))
+        to: skill.to != null ? new Date(skill.to as string).getTime() : skill.to,
+      })),
     }));
   }
 }

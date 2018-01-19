@@ -2,8 +2,7 @@ import './Loader.css';
 
 import { h } from '../dom';
 
-interface LoaderProps extends Props<HTMLDivElement> {
-  key?: string;
+interface LoaderProps extends Props {
 }
 
 export const Loader = (props: LoaderProps) =>

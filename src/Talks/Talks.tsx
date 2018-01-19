@@ -1,7 +1,7 @@
 import { Articles } from '../Article';
 import { TalksModel } from './TalksModel';
 
-interface TalksProps extends Props<HTMLDivElement> {
+interface TalksProps extends Props {
   model: TalksModel;
 }
 

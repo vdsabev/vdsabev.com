@@ -3,7 +3,7 @@ import './Article.css';
 import { h } from '../dom';
 import { Article } from './ArticleModel';
 
-interface ArticlesProps extends Props<HTMLDivElement> {
+interface ArticlesProps extends Props {
   articles: Article[];
 }
 

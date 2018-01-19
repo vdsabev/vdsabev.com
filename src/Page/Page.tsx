@@ -9,7 +9,7 @@ import { Route as RouteType } from '../Routes';
 import { transitionDuration } from '../style';
 
 // Pages
-interface PagesProps extends Props<HTMLDivElement> {
+interface PagesProps extends Props {
 }
 
 export const Pages = (props: PagesProps, children: JSX.Element[]) =>

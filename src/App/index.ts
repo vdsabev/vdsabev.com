@@ -1,6 +1,6 @@
 import { createStore } from 'derpy';
 import { app } from 'derpy/app/picodom';
-import { debug } from 'derpy/debug/redux-devtools';
+import { debug, DevToolsStore } from 'derpy/debug/redux-devtools';
 
 import { patch } from '../dom';
 
@@ -16,6 +16,13 @@ setTimeout(store.model.animate, 0);
 
 // Router
 store.model.router.subscribe(store.model.router);
+if (process.env.NODE_ENV !== 'production') {
+  (store as DevToolsStore<typeof store.model>).devtools.subscribe((message) => {
+    if (message.type === 'DISPATCH' && message.state) {
+      history.replaceState(store.model.router.pathname, '', store.model.router.pathname);
+    }
+  });
+}
 
 // PWA
 if (process.env.NODE_ENV === 'production' && navigator.serviceWorker) {

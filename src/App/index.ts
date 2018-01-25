@@ -15,13 +15,18 @@ app({ store, view: App, patch });
 setTimeout(store.model.animate, 0);
 
 // Router
-store.model.router.subscribe(store.model.router);
+let unsubscribe = store.model.router.subscribe(store.model.router);
 if (process.env.NODE_ENV !== 'production') {
-  (store as DevToolsStore<typeof store.model>).devtools.subscribe((message) => {
-    if (message.type === 'DISPATCH' && message.state) {
-      history.replaceState(store.model.router.pathname, '', store.model.router.pathname);
-    }
-  });
+  const { devtools } = store as DevToolsStore<typeof store.model>;
+  if (devtools) {
+    devtools.subscribe((message) => {
+      if (message.type === 'DISPATCH' && message.state) {
+        unsubscribe();
+        history.replaceState(store.model.router.pathname, '', store.model.router.pathname);
+        unsubscribe = store.model.router.subscribe(store.model.router);
+      }
+    });
+  }
 }
 
 // PWA

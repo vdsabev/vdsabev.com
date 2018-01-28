@@ -13,8 +13,8 @@
   },
   "dependencies": {
     "@hyperapp/router": "0.4.1",
-    "classcat": "1.1.2",
-    "derpy": "0.6.6",
+    "classcat": "3.0.0",
+    "derpy": "0.7.1",
     "picodom": "1.0.2",
     "tslib": "1.9.0"
   },

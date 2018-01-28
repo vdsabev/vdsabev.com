@@ -1,7 +1,7 @@
 import './Page.css';
 
 import { h } from '../dom';
-import { classy } from '../classy';
+import { classes } from '../classes';
 
 import { Loader } from '../Loader';
 import { Redirect, Route, Switch } from '../router';
@@ -12,7 +12,7 @@ import { transitionDuration } from '../style';
 interface PagesProps extends Props {}
 
 export const Pages = (props: PagesProps, children: JSX.Element[]) => (
-  <div {...props} class={classy(['page-container', props.class])}>
+  <div {...props} class={classes(['page-container', props.class])}>
     <Switch>{children}</Switch>
   </div>
 );

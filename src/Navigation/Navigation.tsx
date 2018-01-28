@@ -1,7 +1,7 @@
 import './Navigation.css';
 
 import { h } from '../dom';
-import { classy } from '../classy';
+import { classes } from '../classes';
 
 import { Link } from '../router';
 import { Route } from '../Routes';
@@ -23,7 +23,7 @@ interface PageLinkProps extends Props<HTMLAnchorElement> {
 
 const PageLink = ({ pageRoute, currentPath, ...props }: PageLinkProps) => (
   <Link
-    class={classy(['navigation-page-link', { active: currentPath === pageRoute.path }])}
+    class={classes(['navigation-page-link', { active: currentPath === pageRoute.path }])}
     to={pageRoute.path}
     {...props}
   >

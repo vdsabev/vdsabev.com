@@ -1,7 +1,7 @@
 import './App.css';
 
 import { h } from '../dom';
-import { classy } from '../classy';
+import { classes } from '../classes';
 
 import { Pages, PageRedirect, PageRoute } from '../Page';
 import { Routes } from '../Routes';
@@ -18,7 +18,7 @@ import { Talks } from '../Talks';
 import { AppModel } from './AppModel';
 
 export const App = ({ model }: { model: AppModel }) => (
-  <div class={classy(['fade-in', { 'fade-in-start': model.animation }])}>
+  <div class={classes(['fade-in', { 'fade-in-start': model.animation }])}>
     <Profile />
     <About model={model.about} />
     <Navigation routes={model.navigationRoutes} currentPath={model.router.pathname} />

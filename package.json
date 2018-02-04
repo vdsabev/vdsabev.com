@@ -2,7 +2,7 @@
   "private": true,
   "name": "vdsabev.com",
   "scripts": {
-    "build": "cmless build",
+    "build": "cmless build && node copy _redirects ./build/_redirects",
     "build:assets": "cd src && svgo avatar.svg && svg2png avatar.svg -w 100",
     "profile": "cmless profile",
     "format": "cmless format",

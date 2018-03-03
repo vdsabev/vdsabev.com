@@ -1,6 +1,6 @@
-import { createStore } from 'derpy';
-import { app } from 'derpy/app/picodom';
-import { debug, DevToolsStore } from 'derpy/debug/redux-devtools';
+import { createStore } from 'overstate';
+import { app } from 'overstate/app/ultradom';
+import { debug, DevToolsStore } from 'overstate/debug/redux-devtools';
 
 import { patch } from '../dom';
 

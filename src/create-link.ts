@@ -1,5 +1,5 @@
 interface Hyperscript {
-  (tag: string, props: any, children: any[]): JSX.Element;
+  (tag: string, props: any, ...children: any[]): JSX.Element;
 }
 
 interface LinkProps extends Props<HTMLAnchorElement> {

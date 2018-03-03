@@ -1,5 +1,5 @@
 import { Article } from '../Article';
-import { Services } from '../services';
+import { Services } from '../Services';
 
 export class TalksModel {
   talks: Article[] = [];

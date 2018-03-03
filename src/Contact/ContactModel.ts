@@ -1,5 +1,5 @@
 import { logger } from '../logger';
-import { Services } from '../services';
+import { Services } from '../Services';
 
 interface Availability {
   status: string;

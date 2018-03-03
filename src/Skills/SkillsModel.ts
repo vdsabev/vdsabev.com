@@ -1,4 +1,4 @@
-import { Services } from '../services';
+import { Services } from '../Services';
 
 export interface Skill {
   from: string | number;

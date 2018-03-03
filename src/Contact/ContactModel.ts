@@ -9,7 +9,7 @@ interface Availability {
 export class ContactModel {
   availability = {
     status: '...',
-    range: '...'
+    range: '...',
   };
   pending = false;
   success = false;
@@ -44,24 +44,23 @@ export class ContactModel {
 
     this.sendEmail({
       subject: `VDSABEV.COM: New message from ${this.email}`,
-      text: this.text
+      text: this.text,
     });
 
     return {
       pending: true,
       success: false,
-      error: false
+      error: false,
     };
   }
 
-  async sendEmail(message: { subject: string, text: string }): Promise<Partial<ContactModel>> {
+  async sendEmail(message: { subject: string; text: string }): Promise<Partial<ContactModel>> {
     try {
       await Services.sendEmail(message);
       logger.log('contact.success', { message });
       return { pending: false, success: true };
-    }
-    catch (error) {
-      logger.error('contact.error', { message, error: error && error.message || error });
+    } catch (error) {
+      logger.error('contact.error', { message, error: (error && error.message) || error });
       return { pending: false, error: true };
     }
   }

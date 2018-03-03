@@ -1,2 +1,2 @@
 import classcat from 'classcat';
-export const classy = classcat;
+export const classes = classcat;

@@ -2,9 +2,10 @@
   "private": true,
   "name": "vdsabev.com",
   "scripts": {
-    "build": "cmless build",
+    "build": "cmless build && node copy _redirects ./build/_redirects",
     "build:assets": "cd src && svgo avatar.svg && svg2png avatar.svg -w 100",
     "profile": "cmless profile",
+    "format": "cmless format",
     "start": "cmless start",
     "deploy": "npm run build && firebase deploy",
     "deploy:functions": "firebase deploy --only functions",
@@ -12,12 +13,13 @@
   },
   "dependencies": {
     "@hyperapp/router": "0.4.1",
-    "classcat": "1.1.2",
-    "derpy": "0.6.6",
-    "picodom": "1.0.2"
+    "classcat": "3.0.2",
+    "overstate": "1.1.0",
+    "tslib": "1.9.0",
+    "ultradom": "2.0.0"
   },
   "devDependencies": {
-    "cmless": "0.3.0",
+    "cmless": "0.4.0",
     "firemail": "1.5.0"
   },
   "cmless": {

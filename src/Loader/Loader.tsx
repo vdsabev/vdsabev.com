@@ -2,12 +2,10 @@ import './Loader.css';
 
 import { h } from '../dom';
 
-interface LoaderProps extends Props<HTMLDivElement> {
-  key?: string;
-}
+interface LoaderProps extends Props {}
 
-export const Loader = (props: LoaderProps) =>
+export const Loader = (props: LoaderProps) => (
   <div class="loader" {...props}>
-    <div class="loader-arc"></div>
+    <div class="loader-arc" />
   </div>
-;
+);

@@ -4,7 +4,7 @@ import './Profile.css';
 
 import { h } from '../dom';
 
-export const Profile = () =>
+export const Profile = () => (
   <section class="profile narrow">
     <img class="profile-avatar" src="avatar.svg" alt="Vladimir Sabev's Avatar" />
     <div class="profile-text">
@@ -12,4 +12,4 @@ export const Profile = () =>
       <p class="profile-subtitle">&lt;Freelance Web Developer /&gt;</p>
     </div>
   </section>
-;
+);

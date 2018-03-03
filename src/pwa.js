@@ -5,5 +5,5 @@ module.exports = {
   name: 'Vladimir Sabev',
   description: 'Freelance Web Developer',
   background_color: css.neutralLighter,
-  theme_color: css.primary
+  theme_color: css.primary,
 };

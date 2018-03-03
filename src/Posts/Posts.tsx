@@ -1,7 +1,7 @@
 import { Articles } from '../Article';
 import { PostsModel } from './PostsModel';
 
-interface PostsProps extends Props<HTMLDivElement> {
+interface PostsProps extends Props {
   model: PostsModel;
 }
 

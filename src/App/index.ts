@@ -1,15 +1,15 @@
 import { createStore } from 'overstate';
-import { app } from 'overstate/app/ultradom';
+import { app } from 'overstate/app/picodom';
 import { debug, DevToolsStore } from 'overstate/debug/redux-devtools';
 
-import { patch } from '../dom';
+import { render } from '../dom';
 
 import { AppModel } from './AppModel';
 import { App } from './App';
 
 const model = new AppModel();
 const store = process.env.NODE_ENV === 'production' ? createStore(model) : debug(createStore(model));
-app({ store, view: App, patch });
+app({ store, view: App, render });
 
 // We need to use `setTimeout` for the animation to run properly
 setTimeout(store.model.animate, 0);

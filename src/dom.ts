@@ -1,1 +1,1 @@
-export { createNode as h, patch } from 'ultradom';
+export { h, patch as render } from 'picodom';

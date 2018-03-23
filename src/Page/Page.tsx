@@ -23,8 +23,8 @@ interface PageRedirectProps {
   to: RouteType;
 }
 
-export const PageRedirect = (props: PageRedirectProps) => (
-  <Route path={props.from.path} render={() => <Redirect from={props.from.path} to={props.to.path} />} />
+export const PageRedirect = ({ from, to }: PageRedirectProps) => (
+  <Route path={from.path} render={() => <Redirect from={from.path} to={to.path} />} />
 );
 
 // Page Route

@@ -4,6 +4,8 @@
   "scripts": {
     "build": "cmless build && node copy _redirects ./build/_redirects",
     "build:assets": "cd src && svgo avatar.svg && svg2png avatar.svg -w 100",
+    "test:e2e": "cypress run",
+    "test:e2e:open": "cypress open",
     "profile": "cmless profile",
     "format": "cmless format",
     "start": "cmless start",
@@ -20,6 +22,7 @@
   },
   "devDependencies": {
     "cmless": "0.4.0",
+    "cypress": "2.1.0",
     "firemail": "1.5.0"
   },
   "cmless": {

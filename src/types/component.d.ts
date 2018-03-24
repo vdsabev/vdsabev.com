@@ -1,4 +1,4 @@
-import { VNode } from 'ultradom';
+import { VNode } from 'picodom';
 
 declare global {
   export type Props<ElementType = HTMLElement> = CustomProps<Partial<ElementType>>;

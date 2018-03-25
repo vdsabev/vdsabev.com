@@ -3,7 +3,8 @@ import { Services } from '../Services';
 
 export class TalksModel {
   talks: Article[] = [];
-  getData() {
-    return Services.getTalks().then((talks: Article[]) => ({ talks: talks.slice().reverse() }));
+  async getData() {
+    const talks = await Services.getTalks();
+    return { talks: talks.slice().reverse() };
   }
 }

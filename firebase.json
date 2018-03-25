@@ -2,15 +2,6 @@
   "functions": {
     "source": "node_modules/firemail/functions"
   },
-  "hosting": {
-    "public": "build",
-    "rewrites": [
-      {
-        "source": "**",
-        "destination": "/index.html"
-      }
-    ]
-  },
   "rules": {
     ".read": true,
     ".write": false

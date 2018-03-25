@@ -1,7 +1,7 @@
 import { logger } from '../logger';
 import { Services } from '../Services';
 
-interface Availability {
+export interface Availability {
   status: string;
   range: string;
 }
@@ -18,7 +18,8 @@ export class ContactModel {
   email = '';
 
   async getData(): Promise<Partial<ContactModel>> {
-    return { availability: await Services.getAvailability<Availability>() };
+    const availability = await Services.getAvailability();
+    return { availability };
   }
 
   setText(e: Event): Partial<ContactModel> {

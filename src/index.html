@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <title>Vladimir Sabev - Freelance Web Developer</title>
     <meta name="author" content="Vladimir Sabev">
-    <meta name="description" content="I am a versatile software engineer with a penchant for front end development and more than 7 years of experience in implementing custom web solutions.">
+    <meta name="description" content="A versatile software engineer with a penchant for front end development and more than 8 years of experience in implementing custom web solutions.">
 
     <meta content="text/html; charset=utf-8" http-equiv="content-type">
     <meta content="width=device-width, initial-scale=1, maximum-scale=1" name="viewport">
@@ -15,9 +15,8 @@
     <base href="/">
     <link rel="shortcut icon" href="favicon.png">
 
-    <% const values = (obj) => Object.keys(obj).map((key) => obj[key]) %>
     <% const fonts = htmlWebpackPlugin.options.style.fonts; %>
-    <link href="https://fonts.googleapis.com/css?family=<%= values(fonts).map((font) => font.split(/\s+/).join('+')).join('|') %>" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=<%= Object.values(fonts).map((font) => font.split(/\s+/).join('+')).join('|') %>" rel="stylesheet">
   </head>
 
   <body>

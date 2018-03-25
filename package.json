@@ -2,7 +2,7 @@
   "private": true,
   "name": "vdsabev.com",
   "scripts": {
-    "build": "cmless build && node copy _redirects ./build/_redirects",
+    "build": "cmless build && node copy _redirects ./dist/_redirects",
     "build.assets": "cd src && svgo avatar.svg && svg2png avatar.svg -w 100",
     "test": "npm run test.e2e",
     "test.e2e": "cypress run",
@@ -19,13 +19,19 @@
     "tslib": "1.9.0"
   },
   "devDependencies": {
-    "cmless": "0.4.0",
+    "cmless": "0.5.0",
     "cypress": "2.1.0",
     "firemail": "1.5.0"
   },
   "cmless": {
     "input": "src",
-    "script": "src/index.ts",
-    "style": "src/style.ts"
+    "script": "${input}/index.ts",
+    "style": "${input}/style.ts",
+    "env": {
+      "EMAIL_ADDRESS": "vdsabev@gmail.com",
+      "EMAIL_SERVICE_URL": "https://us-central1-vladimir-sabev.cloudfunctions.net/sendEmail",
+      "FIREBASE_DATABASE_URL": "https://vladimir-sabev.firebaseio.com",
+      "GOOGLE_ANALYTICS_PRODUCT_ID": "UA-107701468-1"
+    }
   }
 }

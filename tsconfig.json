@@ -1,8 +1,9 @@
 {
   "extends": "./node_modules/cmless/tsconfig.json",
-  "compilerOptions": {
-    "importHelpers": true
-  },
-  "exclude": ["node_modules"],
-  "include": ["src"]
+  "exclude": [
+    "node_modules"
+  ],
+  "include": [
+    "src"
+  ]
 }

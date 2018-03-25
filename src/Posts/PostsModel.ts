@@ -3,7 +3,8 @@ import { Services } from '../Services';
 
 export class PostsModel {
   posts: Article[] = [];
-  getData() {
-    return Services.getPosts().then((posts: Article[]) => ({ posts: posts.slice().reverse() }));
+  async getData() {
+    const posts = await Services.getPosts();
+    return { posts: posts.slice().reverse() };
   }
 }

@@ -1,3 +1,7 @@
+import { Availability } from './Contact';
+import { Article } from './Article';
+import { Skill } from './Skills';
+
 namespace Service {
   export interface Params {
     method: Method;
@@ -45,14 +49,14 @@ const http = {
 };
 
 const firebase = {
-  get: (path: string) => <T>() => http.get<T>(`${process.env.FIREBASE_DATABASE_URL}/${path}.json`),
+  get: <T>(path: string) => () => http.get<T>(`${process.env.FIREBASE_DATABASE_URL}/${path}.json`),
 };
 
 export const Services = {
   sendEmail: (data: Service.Data) => http.post(process.env.EMAIL_SERVICE_URL as string, data),
 
-  getAvailability: firebase.get('availability'),
-  getPosts: firebase.get('posts'),
-  getSkills: firebase.get('skills'),
-  getTalks: firebase.get('talks'),
+  getAvailability: firebase.get<Availability>('availability'),
+  getPosts: firebase.get<Article[]>('posts'),
+  getSkills: firebase.get<Skill[]>('skills'),
+  getTalks: firebase.get<Article[]>('talks'),
 };

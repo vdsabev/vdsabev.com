@@ -13,8 +13,10 @@ export class SkillsModel {
   max: number;
   skills: Skill[] = [];
 
-  getData() {
-    return Services.getSkills().then((skills: Skill[]) => ({
+  async getData() {
+    const skills = await Services.getSkills();
+
+    return {
       min: Math.min(...skills.map((skill) => new Date(skill.from as string).getTime())),
       max: Date.now(),
       skills: skills.map<Skill>((skill) => ({
@@ -22,6 +24,6 @@ export class SkillsModel {
         from: new Date(skill.from as string).getTime(),
         to: skill.to != null ? new Date(skill.to as string).getTime() : skill.to,
       })),
-    }));
+    };
   }
 }

@@ -1,5 +1,13 @@
 {
   "extends": "./node_modules/cmless/tsconfig.json",
+  "compilerOptions": {
+    "lib": [
+      "dom",
+      "es5",
+      "es2015",
+      "es2015.iterable"
+    ],
+  },
   "exclude": [
     "node_modules"
   ],

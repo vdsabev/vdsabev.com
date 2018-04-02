@@ -18,7 +18,7 @@ import { Talks } from '../Talks';
 import { AppModel } from './AppModel';
 
 export const App = ({ model }: { model: AppModel }) => (
-  <div class={classes(['fade-in', { 'fade-in-start': model.animation }])}>
+  <div class={classes(['fadeIn', { '--start': model.animation }])}>
     <Profile />
     <About model={model.about} />
     <Navigation routes={model.navigationRoutes} currentPath={model.router.pathname} />

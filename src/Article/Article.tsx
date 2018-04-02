@@ -14,12 +14,12 @@ export const Articles = ({ articles, ...props }: ArticlesProps) => (
 );
 
 const Article = (article: Article) => (
-  <article key={article.url} class="article-item">
-    <a target="_blank" href={article.url} class="article-item-title">
+  <article key={article.url} class="article">
+    <a target="_blank" href={article.url} class="article__title">
       {article.title}
     </a>
-    <p class="article-item-text">{article.description}</p>
-    <time dateTime={article.date} class="article-item-date">
+    <p class="article__text">{article.description}</p>
+    <time dateTime={article.date} class="article__date">
       {new Date(article.date).toDateString()}
     </time>
   </article>

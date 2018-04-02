@@ -3,7 +3,7 @@
   background: var(--neutralLighter);
 }
 
-.navigation-page-link {
+.navigation__pageLink {
   cursor: pointer;
   display: inline-block;
   margin-right: 0.25rem;
@@ -15,18 +15,18 @@
 
   transition: all var(--transitionDuration) var(--transitionEasing);
   transition-property: background, border-color;
-}
 
-.navigation-page-link:hover {
-  border-color: var(--neutralLight);
-}
+  &:hover {
+    border-color: var(--neutralLight);
+  }
 
-.navigation-page-link:active {
-  /* No transition for color, otherwise the color transition can't be seen in typical usage */
-  color: var(--foreground);
-}
+  &:active {
+    /* No transition for color, otherwise the color transition can't be seen in typical usage */
+    color: var(--foreground);
+  }
 
-.navigation-page-link.active {
-  background: var(--neutralLight);
-  border-color: transparent;
+  &.--active {
+    background: var(--neutralLight);
+    border-color: transparent;
+  }
 }

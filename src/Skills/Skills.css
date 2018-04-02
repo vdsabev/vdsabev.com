@@ -3,16 +3,16 @@
   padding-bottom: 3rem;
 }
 
-.skill-name {
+.skill__name {
   font-weight: bold;
 }
 
-.skill-level {
+.skill__level {
   text-transform: capitalize;
 }
 
-.skill-range-background,
-.skill-range {
+.skill__rangeBackground,
+.skill__range {
   position: absolute;
   left: 0;
   right: 0;
@@ -20,17 +20,17 @@
   height: 1.3rem;
 }
 
-.skill-range-background {
+.skill__rangeBackground {
   background: var(--neutralLight);
 }
 
-.skill-range {
+.skill__range {
   background: var(--info);
   transition: all var(--transitionDuration) var(--transitionEasing);
   transition-property: left, right;
 }
 
-.skill-year {
+.skill__year {
   padding: 0 0.2rem;
   color: var(--neutralLighter);
 }

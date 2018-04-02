@@ -12,7 +12,7 @@ import { transitionDuration } from '../style';
 interface PagesProps extends Props {}
 
 export const Pages = (props: PagesProps, children: JSX.Element[]) => (
-  <div {...props} class={classes(['page-container', props.class])}>
+  <div {...props} class={classes(['pageContainer', props.class])}>
     <Switch>{children}</Switch>
   </div>
 );
@@ -55,6 +55,6 @@ export const PageRoute = (props: PageRouteProps) => (
 );
 
 const fadeOutPage = (el: Element) => (remove: Function) => {
-  el.classList.add('page-fade-out');
+  el.classList.add('pageFadeOut');
   setTimeout(remove, 1000 * transitionDuration);
 };

@@ -12,10 +12,10 @@ import { AboutModel, Specialization, SocialLink } from './AboutModel';
 
 export const About = ({ model }: { model: AboutModel }) => (
   <section class="about narrow spacer">
-    <div class="about-content">
-      <img class="about-picture" src="picture.jpg" alt="Vladimir Sabev" />
+    <div class="about__content">
+      <img class="about__picture" src="picture.jpg" alt="Vladimir Sabev" />
 
-      <div class="about-statement">
+      <div class="about__statement">
         <p>I believe work should be engaging, fulfilling, and meaningful.</p>
         <p>
           By using the right tool for each job, constantly refining my approach, and keeping in mind the business value
@@ -27,7 +27,7 @@ export const About = ({ model }: { model: AboutModel }) => (
         </p>
       </div>
 
-      <div class="about-social">{model.socialLinks.map(SocialLink)}</div>
+      <div class="about__social">{model.socialLinks.map(SocialLink)}</div>
     </div>
   </section>
 );
@@ -40,6 +40,6 @@ const Specialization = (specialization: Specialization, index: number, array: Sp
 
 const SocialLink = (link: SocialLink) => (
   <a class="inline-block" target="_blank" href={link.url} title={link.name}>
-    <img class="about-social-icon" src={link.icon} alt={link.name} />
+    <img class="about__socialIcon" src={link.icon} alt={link.name} />
   </a>
 );

@@ -2,8 +2,9 @@
   "private": true,
   "name": "vdsabev.com",
   "scripts": {
-    "build": "cmless build && node copy _redirects ./dist/_redirects",
+    "build": "cmless build",
     "build.assets": "cd src && svgo avatar.svg && svg2png avatar.svg -w 100",
+    "deploy.functions": "firebase deploy --only functions",
     "test.e2e": "cypress run",
     "test.e2e.watch": "cypress open",
     "profile": "cmless profile",
@@ -18,7 +19,7 @@
     "tslib": "1.9.0"
   },
   "devDependencies": {
-    "cmless": "0.5.1",
+    "cmless": "0.5.3",
     "firemail": "1.5.0"
   },
   "cmless": {

@@ -1,10 +1,10 @@
-.contact-text,
-.contact-email {
+.contact__text,
+.contact__email {
   width: 100%;
   margin-top: 0.25rem;
 }
 
-.contact-submit {
+.contact__submit {
   width: 100%;
   background: var(--success);
   color: var(--neutralLighter);
@@ -12,24 +12,23 @@
   font-variant: small-caps;
 }
 
-.contact-success,
-.contact-error {
+.contact__success,
+.contact__error {
   display: none;
   opacity: 0;
   transition: opacity var(--transitionDuration) var(--transitionEasing);
   font-size: 1.5rem;
+
+  &.shown {
+    display: block;
+    opacity: 1;
+  }
 }
 
-.contact-success {
+.contact__success {
   color: var(--success);
 }
 
-.contact-error {
+.contact__error {
   color: var(--danger);
-}
-
-.contact-success.shown,
-.contact-error.shown {
-  display: block;
-  opacity: 1;
 }

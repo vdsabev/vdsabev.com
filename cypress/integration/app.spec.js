@@ -11,7 +11,7 @@ describe(`App`, () => {
 
   it(`should redirect and activate contact link`, () => {
     cy.visit('/');
-    cy.get('a[href="/contact"]').should('have.class', 'active');
+    cy.get('a[href="/contact"]').should('have.class', '--active');
   });
 
   describe(`Pages`, () => {
@@ -23,12 +23,12 @@ describe(`App`, () => {
     ].forEach((page) => {
       it(`should have active ${page.name} link`, () => {
         cy.visit(page.href);
-        cy.get(`a[href="${page.href}"]`).should('have.class', 'active');
+        cy.get(`a[href="${page.href}"]`).should('have.class', '--active');
       });
 
       it(`should have ${page.name} page`, () => {
         cy.visit(page.href);
-        cy.get('.page-container').find(page.selector).should('have.length', 1);
+        cy.get('.pageContainer').find(page.selector).should('have.length', 1);
       });
     });
   });

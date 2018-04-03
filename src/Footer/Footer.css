@@ -1,4 +1,4 @@
-.footer-stripe {
+.footerStripe {
   height: 5px;
   background: var(--info);
   background: linear-gradient(to right, var(--info), var(--success));
@@ -10,19 +10,19 @@
   color: var(--neutralLighter);
 }
 
-.footer-content {
+.footer__content {
   text-align: center;
 }
 
 @media (min-width: 480px) {
-  .footer-content {
+  .footer__content {
     display: grid;
     grid-template-columns: auto auto;
     justify-content: space-between;
   }
 }
 
-.footer-content a {
+.footer__link {
   color: var(--neutralLighter);
   border-bottom: 1px dotted var(--neutralLight);
 }

@@ -1,8 +1,8 @@
-.fade-in {
+.fadeIn {
   transition: opacity var(--transitionDuration) var(--transitionEasing);
   opacity: 0;
-}
 
-.fade-in-start {
-  opacity: 1;
+  &.--start {
+    opacity: 1;
+  }
 }

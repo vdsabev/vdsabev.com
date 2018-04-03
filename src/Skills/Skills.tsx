@@ -24,15 +24,15 @@ const Skill = ({ min, max }: Partial<SkillsModel>) => {
 
     return (
       <div class="skill" title={skill.description}>
-        <div class="skill-name pull-left">{skill.name}</div>
-        <div class="skill-level pull-right">{skill.level}</div>
+        <div class="skill__name float-left">{skill.name}</div>
+        <div class="skill__level float-right">{skill.level}</div>
         <div class="clear"></div>
 
-        <div class="skill-range-background"></div>
+        <div class="skill__rangeBackground"></div>
 
-        <div class="skill-range" style={{ left, right }}>
-          <div class="skill-year pull-left">{years >= 1 ? fromYear : null}</div>
-          <div class="skill-year pull-right">{years >= 1 ? toYear : null}</div>
+        <div class="skill__range" style={{ left, right }}>
+          <div class="skill__year float-left">{years >= 1 ? fromYear : null}</div>
+          <div class="skill__year float-right">{years >= 1 ? toYear : null}</div>
           <div class="clear"></div>
         </div>
       </div>

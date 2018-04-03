@@ -23,7 +23,7 @@ interface PageLinkProps extends Props<HTMLAnchorElement> {
 
 const PageLink = ({ pageRoute, currentPath, ...props }: PageLinkProps) => (
   <Link
-    class={classes(['navigation-page-link', { active: currentPath === pageRoute.path }])}
+    class={classes(['navigation__pageLink', { '--active': currentPath === pageRoute.path }])}
     to={pageRoute.path}
     {...props}
   >

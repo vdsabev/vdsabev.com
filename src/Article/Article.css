@@ -1,22 +1,22 @@
-.article-item {
+.article {
   margin-bottom: 2rem;
 }
 
-.article-item-title {
+.article__title {
   font-size: 22px;
   color: var(--foregroundDark);
   transition: color var(--transitionDuration) var(--transitionEasing);
+
+  &:hover {
+    color: var(--foregroundLight);
+  }
 }
 
-.article-item-title:hover {
-  color: var(--foregroundLight);
-}
-
-.article-item-text {
+.article__text {
   margin: 0.33rem 0;
 }
 
-.article-item-date {
+.article__date {
   font-size: 14px;
   color: var(--foreground);
 }

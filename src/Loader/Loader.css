@@ -7,7 +7,7 @@
   align-items: center;
 }
 
-.loader-arc {
+.loader__arc {
   width: 64px;
   height: 64px;
   border: 5px solid var(--info);

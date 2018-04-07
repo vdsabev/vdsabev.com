@@ -1,4 +1,5 @@
 import { logger } from '../logger';
+import { RequestStatus } from '../RequestStatus';
 import { Services } from '../Services';
 
 export interface Availability {
@@ -11,7 +12,7 @@ export class ContactModel {
     status: '...',
     range: '...',
   };
-  status: ContactStatus | null;
+  status: RequestStatus | undefined;
   text = '';
   email = '';
 
@@ -29,7 +30,7 @@ export class ContactModel {
   }
 
   submit(): Partial<ContactModel> | void {
-    if (this.status === ContactStatus.pending || this.status === ContactStatus.success) return;
+    if (this.status === RequestStatus.pending || this.status === RequestStatus.success) return;
 
     if (!this.email) {
       console.error('Invalid email:', JSON.stringify(this.email));
@@ -46,23 +47,17 @@ export class ContactModel {
       text: this.text,
     });
 
-    return { status: ContactStatus.pending };
+    return { status: RequestStatus.pending };
   }
 
   async sendEmail(message: { subject: string; text: string }): Promise<Partial<ContactModel>> {
     try {
       await Services.sendEmail(message);
       logger.log('contact.success', { message });
-      return { status: ContactStatus.success };
+      return { status: RequestStatus.success };
     } catch (error) {
       logger.error('contact.error', { message, error: (error && error.message) || error });
-      return { status: ContactStatus.error };
+      return { status: RequestStatus.error };
     }
   }
-}
-
-export enum ContactStatus {
-  pending = 'pending',
-  success = 'success',
-  error = 'error',
 }

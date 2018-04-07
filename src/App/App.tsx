@@ -24,10 +24,10 @@ export const App = ({ model }: { model: AppModel }) => (
     <Navigation routes={model.navigationRoutes} currentPath={model.router.pathname} />
     <Pages>
       <PageRedirect from={Routes.HOME} to={Routes.CONTACT} />
-      <PageRoute route={Routes.CONTACT} model={model.contact} resolve={model.contact.getData} view={Contact} />
-      <PageRoute route={Routes.SKILLS} model={model.skills} resolve={model.skills.getData} view={Skills} />
-      <PageRoute route={Routes.POSTS} model={model.posts} resolve={model.posts.getData} view={Posts} />
-      <PageRoute route={Routes.TALKS} model={model.talks} resolve={model.talks.getData} view={Talks} />
+      <PageRoute page={model.page} route={Routes.CONTACT} model={model.contact} resolve={model.contact.getData} view={Contact} />
+      <PageRoute page={model.page} route={Routes.SKILLS} model={model.skills} resolve={model.skills.getData} view={Skills} />
+      <PageRoute page={model.page} route={Routes.POSTS} model={model.posts} resolve={model.posts.getData} view={Posts} />
+      <PageRoute page={model.page} route={Routes.TALKS} model={model.talks} resolve={model.talks.getData} view={Talks} />
     </Pages>
     <Footer />
   </div>

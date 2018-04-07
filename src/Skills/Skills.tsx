@@ -1,7 +1,7 @@
 import './Skills.css';
 
 import { h } from '../dom';
-import { Skill, SkillsModel } from './SkillsModel';
+import { NumberRange, Skill, SkillsModel } from './SkillsModel';
 
 export const Skills = ({ model, ...props }: { model: SkillsModel }) =>
   <section class="skills narrow spacer" {...props}>
@@ -10,7 +10,7 @@ export const Skills = ({ model, ...props }: { model: SkillsModel }) =>
 ;
 
 // TODO: Animate progress bar from left to right
-const Skill = ({ min, max }: Partial<SkillsModel>) => {
+const Skill = ({ min, max }: NumberRange) => {
   const range = max - min;
   const getLeftPosition = (skill: Skill) => 100 * ((skill.from as number) - min) / range;
   const getRightPosition = (skill: Skill) => skill.to != null ? 100 * (max - (skill.to as number)) / range : 0;

@@ -1,5 +1,10 @@
 import { Services } from '../Services';
 
+export interface NumberRange {
+  min: number;
+  max: number;
+}
+
 export interface Skill {
   from: string | number;
   to: string | number;
@@ -8,9 +13,9 @@ export interface Skill {
   level: string;
 }
 
-export class SkillsModel {
-  min: number;
-  max: number;
+export class SkillsModel implements NumberRange {
+  min = 0;
+  max = 0;
   skills: Skill[] = [];
 
   async getData() {

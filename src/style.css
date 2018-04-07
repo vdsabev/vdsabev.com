@@ -52,10 +52,10 @@ fieldset[disabled] button {
   cursor: not-allowed;
 }
 
-fieldset.loading,
-fieldset.loading textarea,
-fieldset.loading input,
-fieldset.loading button {
+fieldset.--loading,
+fieldset.--loading textarea,
+fieldset.--loading input,
+fieldset.--loading button {
   cursor: progress;
 }
 

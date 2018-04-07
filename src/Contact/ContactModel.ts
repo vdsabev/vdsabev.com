@@ -11,9 +11,7 @@ export class ContactModel {
     status: '...',
     range: '...',
   };
-  pending = false;
-  success = false;
-  error = false;
+  status: ContactStatus | null;
   text = '';
   email = '';
 
@@ -31,7 +29,7 @@ export class ContactModel {
   }
 
   submit(): Partial<ContactModel> | void {
-    if (this.pending || this.success) return;
+    if (this.status === ContactStatus.pending || this.status === ContactStatus.success) return;
 
     if (!this.email) {
       console.error('Invalid email:', JSON.stringify(this.email));
@@ -48,21 +46,23 @@ export class ContactModel {
       text: this.text,
     });
 
-    return {
-      pending: true,
-      success: false,
-      error: false,
-    };
+    return { status: ContactStatus.pending };
   }
 
   async sendEmail(message: { subject: string; text: string }): Promise<Partial<ContactModel>> {
     try {
       await Services.sendEmail(message);
       logger.log('contact.success', { message });
-      return { pending: false, success: true };
+      return { status: ContactStatus.success };
     } catch (error) {
       logger.error('contact.error', { message, error: (error && error.message) || error });
-      return { pending: false, error: true };
+      return { status: ContactStatus.error };
     }
   }
+}
+
+export enum ContactStatus {
+  pending = 'pending',
+  success = 'success',
+  error = 'error',
 }

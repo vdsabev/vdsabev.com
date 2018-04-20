@@ -12,8 +12,8 @@ const getAvailabilityStyle = (status: string) => ({ color: status === 'available
 export const Contact = ({ model, ...props }: { model: ContactModel }) => (
   <section class="contact narrow spacer" {...props}>
     <p>
-      I'm currently <b style={getAvailabilityStyle(model.availability.status)}>{model.availability.status}</b>
-      for projects and consulting for <b>{model.availability.range}</b>.
+      I'm currently <b style={getAvailabilityStyle(model.availability.status)}>{model.availability.status}</b> for
+      projects and consulting for <b>{model.availability.range}</b>.
     </p>
 
     <form name="form" onsubmit="return false">

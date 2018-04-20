@@ -1,8 +1,5 @@
 {
   "extends": "./node_modules/cmless/tsconfig.json",
-  "compilerOptions": {
-    "strict": true
-  },
   "exclude": [
     "node_modules"
   ],

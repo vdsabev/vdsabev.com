@@ -1,11 +1,3 @@
-.pageContainer {
-  position: relative;
-  /* Prevent jumping around too much when navigating */
-  min-height: 80vh;
-  /* Prevents overflowing when we switch from a container with small height to one with large height */
-  overflow: hidden;
-}
-
 .pageFadeOut {
   position: absolute;
   top: 0;

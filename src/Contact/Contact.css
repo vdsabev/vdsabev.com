@@ -19,7 +19,7 @@
   transition: opacity var(--transitionDuration) var(--transitionEasing);
   font-size: 1.5rem;
 
-  &.shown {
+  &.--shown {
     display: block;
     opacity: 1;
   }

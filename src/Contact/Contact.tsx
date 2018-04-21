@@ -2,6 +2,7 @@ import './Contact.css';
 
 import { h } from '../dom';
 import { classes } from '../classes';
+import { RequestStatus } from '../RequestStatus';
 import { css } from '../style';
 
 import { ContactModel } from './ContactModel';
@@ -16,7 +17,10 @@ export const Contact = ({ model, ...props }: { model: ContactModel }) => (
     </p>
 
     <form name="form" onsubmit="return false">
-      <fieldset class={classes({ loading: model.pending })} disabled={model.pending || model.success}>
+      <fieldset
+        class={classes({ '--loading': model.status === RequestStatus.pending })}
+        disabled={model.status === RequestStatus.pending || model.status === RequestStatus.success}
+      >
         <label>
           So, how can I help?
           <textarea
@@ -52,11 +56,11 @@ export const Contact = ({ model, ...props }: { model: ContactModel }) => (
       </fieldset>
     </form>
 
-    <div class={classes(['contact__success', { shown: model.success }])}>
+    <div class={classes(['contact__success', { '--shown': model.status === RequestStatus.success }])}>
       Thanks for reaching out 😊 I'll get back to you soon!
     </div>
 
-    <div class={classes(['contact__error', { shown: model.error }])}>
+    <div class={classes(['contact__error', { '--shown': model.status === RequestStatus.error }])}>
       Oops! Something went wrong 😐 Sorry about that, the error has been logged, I'll see what I can do about it. And
       don't worry - you can still reach me at&nbsp;
       {/* NOTE: Email text is used for mailto body: http://www.angelfire.com/dc/html-webmaster/mailto.htm */}

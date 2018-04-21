@@ -10,7 +10,6 @@ export class PageModel {
   private lastResolvedPath: string | undefined;
   private retryTimeoutId: number | undefined;
 
-  // TODO: Rewrite the async flow with Observables
   async resolve(path: string, resolve: () => Promise<any>) {
     try {
       if (this.lastResolvedPath !== path) {

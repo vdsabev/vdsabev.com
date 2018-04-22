@@ -31,8 +31,15 @@ export const PageRoute = ({ page, route, resolve, ...props }: PageRouteProps) =>
         return <Loader key={route.path} />;
       }
 
-      if (status == RequestStatus.error) {
-        return <div class="narrow">{page.errors.map((error) => [error.message, <br />])}</div>;
+      if (status == RequestStatus.error && resolve) {
+        return (
+          <div class="narrow">
+            {page.errors.map((error) => [error.message, <br />])}
+            <button type="button" onclick={() => page.resolve(route.path, resolve)}>
+              Try Again
+            </button>
+          </div>
+        );
       }
 
       return <props.view key={route.path} model={props.model} onremove={fadeOutPage} />;

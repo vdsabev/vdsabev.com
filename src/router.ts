@@ -1,5 +1,5 @@
 import { h } from './dom';
-import { createLink } from './create-link';
+import { createLink } from './createLink';
 import { location } from '@hyperapp/router/src/location';
 
 export { Redirect } from '@hyperapp/router/src/Redirect';

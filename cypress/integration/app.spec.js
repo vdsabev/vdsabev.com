@@ -28,7 +28,7 @@ describe(`App`, () => {
 
       it(`should have ${page.name} page`, () => {
         cy.visit(page.href);
-        cy.get('.pageContainer').find(page.selector).should('have.length', 1);
+        cy.get('.pagesContainer').find(page.selector).should('have.length', 1);
       });
     });
   });

@@ -10,8 +10,7 @@ export class PageModel {
       this.clearErrors();
       await delayedRetry({ delay: 3000, take: 3, resolve });
       this.setStatus(path, RequestStatus.success);
-    }
-    catch (error) {
+    } catch (error) {
       this.setStatus(path, RequestStatus.error);
       this.addError(error);
       throw error;
@@ -33,12 +32,11 @@ export class PageModel {
 
 const delayedRetry = async (
   options: { delay: number; take: number; resolve: () => Promise<any> },
-  attempt = 1,
+  attempt = 1
 ): Promise<any> => {
   try {
     return await options.resolve();
-  }
-  catch (error) {
+  } catch (error) {
     if (attempt >= options.take) {
       throw error;
     }
@@ -47,4 +45,5 @@ const delayedRetry = async (
   }
 };
 
-const delay = (milliseconds: number): Promise<void> => new Promise((resolve) => setTimeout(resolve, milliseconds));
+const delay = (milliseconds: number): Promise<void> =>
+  new Promise((resolve) => setTimeout(resolve, milliseconds));

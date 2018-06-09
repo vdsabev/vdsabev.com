@@ -11,14 +11,14 @@ interface LinkProps extends Props<HTMLAnchorElement> {
 export const createLink = (h: Hyperscript) => (props: LinkProps, children: Children) => {
   const to = props.to;
   const location = props.location || window.location;
-  delete props.to
-  delete props.location
+  delete props.to;
+  delete props.location;
 
   props.href = to;
 
   // TODO: Remove when https://github.com/hyperapp/router/issues/19 is fixed
   const originalOnClick = props.onclick;
-  props.onclick = function (e) {
+  props.onclick = function(e) {
     const shouldFollowUrl =
       e.button !== 0 ||
       e.altKey ||

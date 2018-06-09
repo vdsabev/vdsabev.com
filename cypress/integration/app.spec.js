@@ -16,10 +16,10 @@ describe(`App`, () => {
 
   describe(`Pages`, () => {
     [
-      { name: 'Contact', href: '/contact', selector: '.contact'  },
-      { name: 'Skills',  href: '/skills',  selector: '.skills'   },
-      { name: 'Posts',   href: '/posts',   selector: '.articles' },
-      { name: 'Talks',   href: '/talks',   selector: '.articles' },
+      { name: 'Contact', href: '/contact', selector: '.contact' },
+      { name: 'Skills', href: '/skills', selector: '.skills' },
+      { name: 'Posts', href: '/posts', selector: '.articles' },
+      { name: 'Talks', href: '/talks', selector: '.articles' },
     ].forEach((page) => {
       it(`should have active ${page.name} link`, () => {
         cy.visit(page.href);
@@ -28,7 +28,9 @@ describe(`App`, () => {
 
       it(`should have ${page.name} page`, () => {
         cy.visit(page.href);
-        cy.get('.pagesContainer').find(page.selector).should('have.length', 1);
+        cy.get('.pagesContainer')
+          .find(page.selector)
+          .should('have.length', 1);
       });
     });
   });

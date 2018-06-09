@@ -15,7 +15,8 @@ import { render } from './dom';
 import { App, AppModel } from './App';
 
 const model = new AppModel();
-const store = process.env.NODE_ENV === 'production' ? createStore(model) : debug(createStore(model));
+const store =
+  process.env.NODE_ENV === 'production' ? createStore(model) : debug(createStore(model));
 
 // Router
 let unsubscribe = store.model.router.subscribe(store.model.router);

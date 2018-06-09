@@ -44,7 +44,8 @@ const sendRequest = <T = void>({ method, url, responseType, data }: Service.Para
   });
 
 const http = {
-  get: <T>(url: Service.Url, data?: Service.Data) => sendRequest<T>({ method: 'GET', url, data, responseType: 'json' }),
+  get: <T>(url: Service.Url, data?: Service.Data) =>
+    sendRequest<T>({ method: 'GET', url, data, responseType: 'json' }),
   post: <T>(url: Service.Url, data: Service.Data) => sendRequest<T>({ method: 'POST', url, data }),
 };
 

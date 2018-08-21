@@ -1,4 +1,5 @@
 // Assets
+import './robots.txt';
 import './logo.png';
 import './favicon.png';
 

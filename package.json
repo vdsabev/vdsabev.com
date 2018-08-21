@@ -15,17 +15,15 @@
     "@hyperapp/router": "0.4.1",
     "classcat": "3.0.2",
     "overstate": "1.2.2",
-    "picodom": "2.0.0",
-    "tslib": "1.9.0"
+    "picodom": "2.0.0"
   },
   "devDependencies": {
-    "cmless": "0.6.2",
+    "cmless": "0.7.2",
     "firemail": "1.5.0"
   },
   "cmless": {
     "input": "src",
     "script": "${input}/index.ts",
-    "style": "${input}/style.ts",
     "env": {
       "EMAIL_ADDRESS": "vdsabev@gmail.com",
       "EMAIL_SERVICE_URL": "https://us-central1-vladimir-sabev.cloudfunctions.net/sendEmail",

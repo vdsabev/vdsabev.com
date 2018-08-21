@@ -1,5 +1,8 @@
 {
   "extends": "./node_modules/cmless/tsconfig.json",
+  "compilerOptions": {
+    "jsxFactory": "h"
+  },
   "exclude": [
     "node_modules"
   ],

@@ -1,6 +1,6 @@
-const { css } = require('./style');
+import { css } from './style';
 
-module.exports = {
+export default {
   short_name: 'vdsabev.com',
   name: 'Vladimir Sabev',
   description: 'Freelance Web Developer',

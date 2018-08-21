@@ -15,7 +15,7 @@ export const Articles = ({ articles, ...props }: ArticlesProps) => (
 
 const Article = (article: Article) => (
   <article key={article.url} class="article">
-    <a target="_blank" href={article.url} class="article__title">
+    <a target="_blank" rel="noopener" href={article.url} class="article__title">
       {article.title}
     </a>
     <p class="article__text">{article.description}</p>

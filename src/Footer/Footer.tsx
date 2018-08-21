@@ -12,7 +12,7 @@ export const Footer = () => [
       <p>&copy; {thisYear} Vladimir Sabev</p>
       <p>
         Illustration by{' '}
-        <a class="footer__link" target="_blank" href="https://www.behance.net/s-pov">
+        <a class="footer__link" target="_blank" rel="noopener" href="https://www.behance.net/s-pov">
           @spovv
         </a>
       </p>

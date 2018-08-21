@@ -22,7 +22,8 @@ export const About = ({ model }: { model: AboutModel }) => (
           for my clients, I strive to create the best web applications possible.
         </p>
         <p>
-          After more than {model.yearsOfExperience} years of professional experience and exposure to a wide range of
+          After more than {model.yearsOfExperience} years of professional
+          experience and exposure to a wide range of
           technologies, I currently specialize in {model.specializations.map(Specialization)}.
         </p>
       </div>
@@ -39,7 +40,7 @@ const Specialization = (specialization: Specialization, index: number, array: Sp
 ];
 
 const SocialLink = (link: SocialLink) => (
-  <a class="inline-block" target="_blank" href={link.url} title={link.name}>
+  <a class="inline-block" target="_blank" rel="noopener" href={link.url} title={link.name}>
     <img class="about__socialIcon" src={link.icon} alt={link.name} />
   </a>
 );

@@ -24,7 +24,7 @@ export const css = {
   neutralDark: '#95a5a6',
 
   primary: '#34495e',
-  success: '#2ecc71',
-  danger: '#e74c3c',
-  info: '#3498db',
+  success: '#1e8449',
+  danger: '#df2e1b',
+  info: '#207ab7',
 };

@@ -24,6 +24,10 @@
   "cmless": {
     "input": "src",
     "script": "${input}/index.ts",
+    "serviceWorker": {
+      "navigateFallback": "/index.html",
+      "swDest": "service-worker.js"
+    },
     "env": {
       "EMAIL_ADDRESS": "vdsabev@gmail.com",
       "EMAIL_SERVICE_URL": "https://us-central1-vladimir-sabev.cloudfunctions.net/sendEmail",

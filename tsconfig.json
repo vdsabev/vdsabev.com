@@ -1,12 +1,12 @@
 {
   "extends": "./node_modules/cmless/tsconfig.json",
-  "compilerOptions": {
-    "jsxFactory": "h"
-  },
   "exclude": [
     "node_modules"
   ],
   "include": [
     "src"
-  ]
+  ],
+  "compilerOptions": {
+    "jsxFactory": "h"
+  }
 }

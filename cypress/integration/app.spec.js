@@ -1,7 +1,7 @@
 describe(`App`, () => {
   it(`should have the correct title`, () => {
     cy.visit('/');
-    cy.title().should('include', 'Vladimir Sabev');
+    cy.title().should('include', 'Vlad Sabev');
   });
 
   it(`should redirect from base URL to /contact`, () => {

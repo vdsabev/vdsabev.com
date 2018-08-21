@@ -13,7 +13,7 @@ import { AboutModel, Specialization, SocialLink } from './AboutModel';
 export const About = ({ model }: { model: AboutModel }) => (
   <section class="about narrow spacer">
     <div class="about__content">
-      <img class="about__picture" src="picture.jpg" alt="Vladimir Sabev" />
+      <img class="about__picture" src="picture.jpg" alt="Vlad Sabev" />
 
       <div class="about__statement">
         <p>I believe work should be engaging, fulfilling, and meaningful.</p>

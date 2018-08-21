@@ -1,4 +1,4 @@
-# Vladimir Sabev
+# Vlad Sabev
 
 ## Setup
 1. Make sure you have installed [Node.js](nodejs.org), minimum version 6.11.3

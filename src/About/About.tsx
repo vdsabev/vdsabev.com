@@ -17,14 +17,15 @@ export const About = ({ model }: { model: AboutModel }) => (
 
       <div class="about__statement">
         <p>I believe work should be engaging, fulfilling, and meaningful.</p>
+
         <p>
-          By using the right tool for each job, constantly refining my approach, and keeping in mind the business value
-          for my clients, I strive to create the best web applications possible.
+          By using the right tool for each job, constantly refining my approach, and keeping in mind
+          the business value for my clients, I strive to create the best web applications possible.
         </p>
+
         <p>
-          After more than {model.yearsOfExperience} years of professional
-          experience and exposure to a wide range of
-          technologies, I currently specialize in {model.specializations.map(Specialization)}.
+          With exposure to a wide range of technologies, I currently specialize in developing
+          modern {Specialization(model.specializations.spa)} for the web.
         </p>
       </div>
 
@@ -33,11 +34,9 @@ export const About = ({ model }: { model: AboutModel }) => (
   </section>
 );
 
-const Specialization = (specialization: Specialization, index: number, array: Specialization[]) => [
-  index < array.length - 1 ? null : 'and ',
-  <abbr title={specialization.description}>{specialization.name}</abbr>,
-  index < array.length - 1 ? ', ' : null,
-];
+const Specialization = (specialization: Specialization) => (
+  <abbr title={specialization.description}>{specialization.name}</abbr>
+);
 
 const SocialLink = (link: SocialLink) => (
   <a class="inline-block" target="_blank" rel="noopener" href={link.url} title={link.name}>

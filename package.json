@@ -2,14 +2,10 @@
   "private": true,
   "name": "vdsabev.com",
   "scripts": {
+    "start": "cmless start",
     "build": "cmless build",
-    "build.assets": "cd src && svgo avatar.svg && svg2png avatar.svg -w 100",
-    "deploy.functions": "firebase deploy --only functions",
     "e2e": "cypress run",
-    "e2e.watch": "cypress open",
-    "profile": "cmless profile",
-    "format": "cmless format",
-    "start": "cmless start"
+    "e2e.watch": "cypress open"
   },
   "dependencies": {
     "@hyperapp/router": "0.4.1",
@@ -18,8 +14,7 @@
     "picodom": "2.0.0"
   },
   "devDependencies": {
-    "cmless": "0.7.6",
-    "firemail": "1.5.0"
+    "cmless": "0.7.6"
   },
   "cmless": {
     "input": "src",
@@ -33,7 +28,6 @@
     },
     "env": {
       "EMAIL_ADDRESS": "vdsabev@gmail.com",
-      "EMAIL_SERVICE_URL": "https://us-central1-vladimir-sabev.cloudfunctions.net/sendEmail",
       "FIREBASE_DATABASE_URL": "https://vladimir-sabev.firebaseio.com",
       "GOOGLE_ANALYTICS_PRODUCT_ID": "UA-107701468-1"
     }

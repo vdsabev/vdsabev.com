@@ -1,7 +1,4 @@
 {
-  "functions": {
-    "source": "node_modules/firemail/functions"
-  },
   "rules": {
     ".read": true,
     ".write": false

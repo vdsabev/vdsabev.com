@@ -13,12 +13,18 @@ export class ContactModel {
     range: '...',
   };
   status: RequestStatus | undefined;
+
+  action = '';
   text = '';
   email = '';
 
   async getData(): Promise<Partial<ContactModel>> {
     const availability = await Services.getAvailability();
     return { availability };
+  }
+
+  setFormAction(form: HTMLFormElement): Partial<ContactModel> {
+    return { action: form.action };
   }
 
   setText(e: Event): Partial<ContactModel> {
@@ -42,7 +48,7 @@ export class ContactModel {
       return;
     }
 
-    this.sendEmail({
+    this.sendEmail(this.action, {
       subject: `VDSABEV.COM: New message from ${this.email}`,
       text: this.text,
     });
@@ -50,9 +56,12 @@ export class ContactModel {
     return { status: RequestStatus.pending };
   }
 
-  async sendEmail(message: { subject: string; text: string }): Promise<Partial<ContactModel>> {
+  async sendEmail(
+    url: string,
+    message: { subject: string; text: string }
+  ): Promise<Partial<ContactModel>> {
     try {
-      await Services.sendEmail(message);
+      await Services.sendEmail(url, { ...message, 'form-name': 'contact' });
       logger.log('contact.success', { message });
       return { status: RequestStatus.success };
     } catch (error) {

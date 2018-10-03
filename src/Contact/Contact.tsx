@@ -16,7 +16,7 @@ export const Contact = ({ model, ...props }: { model: ContactModel }) => (
       projects and consulting for <b>{model.availability.range}</b>.
     </p>
 
-    <form name="form" onsubmit="return false">
+    <form name="contact" oncreate={model.setFormAction} onsubmit="return false">
       <fieldset
         class={classes({ '--loading': model.status === RequestStatus.pending })}
         disabled={model.status === RequestStatus.pending || model.status === RequestStatus.success}

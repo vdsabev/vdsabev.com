@@ -23,11 +23,14 @@ const sendRequest = <T = void>({ method, url, responseType, data }: Service.Para
 
     request.onload = () => {
       const body = request.response || request.responseText;
-      if (responseType === 'json') {
+
+      if (request.status >= 400) {
+        reject(body);
+      } else if (responseType === 'json') {
         try {
           resolve(JSON.parse(body));
         } catch (error) {
-          reject(body);
+          reject(error);
         }
       } else {
         resolve(body);
@@ -35,12 +38,18 @@ const sendRequest = <T = void>({ method, url, responseType, data }: Service.Para
     };
 
     request.onerror = request.ontimeout = () => {
-      reject(new Error(`Network request failed`));
+      reject(new Error('Network request failed'));
     };
 
     request.open(method, url, true);
-    request.setRequestHeader('Content-Type', 'application/json;charset=UTF-8');
-    request.send(data ? JSON.stringify(data) : data);
+
+    if (typeof data === 'string') {
+      request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+      request.send(data);
+    } else {
+      request.setRequestHeader('Content-Type', 'application/json;charset=UTF-8');
+      request.send(data ? JSON.stringify(data) : data);
+    }
   });
 
 const http = {
@@ -54,7 +63,8 @@ const firebase = {
 };
 
 export const Services = {
-  sendEmail: (data: Service.Data) => http.post(process.env.EMAIL_SERVICE_URL as string, data),
+  sendEmail: (url: string, data: Service.Data) =>
+    http.post(url, new URLSearchParams(data).toString()),
 
   getAvailability: firebase.get<Availability>('availability'),
   getPosts: firebase.get<Article[]>('posts'),

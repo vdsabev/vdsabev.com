@@ -48,17 +48,14 @@ export class ContactModel {
       return;
     }
 
-    this.sendEmail(this.action, {
-      subject: `VDSABEV.COM: New message from ${this.email}`,
-      text: this.text,
-    });
+    this.sendEmail(this.action, { text: this.text, email: this.email });
 
     return { status: RequestStatus.pending };
   }
 
   async sendEmail(
     url: string,
-    message: { subject: string; text: string }
+    message: Pick<ContactModel, 'text' | 'email'>
   ): Promise<Partial<ContactModel>> {
     try {
       await Services.sendEmail(url, { ...message, 'form-name': 'contact' });

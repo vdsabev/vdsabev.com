@@ -29,7 +29,8 @@
     "env": {
       "EMAIL_ADDRESS": "vdsabev@gmail.com",
       "FIREBASE_DATABASE_URL": "https://vladimir-sabev.firebaseio.com",
-      "GOOGLE_ANALYTICS_PRODUCT_ID": "UA-107701468-1"
+      "GOOGLE_ANALYTICS_PRODUCT_ID": "UA-107701468-1",
+      "PREVIEW_SERVICE_URL": "https://us-central1-prevurl-api.cloudfunctions.net/api/preview"
     }
   }
 }

@@ -14,7 +14,7 @@
   text-align: center;
 }
 
-@media (min-width: 480px) {
+@media (min-width: 30em) {
   .footer__content {
     display: grid;
     grid-template-columns: auto auto;

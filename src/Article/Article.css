@@ -1,5 +1,19 @@
 .article {
-  margin-bottom: 2rem;
+  margin-bottom: 2.4rem;
+}
+
+@media (min-width: 30em) {
+  .article {
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+  }
+}
+
+.article__img {
+  width: 11.3rem;
+  margin-right: 1rem;
+  margin-bottom: 1rem;
 }
 
 .article__title {

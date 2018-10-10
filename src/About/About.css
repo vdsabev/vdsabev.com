@@ -68,7 +68,7 @@
   }
 }
 
-@media (min-width: 640px) {
+@media (min-width: 40em) {
   .about__content {
     grid-gap: 0.8rem;
     grid-template-columns: auto 1fr;

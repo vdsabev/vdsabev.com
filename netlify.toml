@@ -12,7 +12,7 @@
 
 # Service Worker kill switch
 # https://w3c.github.io/webappsec-clear-site-data/#example-killswitch
-# [[headers]]
-#   for = "/*"
-#   [headers.values]
-#     Clear-Site-Data = "*"
+[[headers]]
+  for = "/*"
+  [headers.values]
+    Clear-Site-Data = "*"

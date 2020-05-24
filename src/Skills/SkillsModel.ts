@@ -10,7 +10,6 @@ export interface Skill {
   to: string | number;
   name: string;
   description: string;
-  level: string;
 }
 
 export class SkillsModel implements NumberRange {

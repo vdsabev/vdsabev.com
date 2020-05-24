@@ -4,9 +4,7 @@ import { h } from '../dom';
 
 const thisYear = new Date().getFullYear();
 
-export const Footer = () => [
-  <div class="footerStripe" />,
-
+export const Footer = () => (
   <footer class="footer">
     <div class="footer__content narrow">
       <p>&copy; {thisYear} Vlad Sabev</p>
@@ -17,5 +15,5 @@ export const Footer = () => [
         </a>
       </p>
     </div>
-  </footer>,
-];
+  </footer>
+);

@@ -7,10 +7,6 @@
   font-weight: bold;
 }
 
-.skill__level {
-  text-transform: capitalize;
-}
-
 .skill__rangeBackground,
 .skill__range {
   position: absolute;

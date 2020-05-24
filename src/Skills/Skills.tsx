@@ -25,7 +25,6 @@ const Skill = ({ min, max }: NumberRange) => {
     return (
       <div class="skill" title={skill.description}>
         <div class="skill__name float-left">{skill.name}</div>
-        <div class="skill__level float-right">{skill.level}</div>
         <div class="clear"></div>
 
         <div class="skill__rangeBackground"></div>

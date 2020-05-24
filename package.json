@@ -27,6 +27,8 @@
       "swDest": "service-worker.js"
     },
     "env": {
+      "APP_TITLE": "Vlad Sabev - Web Developer",
+      "APP_DESCRIPTION": "A versatile software engineer with a penchant for front end development and more than 8 years of experience in implementing custom web solutions.",
       "EMAIL_ADDRESS": "vdsabev@gmail.com",
       "FIREBASE_DATABASE_URL": "https://vladimir-sabev.firebaseio.com",
       "GOOGLE_ANALYTICS_PRODUCT_ID": "UA-107701468-1",

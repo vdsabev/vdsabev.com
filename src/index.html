@@ -13,7 +13,7 @@
     <meta content="on" http-equiv="cleartype">
 
     <base href="/">
-    <link rel="shortcut icon" href="favicon.png">
+    <link rel="shortcut icon" type="image/png" href="favicon.png" />
 
     <% const fonts = htmlWebpackPlugin.options.style.fonts; %>
     <% const formattedFonts = Object.values(fonts).map((font) => font.split(/\s+/).join('+')).join('|') %>

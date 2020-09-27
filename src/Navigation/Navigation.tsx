@@ -1,8 +1,6 @@
 import './Navigation.css';
 
-import { h } from '../dom';
-import { classes } from '../classes';
-
+import { h, classes } from '../dom';
 import { Link } from '../router';
 import { Route } from '../Routes';
 

@@ -1,7 +1,6 @@
 import './Contact.css';
 
-import { h } from '../dom';
-import { classes } from '../classes';
+import { h, classes } from '../dom';
 import { RequestStatus } from '../RequestStatus';
 import { css } from '../style';
 

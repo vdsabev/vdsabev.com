@@ -9,9 +9,6 @@ import { SkillsModel } from '../Skills';
 import { TalksModel } from '../Talks';
 
 export class AppModel {
-  animation = false;
-  animate = () => ({ animation: true });
-
   page = new PageModel();
   router = RouterModel;
   navigationRoutes = [Routes.CONTACT, Routes.SKILLS, Routes.POSTS, Routes.TALKS];

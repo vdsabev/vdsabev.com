@@ -1,7 +1,6 @@
 import './Pages.css';
 
-import { h } from '../dom';
-import { classes } from '../classes';
+import { h, classes } from '../dom';
 import { Switch } from '../router';
 
 interface PagesProps extends Props {}

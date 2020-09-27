@@ -1,7 +1,6 @@
 import './App.css';
 
 import { h } from '../dom';
-import { classes } from '../classes';
 
 import { Pages, PageRedirect, PageRoute } from '../Page';
 import { Routes } from '../Routes';
@@ -18,7 +17,7 @@ import { Talks } from '../Talks';
 import { AppModel } from './AppModel';
 
 export const App = ({ model }: { model: AppModel }) => (
-  <div class={classes(['fadeIn', { '--start': model.animation }])}>
+  <div class="app">
     <Profile />
     <About model={model.about} />
     <Navigation routes={model.navigationRoutes} currentPath={model.router.pathname} />

@@ -37,9 +37,6 @@ if (process.env.NODE_ENV !== 'production') {
 // NOTE: Rendering the application must happen AFTER the model subscribes to router changes!
 app({ store, view: App, render });
 
-// NOTE: We need to use `setTimeout` for the animation to run properly
-setTimeout(store.model.animate, 0);
-
 // PWA
 if (process.env.NODE_ENV === 'production' && navigator.serviceWorker) {
   navigator.serviceWorker.register('service-worker.js', { scope: './' });

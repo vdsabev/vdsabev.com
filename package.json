@@ -1,38 +1,22 @@
 {
-  "private": true,
-  "name": "vdsabev.com",
   "scripts": {
-    "start": "cmless start",
-    "build": "cmless build",
+    "start": "npx netlify dev",
+    "build": "tsc && cmless build",
     "e2e": "cypress run",
     "e2e.watch": "cypress open"
   },
   "dependencies": {
-    "@hyperapp/router": "0.4.1",
-    "classcat": "3.0.2",
-    "overstate": "1.2.2",
-    "picodom": "2.0.0"
+    "react": "18.2.0",
+    "react-dom": "18.2.0"
   },
   "devDependencies": {
-    "cmless": "0.11.2"
-  },
-  "cmless": {
-    "input": "src",
-    "script": "${input}/index.ts",
-    "serviceWorker": {
-      "navigateFallback": "/index.html",
-      "navigateFallbackBlacklist": [
-        "\\."
-      ],
-      "swDest": "service-worker.js"
-    },
-    "env": {
-      "APP_TITLE": "Vlad Sabev - Web Developer",
-      "APP_DESCRIPTION": "A versatile software engineer with a penchant for front end development and more than 8 years of experience in implementing custom web solutions.",
-      "EMAIL_ADDRESS": "vdsabev@gmail.com",
-      "FIREBASE_DATABASE_URL": "https://vladimir-sabev.firebaseio.com",
-      "GOOGLE_ANALYTICS_PRODUCT_ID": "UA-107701468-1",
-      "PREVIEW_SERVICE_URL": "https://us-central1-prevurl-api.cloudfunctions.net/api/preview"
-    }
+    "@types/node": "^18.11.17",
+    "@types/react": "^18.0.26",
+    "@types/react-dom": "^18.0.10",
+    "autoprefixer": "^10.4.14",
+    "cmless": "^3.2.1",
+    "postcss": "^8.4.26",
+    "tailwindcss": "^3.3.3",
+    "typescript": "^4.9.3"
   }
 }

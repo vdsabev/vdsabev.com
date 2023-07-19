@@ -1,18 +1,12 @@
-[Settings]
-  ID = "vdsabev"
-
 [build]
-  publish = "build"
+  functions = "node_modules/cmless/server/"
+  publish = "dist/"
   command = "npm run build"
 
-[[redirects]]
-  from = "/*"
-  to = "/index.html"
-  status = 200
-
-# Service Worker kill switch
-# https://w3c.github.io/webappsec-clear-site-data/#example-killswitch
-[[headers]]
-  for = "/*"
-  [headers.values]
-    Clear-Site-Data = "*"
+[dev]
+  framework = "#custom"
+  command = "cmless --port 8080"
+  targetPort = 8080
+  port = 3000
+  publish = "dist"
+  autoLaunch = false

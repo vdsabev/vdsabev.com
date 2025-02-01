@@ -1,7 +1,7 @@
 import './Article.css';
 
 import { h } from '../dom';
-import { Image } from '../Image';
+// import { Image } from '../Image';
 import { ArticleModel } from './ArticleModel';
 
 interface ArticlesProps extends Props {
@@ -16,10 +16,10 @@ export const Articles = ({ articles, ...props }: ArticlesProps) => (
   </section>
 );
 
-const getPreviewUrl = (url: string) =>
-  `${process.env.PREVIEW_SERVICE_URL}?url=${encodeURIComponent(
-    url
-  )}&deviceScaleFactor=0.25&type=jpeg&quality=50`;
+// const getPreviewUrl = (url: string) => placeholderImageUrl;
+//   `${process.env.PREVIEW_SERVICE_URL}?url=${encodeURIComponent(
+//     url
+//   )}&deviceScaleFactor=0.25&type=jpeg&quality=50`;
 
 interface ArticleProps extends Props {
   article: ArticleModel;
@@ -27,9 +27,9 @@ interface ArticleProps extends Props {
 
 const Article = ({ article, ...props }: ArticleProps) => (
   <article class="article" {...props}>
-    <a target="_blank" rel="noopener" href={article.url}>
+    {/* <a target="_blank" rel="noopener" href={article.url}>
       <Image class="article__img" src={getPreviewUrl(article.url)} model={article.image} />
-    </a>
+    </a> */}
 
     <div>
       <a target="_blank" rel="noopener" href={article.url} class="article__title">
